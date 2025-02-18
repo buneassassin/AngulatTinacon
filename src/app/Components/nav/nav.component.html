@@ -1,17 +1,106 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/">MiApp</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+<nav
+  id="main-navbar"
+  class="navbar navbar-expand-lg navbar-light bg-white"
+>
+  <div class="container-fluid">
+    <!-- Icono de angular-->
+    <a class="navbar-brand" href="#">
+      <img
+        src="https://angular.io/assets/images/logos/angular/angular.svg"
+        alt="Angular"
+        height="30"
+      />
+    </a>
+   
+    <!-- Right links -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Inicio</a>
+          <a routerLink="/perfil" class="nav-link">Perfil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about">Sobre Nosotros</a>
+          <a class="nav-link" href="#" title="YouTube apps"
+            ><i class="fas fa-th">mas</i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" title="Notifications"
+            ><i class="fas fa-bell">mas</i
+          ></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+              class="rounded-circle"
+              height="30"
+              alt="Avatar"
+            />
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdown"
+          >
+            <li>
+              <div class="px-3 pt-3 d-flex">
+                <img
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+                  class="rounded-circle me-3"
+                  height="40"
+                  alt="Avatar"
+                />
+                <div>
+                  <h6 class="mb-0">Marie Campbell</h6>
+                  <p class="mb-2">mariecampbell.com</p>
+                </div>
+              </div>
+              <hr class="my-2" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-user-circle me-2"></i>Tu cuenta</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-dollar-sign me-2"></i>Configuraciones</a
+              >
+            </li>
+            <hr class="my-2" />
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-sun me-2"></i>Appearance: Device theme</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-language me-2"></i>Language: English</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-globe me-2"></i>Location: United Kingdom</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-cog me-2"></i>Settings</a
+              >
+            </li>
+            <hr class="my-2" />
+            <li>
+              <a class="dropdown-item" href="#">Cerrar sesión</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>
