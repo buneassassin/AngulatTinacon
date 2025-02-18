@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { NavComponent } from './Components/nav/nav.component'; // 🚀 Importa el Navbar
+import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ NavComponent], // ✅ Importa los componentes aquí
+  standalone: true,
+  imports: [RouterModule], // Importa RouterOutlet aquí
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'IntegradoraAngularTinacon';
