@@ -14,32 +14,10 @@
 <!-- Sección de Características -->
 <section id="features" class="py-5 features-section">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">Innovación</h5>
-            <p class="card-text">Descubre soluciones modernas y escalables para tus proyectos.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">Performance</h5>
-            <p class="card-text">Optimización y velocidad para una experiencia de usuario única.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">Responsive</h5>
-            <p class="card-text">Diseño adaptativo para todos los dispositivos y tamaños de pantalla.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!---che dante, hice un componente ngFOR que se llama rectangle-rows para que no tengas que repetir este codigo 20 veces
+    los datos que le doy estan en -->
+    <app-rectangle-rows [features]="features"></app-rectangle-rows>
+
   </div>
 </section>
 

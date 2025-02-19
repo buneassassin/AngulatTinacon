@@ -1,0 +1,31 @@
+<div class="row">
+  <div *ngFor="let feature of features" class="col-md-4 mb-4">
+    <div class="card border-0 shadow-sm h-100">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ feature.title }}</h5>
+        <p class="card-text">{{ feature.description }}</p>
+        <ng-container *ngIf="feature.nivel_del_agua">
+          <div class="card-text">
+            <div class="water-level-container">
+              <!-- Barra de nivel de agua -->
+              <div
+                class="water-level"
+                [ngStyle]="{
+                  height: getWaterHeight(feature.nivel_del_agua),
+                  'background-color': getColor(feature.nivel_del_agua)
+                }"
+              ></div>
+              <!-- Imagen del tinaco -->
+              <img
+                class="card-img-top"
+                src="assets/Tinacon/imagenTinaco_Fotor.png"
+                alt="Dante, como cargo img?"
+              />
+            </div>
+            <p>Nivel del agua: {{ feature.nivel_del_agua }}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
