@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TinacoComponent } from './tinaco.component';
+import { RectangleRowsComponent} from '../../Components/rectangle-rows/rectangle-rows.component';
 
 describe('TinacoComponent', () => {
   let component: TinacoComponent;
