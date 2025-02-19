@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input  } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-link',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './link.component.html',
   styleUrl: './link.component.css'
 })
 export class LinkComponent {
+  @Input() url: string = '#'; // Valor por defecto
 
 }

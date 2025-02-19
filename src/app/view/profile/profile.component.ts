@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavComponent } from '../../Components/nav/nav.component';
 import { FooterComponent } from '../../Components/footer/footer.component';
-// ruter
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import {  RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
