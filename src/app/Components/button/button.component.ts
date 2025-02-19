@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
-  imports: [],
   templateUrl: './button.component.html',
-  styleUrl: './button.component.css'
+  styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
-
+  @Input() type: string = 'button'; // Valor por defecto
 }

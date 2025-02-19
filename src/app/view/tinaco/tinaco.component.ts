@@ -6,7 +6,7 @@ import { RectangleRowsComponent} from '../../Components/rectangle-rows/rectangle
 @Component({
   selector: 'app-tinaco',
   standalone: true,
-  imports: [ NavComponent, FooterComponent, RouterModule, RectangleRowsComponent],
+  imports: [RouterModule, RectangleRowsComponent],
   templateUrl: './tinaco.component.html',
   styleUrl: './tinaco.component.css'
 })

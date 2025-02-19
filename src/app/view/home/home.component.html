@@ -1,24 +1,46 @@
-<app-nav></app-nav> <!-- Navbar -->
-
-<!-- Sección Hero -->
-<main class=" py-5 hero-section">
-  <div class="container text-center text-white">
+<!-- Sección Hero con Carrusel -->
+<main class="py-5 hero-section">
+  <div class="container text-center text-white hero-content">
     <h1 class="display-4 font-weight-bold">Integradora Angular Tinacon</h1>
     <p class="lead">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus labore perferendis. Quisquam, quae.
+      Monitoreo avanzado de tinacos para una gestión eficiente del agua.
     </p>
     <a href="#features" class="btn btn-primary btn-lg mt-3">Conoce más</a>
   </div>
-</main>
 
+  <!-- Carrusel de imágenes -->
+  <div id="carouselExampleIndicators" class="carousel slide custom-carousel" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&" class="d-block w-100" alt="Monitoreo de tinacos 1">
+        
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&" class="d-block w-100" alt="Monitoreo de tinacos 2">
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&" class="d-block w-100" alt="Monitoreo de tinacos 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</main>
 <!-- Sección de Características -->
 <section id="features" class="py-5 features-section">
   <div class="container">
     <!---che dante, hice un componente ngFOR que se llama rectangle-rows para que no tengas que repetir este codigo 20 veces
-    los datos que le doy estan en -->
+  los datos que le doy estan en -->
     <app-rectangle-rows [features]="features"></app-rectangle-rows>
 
   </div>
 </section>
-
-<app-footer></app-footer>

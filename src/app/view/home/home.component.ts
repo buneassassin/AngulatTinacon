@@ -9,7 +9,7 @@ import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangl
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, NavComponent, FooterComponent, CommonModule, RectangleRowsComponent],
+  imports: [RouterModule,CommonModule, RectangleRowsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

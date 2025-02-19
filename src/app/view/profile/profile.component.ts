@@ -5,7 +5,7 @@ import {  RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [NavComponent, RouterModule, FooterComponent],
+  imports: [ RouterModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

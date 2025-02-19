@@ -1,35 +1,55 @@
-/* Sección Hero con fondo */
+/* Sección Hero con fondo y ajuste del carrusel */
 .hero-section {
+    position: relative;
     background: linear-gradient(
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
       ),
       url('https://via.placeholder.com/1500x500') center/cover no-repeat;
-    min-height: 500px;
+    min-height: 700px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  /* Ajustar el contenido del hero */
+  .hero-content {
+    z-index: 1;
+    position: relative;
+  }
+  
+  /* Ajustar el carrusel */
+  .custom-carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+  
+  /* Ajuste de las imágenes del carrusel */
+  .carousel-inner img {
+    object-fit: cover;
+    height: 700px; /* Ajusta la altura del carrusel */
+  }
+  
+  /* Mejoras en los botones */
+  .btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
   }
   
   /* Sección de características */
   .features-section {
     background-color: #f8f9fa;
   }
-  
-  /* Ajustes para los títulos y textos */
-  .hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-  .hero-section p {
-    font-size: 1.25rem;
-  }
-  
-  /* Opcional: agrega transiciones a los botones */
-  .btn {
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-  
   
