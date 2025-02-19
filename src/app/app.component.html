@@ -1,7 +1,10 @@
-<app-nav></app-nav>
-
-<router-outlet></router-outlet>
-
-
-
-<app-footer></app-footer>
+<ng-container *ngIf="!isAuthPage">
+    <app-nav></app-nav>
+  </ng-container>
+  
+  <router-outlet></router-outlet>
+  
+  <ng-container *ngIf="!isAuthPage">
+    <app-footer></app-footer>
+  </ng-container>
+  
