@@ -1,20 +1,32 @@
-
-.img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+/* Estilos para la imagen del tinaco */
+.img-tinaco {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: auto;
+  display: block;
 }
 
+/* Contenedor de la barra de nivel de agua */
 .water-level-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .water-level {
-    position: absolute;
-    left: 0;
-    width: 20px; /* Ancho de la barra */
-    bottom: 0;
-    transition: height 0.5s ease-in-out;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Barra de nivel de agua */
+.water-level {
+  position: absolute;
+  left: 0;
+  width: 20px; /* Ancho de la barra */
+  bottom: 0;
+  transition: height 0.5s ease-in-out;
+}
+
+/* Efecto hover para las tarjetas */
+.info-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
