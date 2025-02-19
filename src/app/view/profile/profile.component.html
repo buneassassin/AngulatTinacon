@@ -1,36 +1,56 @@
-<app-nav></app-nav> <!-- 🚀 Ahora sí se mostrará -->
+<app-nav></app-nav> <!-- Navbar fijo -->
 
-<!-- profile.component.html -->
-<div class="profile-container">
-    <div class="profile-header">
-      <img
-        src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-        alt="Profile Picture"
-        class="profile-picture"
-      />
-      <h2 class="profile-name">Marie Campbell</h2>
-      <p class="profile-email">mariecampbellexample.com</p>
-    </div>
-  
-    <div class="profile-details">
-      <div class="detail-item">
-        <i class="fas fa-user"></i>
-        <span>Username: mariecampbell</span>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- Card de Encabezado de Perfil -->
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header text-center bg-primary text-white">
+          <h2 class="mb-0">Marie Campbell</h2>
+          <small>mariecampbellexample.com</small>
+        </div>
+        <div class="card-body text-center">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+            alt="Profile Picture"
+            class="rounded-circle mb-3"
+            style="width: 120px; height: 120px; object-fit: cover;"
+          />
+         
+        </div>
       </div>
-      <div class="detail-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>Location: United Kingdom</span>
+
+      <!-- Card de Detalles del Perfil -->
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-3">Profile Details</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fas fa-user me-2"></i>
+              <strong>Username:</strong> mariecampbell
+            </li>
+            <li class="list-group-item">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <strong>Location:</strong> United Kingdom
+            </li>
+            <li class="list-group-item">
+              <i class="fas fa-calendar-alt me-2"></i>
+              <strong>Joined:</strong> January 2020
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="detail-item">
-        <i class="fas fa-calendar-alt"></i>
-        <span>Joined: January 2020</span>
+
+      <!-- Acciones del Perfil -->
+      <div class="d-flex justify-content-center mb-4">
+        <button class="btn btn-primary me-2">Edit Profile</button>
+        <button class="btn btn-secondary">Change Password</button>
       </div>
-    </div>
-  
-    <div class="profile-actions">
-      <button class="btn btn-primary">Edit Profile</button>
-      <button class="btn btn-secondary">Change Password</button>
+
+   
     </div>
   </div>
+</div>
 
-  <app-footer></app-footer>
+<app-footer></app-footer>

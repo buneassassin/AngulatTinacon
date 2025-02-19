@@ -1,0 +1,35 @@
+/* Sección Hero con fondo */
+.hero-section {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url('https://via.placeholder.com/1500x500') center/cover no-repeat;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Sección de características */
+  .features-section {
+    background-color: #f8f9fa;
+  }
+  
+  /* Ajustes para los títulos y textos */
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .hero-section p {
+    font-size: 1.25rem;
+  }
+  
+  /* Opcional: agrega transiciones a los botones */
+  .btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  

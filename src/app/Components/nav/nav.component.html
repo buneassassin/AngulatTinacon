@@ -1,106 +1,48 @@
-<nav
-  id="main-navbar"
-  class="navbar navbar-expand-lg navbar-light bg-white"
->
-  <div class="container-fluid">
-    <!-- Icono de angular-->
+<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow fixed-top">
+  <div class="container">
+    <!-- Marca a la izquierda -->
     <a class="navbar-brand" routerLink="/home">
-      <img
-        src="https://angular.io/assets/images/logos/angular/angular.svg"
-        alt="Angular"
-        height="30"
-      />
+      <img class="me-2 rounded-circle" src="https://play-lh.googleusercontent.com/aSd25YT3Xa3h0y4SfLHpvQPeG6u7lJAKJZzCpHcQUTrYKDl4LOv73BzkTbGKKYyTCug" alt="Angular" height="40">
     </a>
-   
-    <!-- Right links -->
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+    <!-- Botón de colapso (para móviles) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Enlaces centrados -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a routerLink="/perfil" class="nav-link">Perfil</a> 
+          <a routerLink="/home" class="nav-link">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" title="YouTube apps"
-            ><i class="fas fa-th">mas</i
-          ></a>
+          <a routerLink="/perfil" class="nav-link">Perfil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" title="Notifications"
-            ><i class="fas fa-bell">mas</i
-          ></a>
+          <a routerLink="/mas" class="nav-link">Más</a>
         </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle d-flex align-items-center"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-              class="rounded-circle"
-              height="30"
-              alt="Avatar"
-            />
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdown"
-          >
-            <li>
-              <div class="px-3 pt-3 d-flex">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                  class="rounded-circle me-3"
-                  height="40"
-                  alt="Avatar"
-                />
-                <div>
-                  <h6 class="mb-0">Marie Campbell</h6>
-                  <p class="mb-2">mariecampbell.com</p>
-                </div>
-              </div>
-              <hr class="my-2" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fas fa-user-circle me-2"></i>Tu cuenta</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fas fa-dollar-sign me-2"></i>Configuraciones</a
-              >
-            </li>
-            <hr class="my-2" />
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fas fa-sun me-2"></i>Appearance: Device theme</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fas fa-language me-2"></i>Language: English</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fas fa-globe me-2"></i>Location: United Kingdom</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fas fa-cog me-2"></i>Settings</a
-              >
-            </li>
-            <hr class="my-2" />
-            <li>
-              <a class="dropdown-item" href="#">Cerrar sesión</a>
-            </li>
-          </ul>
+        <li class="nav-item">
+          <a routerLink="/notificaciones" class="nav-link">Notificaciones</a>
         </li>
       </ul>
+    </div>
+
+    <!-- Menú de usuario a la derecha -->
+    <div class="d-flex align-items-center">
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="30" alt="Avatar">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" routerLink="/perfil">Tu cuenta</a></li>
+          <li><a class="dropdown-item" routerLink="/configuraciones">Configuraciones</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" routerLink="/cerrar-sesion">Cerrar sesión</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
