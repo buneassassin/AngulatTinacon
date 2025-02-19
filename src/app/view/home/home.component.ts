@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NavComponent } from '../../Components/nav/nav.component';
+import { ParallaxComponent } from '../../Components/parallax/parallax.component';
 import { FooterComponent } from '../../Components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
@@ -9,15 +9,17 @@ import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangl
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule,CommonModule, RectangleRowsComponent],
+  imports: [RouterModule,CommonModule, RectangleRowsComponent, ParallaxComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   features = [
-    { title: 'Innovación', description: 'Descubre soluciones modernas y escalables para tus proyectos.' },
-    { title: 'Performance', description: 'Optimización y velocidad para una experiencia de usuario única.' },
-    { title: 'Responsive', description: 'Diseño adaptativo para todos los dispositivos y tamaños de pantalla.' },
-    { title: 'viva boca', description: 'si.' } // ahora podemos agregar mas cosas a lo pelotudo y lo podemos reutilizar
+    { title: 'Monitoreo en Tiempo Real', description: 'Supervisa el nivel de agua en tu tinaco con datos actualizados al instante.' },
+    { title: 'Alertas Inteligentes', description: 'Recibe notificaciones cuando el nivel de agua esté bajo o se detecten fugas.' },
+    { title: 'Acceso Remoto', description: 'Consulta el estado de tu tinaco desde cualquier lugar con nuestra app web y móvil.' },
+    { title: 'Ahorro de Agua', description: 'Optimiza el consumo y evita desperdicios con reportes detallados de uso.' },
+    { title: 'Instalación Sencilla', description: 'Sensores de fácil montaje y configuración sin necesidad de obras complicadas.' },
   ];
+  
 }
