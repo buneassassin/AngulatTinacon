@@ -13,8 +13,9 @@ export class ModalComponent {
   @Output() close = new EventEmitter<void>(); // Evento para cerrar el modal
 
   /*
-  para utilizar el modal se debe de poner los siguientes metodos para que el modal funcione correctamente (no pense en que 
-  el metodo save guardara realmente los datos y NO actua como un boton submit):
+  para utilizar el modal se debe de poner los siguientes metodos para que el modal funcione correctamente en archivo ts del
+  lugar donde se vaya a guardar(no pense en que el metodo save guardara realmente los datos 
+  y por ahora saveModal() NO actua como un boton submit):
 
   isModalOpen = false;
 
