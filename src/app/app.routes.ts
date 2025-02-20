@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { ProfileComponent } from './view/profile/profile.component';
 import { HomeComponent } from './view/home/home.component';
-import { TinacoComponent } from './view/tinaco/tinaco.component';
+import { TinacoComponent } from './view/Tinacon/tinaco.component';
 import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
 import { InfoComponent } from './view/info/info.component';

@@ -1,26 +1,33 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-rectangle-rows',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './rectangle-rows.component.html',
   styleUrl: './rectangle-rows.component.css'
 })
 export class RectangleRowsComponent {
   @Input() features: { title: string; description?: string; nivel_del_agua?: number }[] = [];
   getColor(nivel: number): string {
-    if (nivel >= 8) {
-      return 'green'; // Alto nivel (verde)
-    } else if (nivel >= 5) {
-      return 'yellow'; // Medio nivel (amarillo)
+    if (nivel >= 70) {
+      return 'green';
+    } else if (nivel >= 40) {
+      return 'yellow';
     } else {
-      return 'red'; // Bajo nivel (rojo)
+      return 'red';
     }
   }
-  getWaterHeight(nivel: number): string {
-    return (nivel * 10) + '%'; // Ajusta la altura de la barra de agua según el nivel
+  getBarHeight(nivel: number): string {
+    if (nivel < 0) {
+      nivel = 0;
+    } else if (nivel > 100) {
+      nivel = 100;
+    }
+    return nivel + '%'; // Retorna algo como "50%"
   }
+  
 }
