@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
 import { ModalComponent } from '../../Components/modal/modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tinaco',
   standalone: true,
-  imports: [RouterModule, RectangleRowsComponent, ModalComponent],
+  imports: [RouterModule, RectangleRowsComponent, ModalComponent,CommonModule],
   templateUrl: './tinaco.component.html',
   styleUrls: ['./tinaco.component.css']
 })
