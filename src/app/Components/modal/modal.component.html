@@ -1,0 +1,18 @@
+<div class="modal-overlay" (click)="close.emit()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ title }}</h2>
+        <button class="close-btn" (click)="close.emit()">×</button>
+      </div>
+  
+      <div class="modal-body">
+        <ng-content></ng-content> <!-- Inserta contenido dinámico -->
+      </div>
+  
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="close.emit()">Cancelar</button>
+        <button class="save-btn" (click)="save.emit()">Guardar</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,8 +1,17 @@
-
-
 <section class="py-5">
     <div class="container py-5">
-
-    <app-rectangle-rows [features]="features"></app-rectangle-rows>
+      <app-rectangle-rows [features]="features"></app-rectangle-rows>
+      <button class="btn btn-primary fixed-btn" (click)="openModal()">Abrir Modal</button>
     </div>
-</section>
+  </section>
+  
+  <!-- Modal fuera de la sección y contenedor -->
+  <app-modal
+    *ngIf="isModalOpen"
+    title="Formulario de Tinaco"
+    (close)="closeModal()"
+    (save)="saveModal()"
+  >
+    <p>Este es un modal completamente reutilizable.</p>
+    <input type="text" placeholder="Ingrese un valor" />
+  </app-modal>
