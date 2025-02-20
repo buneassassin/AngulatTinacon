@@ -8,42 +8,16 @@
     <a routerLink="/info" class="btn btn-primary btn-lg mt-3">Conoce más</a>
   </div>
 
-  <!-- Carrusel de imágenes -->
-  <div id="carouselExampleIndicators" class="carousel slide custom-carousel" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="/assets/Inicio/imagen1.jpg"
-          class="d-block w-100" alt="Monitoreo de tinacos 1">
-
-      </div>
-      <div class="carousel-item">
-        <img
-          src="/assets/Inicio/imagen2.jpg"
-          class="d-block w-100" alt="Monitoreo de tinacos 2">
-      </div>
-      <div class="carousel-item">
-        <img
-          src="/assets/Inicio/imagen3.jpg"
-          class="d-block w-100" alt="Monitoreo de tinacos 3">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-      data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-      data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-  
+  <!-- Componente Carrusel -->
+  <app-carousel [images]="[
+      { src: 'assets/imagen1.jpg', alt: 'Monitoreo de tinacos 1' },
+      { src: 'assets/imagen2.jpg', alt: 'Monitoreo de tinacos 2' },
+      { src: 'assets/imagen3.jpg', alt: 'Monitoreo de tinacos 3' }
+    ]" carouselId="carouselExampleIndicators" height="700px">
+  </app-carousel>
 </main>
+
+
 <!-- Sección de Características -->
 <section id="features" class="py-5 features-section">
   <div class="container">
@@ -51,35 +25,36 @@
       <h2 class="mb-4">Características</h2>
     </div>
     <app-rectangle-rows [features]="features"></app-rectangle-rows>
-    
-   
 
-   
+
+
+
 
   </div>
 </section>
-<app-parallax [backgroundImage]="'https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&'">
-      <h2 class="mb-3">🔍 Monitoreo Inteligente de Tinacos</h2>
-      <p class="lead">Optimiza el uso del agua en tu hogar o empresa con tecnología avanzada.</p>
-      
-      <div class="features">
-        <div class="feature-item">
-          <i class="fas fa-water"></i>
-          <p>📊 Controla el nivel del agua en tiempo real.</p>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-bell"></i>
-          <p>📢 Recibe alertas cuando el tinaco esté bajo o lleno.</p>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-mobile-alt"></i>
-          <p>📱 Gestiona todo desde tu celular.</p>
-        </div>
-      </div>
-  
-      <div class="button-group mt-4">
-        <a routerLink="/info" class="btn btn-primary">Más Información</a >
-      </div>
+<app-parallax
+  [backgroundImage]="'https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&'">
+  <h2 class="mb-3">🔍 Monitoreo Inteligente de Tinacos</h2>
+  <p class="lead">Optimiza el uso del agua en tu hogar o empresa con tecnología avanzada.</p>
 
-    
+  <div class="features">
+    <div class="feature-item">
+      <i class="fas fa-water"></i>
+      <p>📊 Controla el nivel del agua en tiempo real.</p>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-bell"></i>
+      <p>📢 Recibe alertas cuando el tinaco esté bajo o lleno.</p>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-mobile-alt"></i>
+      <p>📱 Gestiona todo desde tu celular.</p>
+    </div>
+  </div>
+
+  <div class="button-group mt-4">
+    <a routerLink="/info" class="btn btn-primary">Más Información</a>
+  </div>
+
+
 </app-parallax>

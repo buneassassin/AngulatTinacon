@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ParallaxComponent } from '../../Components/parallax/parallax.component';
-import { FooterComponent } from '../../Components/footer/footer.component';
+import { CarouselComponent } from '../../Components/carousel/carousel.component';
 import { CommonModule } from '@angular/common';
 import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
 
@@ -9,7 +9,7 @@ import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangl
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule,CommonModule, RectangleRowsComponent, ParallaxComponent],
+  imports: [RouterModule,CommonModule, RectangleRowsComponent, ParallaxComponent, CarouselComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
