@@ -1,0 +1,21 @@
+/* Ajustar el carrusel */
+.custom-carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 1; /* Debe quedar por debajo del contenido */
+  }
+  
+  /* Ajuste de las imágenes del carrusel */
+  .carousel-inner img {
+    object-fit: cover;
+    height: 700px; /* Ajusta la altura del carrusel */
+    width: 100%;
+  }
+  
