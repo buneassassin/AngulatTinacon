@@ -1,31 +1,39 @@
-/* Estilos para la imagen del tinaco */
-.img-tinaco {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin: auto;
+/* Contenedor que pone la imagen y la barra en línea horizontal */
+.tinaco-wrapper {
+  display: flex;
+  align-items: flex-end; /* Alinea la base de la imagen con la base de la barra */
+  justify-content: center; /* Centra horizontalmente si deseas */
+}
+
+/* Ajusta el tamaño de la imagen del tinaco */
+.tinaco-image {
+  width: 150px;
+  height: 200px; /* Ajusta según tu imagen real */
   display: block;
 }
 
-/* Contenedor de la barra de nivel de agua */
-.water-level-container {
+/* Contenedor de la barra de nivel */
+.bar-container {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
+  width: 20px;        /* Ancho de la barra */
+  height: 190px;      /* Misma altura que la imagen del tinaco */
+  background-color: #ddd; /* Color de fondo (gris claro) */
+  margin-left: 10px;  /* Espacio entre el tinaco y la barra */
+  border-radius: 4px; /* Borde redondeado (opcional) */
+  margin-bottom: 6px;
+  overflow: hidden;   /* Oculta cualquier relleno que se salga */
 }
 
-/* Barra de nivel de agua */
-.water-level {
+/* El relleno (agua) de la barra */
+.bar-fill {
   position: absolute;
-  left: 0;
-  width: 20px; /* Ancho de la barra */
-  bottom: 0;
-  transition: height 0.5s ease-in-out;
+  bottom: 0;   /* Empieza a llenar desde abajo */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  /* La altura se asigna dinámicamente con [ngStyle] */
+  transition: height 0.5s ease-in-out; /* Efecto de animación */
 }
 
-/* Efecto hover para las tarjetas */
+/* Efecto hover para las tarjetas (opcional) */
 .info-card:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;

@@ -12,12 +12,12 @@ import { RectangleRowsComponent} from '../../Components/rectangle-rows/rectangle
 })
 export class TinacoComponent {
   features = [
-    { title: 'Tinaco1', nivel_del_agua: 10},
-    { title: 'Tinaco2', nivel_del_agua: 8 },
-    { title: 'Tinaco3', nivel_del_agua: 6 },
-    { title: 'Tinaco4', nivel_del_agua: 5 },
-    { title: 'Tinaco5', nivel_del_agua: 4 },
-    { title: 'Tinaco6', nivel_del_agua: 3 },
-    { title: 'Tinaco7', nivel_del_agua: 2 },
+    { title: 'Tinaco1', nivel_del_agua: 100},
+    { title: 'Tinaco2', nivel_del_agua: 50 },
+    { title: 'Tinaco3', nivel_del_agua: 30 },
+    { title: 'Tinaco4', nivel_del_agua: 20 },
+    { title: 'Tinaco5', nivel_del_agua: 10 },
+    { title: 'Tinaco6', nivel_del_agua: 6 },
+    { title: 'Tinaco7', nivel_del_agua: 5 },
   ];
 }

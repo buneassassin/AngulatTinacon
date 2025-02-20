@@ -1,4 +1,4 @@
-<div class="row justify-content-center"> 
+<div class="row justify-content-center">
   <div *ngFor="let feature of features" class="col-md-4 mb-4">
     <div class="card info-card border-0 shadow-sm h-100">
       <div class="card-body text-center">
@@ -6,22 +6,31 @@
         <p class="card-text">{{ feature.description }}</p>
         <ng-container *ngIf="feature.nivel_del_agua !== undefined">
           <div class="card-text">
-            <div class="water-level-container">
-              <!-- Barra de nivel de agua -->
-              <div
-                class="water-level"
-                [ngStyle]="{
-                  height: getWaterHeight(feature.nivel_del_agua),
-                  'background-color': getColor(feature.nivel_del_agua)
-                }"
-              ></div>
+            <!-- Contenedor que agrupa la imagen del tinaco y la barra -->
+            <div class="tinaco-wrapper">
               <!-- Imagen del tinaco -->
-              <img
-                class="card-img-top img-tinaco"
-                src="assets/Tinacon/imagenTinaco_Fotor.png"
-                alt="Imagen del tinaco"
-              />
+              <link rel="stylesheet" href="" />
+              <a [routerLink]="['/info']"
+                >
+                <img
+                  class="tinaco-image"
+                  src="/assets/Tinacon/rotoplaz.png"
+                  alt="Imagen del tinaco"
+                />
+              </a>
+
+              <!-- Barra a la derecha del tinaco -->
+              <div class="bar-container">
+                <div
+                  class="bar-fill"
+                  [ngStyle]="{
+                    height: getBarHeight(feature.nivel_del_agua),
+                    'background-color': getColor(feature.nivel_del_agua)
+                  }"
+                ></div>
+              </div>
             </div>
+
             <p>Nivel del agua: {{ feature.nivel_del_agua }}%</p>
           </div>
         </ng-container>
