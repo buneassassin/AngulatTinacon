@@ -1,15 +1,11 @@
 footer {
-    background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-    border-top: 1px solid #dee2e6;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  /* Pie de página */
-  footer .footer-bottom {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 0.75rem 0;
-    font-size: 0.9rem;
-  }
-  /* Asegura que el contenido no quede tapado por el footer fijo */
-  body {
-    padding-bottom: 80px;
-  }
+  background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+  border-top: 1px solid #dee2e6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+footer .footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 0;
+  font-size: 0.9rem;
+}

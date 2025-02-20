@@ -1,17 +1,16 @@
 /* Sección Hero con fondo y ajuste del carrusel */
 .hero-section {
   position: relative;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
+  background: linear-gradient(rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)),
     url('https://via.placeholder.com/1500x500') center/cover no-repeat;
   min-height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow: hidden; /* Asegura que nada se desborde */
+  overflow: hidden;
+  /* Asegura que nada se desborde */
 }
 
 /* Overlay oscuro para mejorar la legibilidad */
@@ -25,16 +24,15 @@
   background-color: rgba(45, 42, 42, 0.5);
   z-index: 2;
 }
+
 .hero-content {
-  z-index: 2; /* Asegúrate de que el contenido esté por encima del carrusel */
+  z-index: 2;
   position: relative;
-  /* Agrega sombra al texto para mayor legibilidad */
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  padding: 20px; /* Opcional: para dar algo de espacio interno */
+  padding: 20px;
 }
 
 
-/* Mejoras en los botones */
 .btn {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -43,7 +41,6 @@
   transform: translateY(-2px);
 }
 
-/* Sección de características */
 .features-section {
   background-color: #f8f9fa;
 }
