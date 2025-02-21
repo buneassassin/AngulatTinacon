@@ -1,12 +1,78 @@
 <main style="margin-top: 58px;">
     <div class="container p-3">
- 
+
         <!-- Header -->
         <header class="dashboard-header ">
             <div class="container-fluid text-center">
                 <h1>Gestión de Tinacos</h1>
             </div>
         </header>
+        <div class="container my-4">
+
+            <!-- Tarjetas de Resumen -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Total de Tinacos</h5>
+                            <p class="card-text display-4">{{ totalTinacos }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Tinacos Activos</h5>
+                            <p class="card-text display-4">{{ activeTinacos }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Detalles -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Detalles de Tinacos
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Propietario</th>
+                                    <th>Estado</th>
+                                    <th>Nivel de Agua</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tinaco of tinacos">
+                                    <td>{{ tinaco.id }}</td>
+                                    <td>{{ tinaco.name }}</td>
+                                    <td>{{ tinaco.owner }}</td>
+                                    <td>
+                                        <span class="badge"
+                                            [ngClass]="{'bg-success': tinaco.isOn, 'bg-danger': !tinaco.isOn}">
+                                            {{ tinaco.isOn ? 'Encendido' : 'Apagado' }}
+                                        </span>
+                                    </td>
+                                    <td>{{ tinaco.nivel_del_agua }}%</td>
+                                    <td>
+                                        <button class="btn btn-sm"
+                                            [ngClass]="{'btn-warning': tinaco.isOn, 'btn-info': !tinaco.isOn}"
+                                            (click)="toggleTinaco(tinaco)">
+                                            {{ tinaco.isOn ? 'Apagar' : 'Encender' }}
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </main>

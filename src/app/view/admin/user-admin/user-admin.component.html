@@ -1,12 +1,80 @@
 <main style="margin-top: 58px;">
     <div class="container p-3">
- 
+
         <!-- Header -->
         <header class="dashboard-header ">
             <div class="container-fluid text-center">
                 <h1>Gestión de Usuarios</h1>
             </div>
         </header>
+        <div class="container my-4">
+
+            <!-- Tarjetas de Estadísticas -->
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card card-stat text-center">
+                        <div class="card-body">
+                            <i class="fas fa-users"></i>
+                            <h5 class="card-title mt-2">Total de Usuarios</h5>
+                            <p class="card-text display-4">{{ users.length }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-stat text-center">
+                        <div class="card-body">
+                            <i class="fas fa-user-shield"></i>
+                            <h5 class="card-title mt-2">Administradores</h5>
+                            <p class="card-text display-4">{{ adminCount }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-stat text-center">
+                        <div class="card-body">
+                            <i class="fas fa-user"></i>
+                            <h5 class="card-title mt-2">Usuarios</h5>
+                            <p class="card-text display-4">{{ userCount }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Usuarios -->
+            <div class="card mt-4">
+                <div class="card-header bg-dark text-white">
+                    Lista de Usuarios
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.role }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
+                                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </main>
