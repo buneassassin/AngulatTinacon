@@ -5,32 +5,48 @@
     left: 0;
     padding: 58px 0 0;
     width: 240px;
-    background-color: #fff;
+    background-color: #d8fffb;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 600;
-}
-.sidebar .nav-link {
+    z-index: 2;
+  }
+  
+  /* Separa cada item para mayor legibilidad */
+  .sidebar .nav-item {
+    margin-bottom: 22px;
+  }
+  
+  /* Estilos para los enlaces */
+  .sidebar .nav-link {
     color: #333;
     font-weight: 500;
-    transition: 0.3s;
-}
-.sidebar .nav-link:hover {
-    background-color: #007bff;
-    color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 5px;
-}
-.sidebar .nav-link i {
+  }
+  
+  /* Hover con efecto y fondo azul */
+  .sidebar .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Estilos para el ícono, con margen para separar del texto */
+  .sidebar .nav-link i {
     width: 20px;
     margin-right: 10px;
-}
-/* Responsive */
-@media (max-width: 991.98px) {
+  }
+  
+  /* En pantallas pequeñas, el sidebar ocupa todo el ancho */
+  @media (max-width: 991.98px) {
     .sidebar {
-        width: 100%;
+      width: 100%;
     }
-}
-.active {
+  }
+  
+  /* Estilo para el enlace activo */
+  .active {
     background-color: #007bff !important;
-    color: white !important;
+    color: #fff !important;
     border-radius: 5px;
-}
+  }
+  

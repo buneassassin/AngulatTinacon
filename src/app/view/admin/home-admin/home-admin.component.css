@@ -9,7 +9,14 @@
   margin: 0;
   font-size: 2rem;
 }
-
+body {
+  background-color: #fbfbfb;
+}
+@media (min-width: 991.98px) {
+  main {
+    padding-left: 240px;
+  }
+}
 /* Tarjetas de estadísticas */
 .card-stat {
   border: none;
@@ -30,12 +37,4 @@
 .card-stat:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;
-}
-body {
-  background-color: #fbfbfb;
-}
-@media (min-width: 991.98px) {
-  main {
-    padding-left: 240px;
-  }
 }

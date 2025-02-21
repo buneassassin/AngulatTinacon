@@ -1,0 +1,39 @@
+.floral-breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #bdd3ea, #6dc5ff);
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .floral-breadcrumb li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .floral-breadcrumb a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .floral-breadcrumb a:hover {
+    color: #ffeb3b;
+  }
+  
+  /* Efecto floral */
+  .floral-breadcrumb::before {
+    content: "💦";
+    margin-right: 8px;
+  }
+  
+  .floral-breadcrumb::after {
+    content: "💦";
+    margin-left: 8px;
+  }
+  

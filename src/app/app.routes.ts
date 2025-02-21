@@ -6,6 +6,9 @@ import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
 import { InfoComponent } from './view/info/info.component';
 import { HomeAdminComponent } from './view/admin/home-admin/home-admin.component';
+import { UserAdminComponent } from './view/admin/user-admin/user-admin.component';
+import { GraficasAdminComponent } from './view/admin/graficas-admin/graficas-admin.component';
+import { TinacosAdminComponent } from './view/admin/tinacos-admin/tinacos-admin.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
 
 export const routes: Routes = [
@@ -27,7 +30,7 @@ export const routes: Routes = [
     component: TinacoComponent,
   },
   {
-    path: 'info',
+    path: 'informacion',
     component: InfoComponent,
   },
   {
@@ -41,6 +44,18 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: HomeAdminComponent,
+  },
+  {
+    path: 'admin/user',
+    component: UserAdminComponent,
+  },
+  {
+    path: 'admin/tinacos',
+    component: TinacosAdminComponent,
+  },
+  {
+    path: 'admin/graficas',
+    component: GraficasAdminComponent,
   },
   {
     path: '**',
