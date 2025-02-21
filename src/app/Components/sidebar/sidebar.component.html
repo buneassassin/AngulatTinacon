@@ -1,0 +1,64 @@
+<!--Main Navigation-->
+<header>
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar bg-white">
+    <div class="position-sticky">
+      <ul class="nav flex-column mt-4 px-3">
+        <li class="nav-item">
+          <a routerLink="/admin" class="nav-link active">
+            <i class="fas fa-home"></i> Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="" class="nav-link">
+            <i class="fas fa-users"></i> Usuarios
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="#" class="nav-link">
+            <i class="fas fa-box"></i> Tinacos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="#" class="nav-link">
+            <i class="fas fa-chart-bar"></i> Gráficos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/home" class="nav-link text-danger">
+            <i class="fas fa-sign-out-alt"></i> Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+
+
+      <a class="navbar-brand " routerLink="/home">
+        <img class="me-2 rounded-circle" src="assets/icono.png" alt="Angular" height="40">
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Icon -->
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="#">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</header>

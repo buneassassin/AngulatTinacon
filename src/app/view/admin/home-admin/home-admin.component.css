@@ -1,0 +1,41 @@
+/* Header del Dashboard */
+.dashboard-header {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 40px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Tarjetas de estadísticas */
+.card-stat {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-stat .card-body {
+  padding: 1rem;
+}
+
+.card-stat i {
+  font-size: 2rem;
+  color: #007bff;
+}
+
+/* Efecto hover para tarjetas */
+.card-stat:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+body {
+  background-color: #fbfbfb;
+}
+@media (min-width: 991.98px) {
+  main {
+    padding-left: 240px;
+  }
+}

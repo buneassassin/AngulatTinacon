@@ -5,6 +5,7 @@ import { TinacoComponent } from './view/Tinacon/tinaco.component';
 import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
 import { InfoComponent } from './view/info/info.component';
+import { HomeAdminComponent } from './view/admin/home-admin/home-admin.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
 
 export const routes: Routes = [
@@ -36,6 +37,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'admin',
+    component: HomeAdminComponent,
   },
   {
     path: '**',
