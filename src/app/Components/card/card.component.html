@@ -1,0 +1,9 @@
+<div class="card project-card h-100 shadow">
+    <img [src]="imgSrc" class="card-img-top" [alt]="imgAlt">
+    <div class="card-body">
+      <h5 class="card-title">{{ title }}</h5>
+      <p class="card-text">{{ description }}</p>
+      <ng-content></ng-content> <!-- Permite insertar contenido adicional -->
+    </div>
+  </div>
+  

@@ -1,0 +1,36 @@
+/* Fondo para la sección con un tono azul muy suave */
+.project-cards-section {
+    background-color: #f0f8ff;
+  }
+  
+  /* Estilos para las tarjetas de proyecto */
+  .project-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  }
+  
+  /* Ajusta la imagen para que ocupe un área definida */
+  .project-card .card-img-top {
+    object-fit: cover;
+    height: 270px;
+  }
+  
+  /* Títulos y textos */
+  .project-card .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .project-card .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  

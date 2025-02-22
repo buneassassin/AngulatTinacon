@@ -15,19 +15,19 @@
       <div class="collapse navbar-collapse justify-content-center text-center" id="navbarContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a routerLink="/home" class="nav-link">Inicio</a>
+            <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Inicio</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/informacion" class="nav-link">Información</a>
+            <a routerLink="/informacion" routerLinkActive="active" class="nav-link">Información</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/tinaco" class="nav-link">Tinacon</a>
+            <a routerLink="/tinaco" routerLinkActive="active" class="nav-link">Tinacon</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/login" class="nav-link">Login</a>
+            <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/register" class="nav-link">Register</a>
+            <a routerLink="/register" routerLinkActive="active"  class="nav-link">Register</a>
           </li>
         </ul>
       </div>
