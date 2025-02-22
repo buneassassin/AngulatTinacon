@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../Interface/user';
+import { HeaderComponent } from '../../../Components/header/header.component';
 
 @Component({
   selector: 'app-user-admin',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule, HeaderComponent],
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.css']
 })

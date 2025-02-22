@@ -1,9 +1,10 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { HeaderComponent } from '../../../Components/header/header.component';
 
 @Component({
   selector: 'app-graficas-admin',
-  // Asegúrate de usar styleUrls (con "s")
+  imports: [HeaderComponent],
   templateUrl: './graficas-admin.component.html',
   styleUrls: ['./graficas-admin.component.css']
 })

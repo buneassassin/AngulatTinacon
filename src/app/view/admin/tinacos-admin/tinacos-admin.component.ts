@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Tinacos } from '../../../Interface/Tinacon/tinacos';
+import { HeaderComponent } from '../../../Components/header/header.component';
 
 
 
 @Component({
   selector: 'app-tinacos-admin',
   standalone: true, 
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent],
   templateUrl: './tinacos-admin.component.html',
   styleUrls: ['./tinacos-admin.component.css']
 })

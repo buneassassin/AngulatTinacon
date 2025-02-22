@@ -1,0 +1,11 @@
+/* Header del Dashboard */
+.dashboard-header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 40px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}

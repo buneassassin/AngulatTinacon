@@ -1,164 +1,133 @@
 <main style="margin-top: 58px;">
-    <div class="container py-5">
-      <!-- Encabezado del Dashboard -->
-      <header class="dashboard-header text-center mb-5">
-        <h1>Bienvenido al Panel de Administración</h1>
-        <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.</p>
-      </header>
-  
-      <!-- Tarjetas de Estadísticas -->
-      <div class="row g-4 mb-5">
-        <!-- Usuarios -->
-        <div class="col-md-3">
-          <div class="card card-stat text-center shadow-sm">
-            <div class="card-body">
-              <i class="fas fa-users"></i>
-              <h5 class="card-title mt-2">Usuarios</h5>
-              <p class="card-text display-4">1,234</p>
-            </div>
+  <div class="container p-3">
+    <!-- Encabezado del Dashboard -->
+    <app-header>
+      <h1>Bienvenido al Panel de Administración</h1>
+      <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.</p>
+    </app-header>
+
+    <!-- Tarjetas de Estadísticas -->
+    <div class="row">
+      <!-- Usuarios -->
+      <app-card-hover class="col-md-3">
+        <div class="card card-stat text-center shadow-sm">
+          <div class="card-body">
+            <i class="fas fa-users"></i>
+            <h5 class="card-title mt-2">Usuarios</h5>
+            <p class="card-text display-4">1,234</p>
           </div>
         </div>
-        <!-- Tinacos -->
-        <div class="col-md-3">
-          <div class="card card-stat text-center shadow-sm">
-            <div class="card-body">
-              <i class="fas fa-tint"></i>
-              <h5 class="card-title mt-2">Tinacos</h5>
-              <p class="card-text display-4">56</p>
-            </div>
+      </app-card-hover>
+      <!-- Tinacos -->
+      <app-card-hover class="col-md-3">
+        <div class="card card-stat text-center shadow-sm">
+          <div class="card-body">
+            <i class="fas fa-tint"></i>
+            <h5 class="card-title mt-2">Tinacos</h5>
+            <p class="card-text display-4">56</p>
           </div>
         </div>
-        <!-- Reportes -->
-        <div class="col-md-3">
-          <div class="card card-stat text-center shadow-sm">
-            <div class="card-body">
-              <i class="fas fa-chart-line"></i>
-              <h5 class="card-title mt-2">Reportes</h5>
-              <p class="card-text display-4">78</p>
-            </div>
+      </app-card-hover>
+      <!-- Reportes -->
+      <app-card-hover class="col-md-3">
+        <div class="card card-stat text-center shadow-sm">
+          <div class="card-body">
+            <i class="fas fa-chart-line"></i>
+            <h5 class="card-title mt-2">Reportes</h5>
+            <p class="card-text display-4">78</p>
           </div>
         </div>
-        <!-- Alertas -->
-        <div class="col-md-3">
-          <div class="card card-stat text-center shadow-sm">
-            <div class="card-body">
-              <i class="fas fa-bell"></i>
-              <h5 class="card-title mt-2">Alertas</h5>
-              <p class="card-text display-4">5</p>
-            </div>
+      </app-card-hover>
+      <!-- Alertas -->
+      <app-card-hover class="col-md-3">
+        <div class="card card-stat text-center shadow-sm">
+          <div class="card-body">
+            <i class="fas fa-bell"></i>
+            <h5 class="card-title mt-2">Alertas</h5>
+            <p class="card-text display-4">5</p>
           </div>
         </div>
-      </div>
-  
-      <!-- Sección de Gráficas y Resumen -->
-      <div class="row mb-5">
-        <!-- Gráfico de Actividad -->
-        <div class="col-lg-8 mb-4">
-          <div class="card shadow">
-            <div class="card-header bg-dark text-white">
-              Gráfico de Actividad
-            </div>
-            <div class="card-body" style="height: 400px;">
-              <!-- Aquí se insertaría un gráfico (ej. Chart.js) -->
-              <canvas id="activityChart"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- Resumen de Tinacos -->
-        <div class="col-lg-4 mb-4">
-          <div class="card shadow">
-            <div class="card-header bg-info text-white">
-              Resumen de Tinacos
-            </div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Promedio de agua: 70%</li>
-                <li class="list-group-item">Máximo: 81%</li>
-                <li class="list-group-item">Mínimo: 55%</li>
-                <li class="list-group-item">Tinacos en alerta: 3</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Sección de Noticias / Actualizaciones -->
-      <div class="row mb-5">
-        <div class="col">
-          <div class="card shadow">
-            <div class="card-header bg-secondary text-white">
-              Últimas Noticias
-            </div>
-            <div class="card-body">
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
-                  <strong>Actualización del Sistema:</strong> Se ha implementado un nuevo módulo de monitoreo en tiempo real.
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <strong>Evento de Capacitación:</strong> Próximamente se realizará una capacitación para el uso de la plataforma.
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <strong>Mantenimiento Programado:</strong> Se llevará a cabo mantenimiento el próximo sábado.
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Sección de Tabla de Detalles Recientes -->
+      </app-card-hover>
+    </div>
+
+
+    <!-- Sección de Noticias / Actualizaciones -->
+    <app-card-hover>
       <div class="row">
         <div class="col">
-          <div class="card shadow mb-4">
-            <div class="card-header bg-secondary text-white">
-              Detalles Recientes
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead class="table-light">
-                    <tr>
-                      <th>ID</th>
-                      <th>Usuario</th>
-                      <th>Tinaco</th>
-                      <th>Nivel (%)</th>
-                      <th>Estado</th>
-                      <th>Fecha</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>101</td>
-                      <td>Juan Pérez</td>
-                      <td>Tinaco A</td>
-                      <td>75%</td>
-                      <td><span class="badge bg-success">Normal</span></td>
-                      <td>2025-02-20</td>
-                    </tr>
-                    <tr>
-                      <td>102</td>
-                      <td>Ana García</td>
-                      <td>Tinaco B</td>
-                      <td>55%</td>
-                      <td><span class="badge bg-danger">Bajo</span></td>
-                      <td>2025-02-20</td>
-                    </tr>
-                    <tr>
-                      <td>103</td>
-                      <td>Carlos Ruiz</td>
-                      <td>Tinaco C</td>
-                      <td>81%</td>
-                      <td><span class="badge bg-warning">Alto</span></td>
-                      <td>2025-02-20</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          <div class="card-header bg-secondary text-white">
+            Últimas Noticias
+          </div>
+          <div class="card-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action">
+                <strong>Actualización del Sistema:</strong> Se ha implementado un nuevo módulo de monitoreo en tiempo
+                real.
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <strong>Evento de Capacitación:</strong> Próximamente se realizará una capacitación para el uso de la
+                plataforma.
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <strong>Mantenimiento Programado:</strong> Se llevará a cabo mantenimiento el próximo sábado.
+              </a>
             </div>
           </div>
         </div>
       </div>
-  
-    </div>
-  </main>
-  
+    </app-card-hover>
+    <!-- Sección de Tabla de Detalles Recientes -->
+    <app-card-hover>
+      <div class="row">
+        <div class="col">
+          <div class="card-header bg-secondary text-white">
+            Detalles Recientes
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Tinaco</th>
+                    <th>Nivel (%)</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>101</td>
+                    <td>Juan Pérez</td>
+                    <td>Tinaco A</td>
+                    <td>75%</td>
+                    <td><span class="badge bg-success">Normal</span></td>
+                    <td>2025-02-20</td>
+                  </tr>
+                  <tr>
+                    <td>102</td>
+                    <td>Ana García</td>
+                    <td>Tinaco B</td>
+                    <td>55%</td>
+                    <td><span class="badge bg-danger">Bajo</span></td>
+                    <td>2025-02-20</td>
+                  </tr>
+                  <tr>
+                    <td>103</td>
+                    <td>Carlos Ruiz</td>
+                    <td>Tinaco C</td>
+                    <td>81%</td>
+                    <td><span class="badge bg-warning">Alto</span></td>
+                    <td>2025-02-20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-card-hover>
+
+  </div>
+</main>

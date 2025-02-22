@@ -1,14 +1,4 @@
-/* Header del Dashboard */
-.dashboard-header {
-  background-color: #343a40;
-  color: #fff;
-  padding: 20px 40px;
-}
 
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
 @media (min-width: 991.98px) {
   main {
     padding-left: 240px;
@@ -34,32 +24,10 @@
 }
 
 /* Tarjetas de Estadísticas */
-.card-stat {
-  border: none;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-}
-.card-stat .card-body {
-  padding: 1rem;
-}
+
 .card-stat i {
   font-size: 2rem;
   color: #007bff;
-}
-.card-stat:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-}
-
-/* Estilos generales para las tarjetas */
-.card {
-  border: none;
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
 /* Encabezados de las tarjetas */
@@ -67,19 +35,3 @@
   font-size: 1.2rem;
   text-align: center;
 }
-
-/* Tabla de Detalles */
-.table-hover tbody tr:hover {
-  background-color: rgba(0, 123, 255, 0.1);
-}
-
-/* Listado de noticias */
-.list-group-item {
-  font-size: 1rem;
-  padding: 0.75rem 1.25rem;
-  transition: background-color 0.3s ease;
-}
-.list-group-item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
