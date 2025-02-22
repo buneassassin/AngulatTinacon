@@ -18,7 +18,6 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'IntegradoraAngularTinacon';
   isAuthPage = false; 
-
   isAdminPage = false;
 
   constructor(private router: Router) {

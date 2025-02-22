@@ -1,15 +1,59 @@
+/* Estilos generales */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+}
 
-.card {
+/* Card de Encabezado y Detalles */
+.profile-header-card,
+.profile-details-card,
+.profile-bio-card,
+.profile-social-card {
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
-.badge {
-  font-size: 0.9rem;
-  padding: 0.5em 0.75em;
+/* Imagen de perfil */
+.profile-img {
+  border: 3px solid #fff;
 }
 
-.shadow-sm {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+/* Detalles del perfil */
+.profile-details-card .list-group-item {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
 }
 
+/* Biografía y Redes Sociales */
+.profile-bio-card .card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+.profile-social-card .btn {
+  margin-bottom: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+.profile-social-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Efecto hover para todas las tarjetas */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Títulos */
+.card-title {
+  font-weight: bold;
+  color: #343a40;
+}
+
+/* Asegura buena separación */
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}

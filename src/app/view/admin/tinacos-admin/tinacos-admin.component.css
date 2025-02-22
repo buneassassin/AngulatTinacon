@@ -10,10 +10,6 @@
     font-size: 2rem;
 }
 
-body {
-    background-color: #fbfbfb;
-}
-
 @media (min-width: 991.98px) {
     main {
         padding-left: 240px;

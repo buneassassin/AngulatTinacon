@@ -10,21 +10,11 @@
     font-size: 2rem;
 }
 
-body {
-    background-color: #fbfbfb;
-}
-
 @media (min-width: 991.98px) {
     main {
         padding-left: 240px;
     }
 }
-
-body {
-    background-color: #f8f9fa;
-    font-family: 'Roboto', sans-serif;
-}
-
 /* Header del Dashboard */
 .dashboard-header {
     background-color: #343a40;
