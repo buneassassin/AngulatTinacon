@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ProfileComponent } from './view/profile/profile.component';
 import { HomeComponent } from './view/home/home.component';
 import { TinacoComponent } from './view/Tinacon/tinaco.component';
+import { NotificacionComponent } from './view/notificacion/notificacion.component';
 import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
 import { InfoComponent } from './view/info/info.component';
@@ -32,6 +33,10 @@ export const routes: Routes = [
   {
     path: 'informacion',
     component: InfoComponent,
+  },
+  {
+    path: 'notificaciones',
+    component: NotificacionComponent,
   },
   {
     path:'login',
