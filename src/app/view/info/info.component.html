@@ -1,32 +1,120 @@
-<!-- Sección de Información del Tinaco Inteligente -->
+<!-- Sección de Equipo de Desarrollo -->
 <section class="info-section">
-  <div class="container py-5">
-    <app-breadcrumb></app-breadcrumb>
-    <div class="text-center mb-5">
-      <h2 class="display-5">Tinaco Inteligente</h2>
-      <p class="lead text-muted">
-        Optimiza el uso y control del agua en tu hogar o empresa con tecnología avanzada y monitoreo en tiempo real.
-      </p>
+  <!-- Sección de Beneficios -->
+  <div class="benefits-section py-5 bg-gradient-primary">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-8 text-center mb-5">
+          <h2 class="display-4 mb-3">Transforma tu Gestión del Agua</h2>
+          <p class="lead">La revolución tecnológica para un recurso vital</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="benefit-card">
+            <i class="bi bi-shield-check fs-1"></i>
+            <h3>Seguridad Garantizada</h3>
+            <p>Protección continua contra contaminación y fallos en el suministro</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benefit-card">
+            <i class="bi bi-graph-up-arrow fs-1"></i>
+            <h3>Eficiencia Comprobada</h3>
+            <p>Reduce hasta un 40% el consumo innecesario de agua</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benefit-card">
+            <i class="bi bi-currency-dollar fs-1"></i>
+            <h3>Ahorro Inteligente</h3>
+            <p>Optimiza costos operativos con datos en tiempo real</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <app-rectangle-rows [features]="features"></app-rectangle-rows>
+  <!-- Sección de Sensores -->
+  <div class="py-5 bg-soft-teal">
+    <div class="container">
+      <h2 class="display-4 text-center mb-5 text-deep-ocean">Tecnología de Monitoreo Integrado</h2>
+      
+      <div class="sensor-grid">
+        <div class="sensor-item">
+          <div class="sensor-icon">
+            <i class="bi bi-water fs-1 text-marine-blue"></i>
+          </div>
+          <h3 class="h4 mt-3">Sensor Ultrasónico</h3>
+          <p class="text-muted">Medición precisa de niveles con tecnología de onda continua</p>
+        </div>
 
-    <div class="text-center mt-5">
-      <h2 class="display-5">Equipo de Desarrollo</h2>
-      <p class="lead text-muted">
-        Nuestro equipo de desarrollo esta compuesto por expertos en tecnología avanzada y monitoreo de tinacos.
-      </p>
+        <div class="sensor-item">
+          <div class="sensor-icon">
+            <i class="bi bi-thermometer fs-1 text-coral"></i>
+          </div>
+          <h3 class="h4 mt-3">Termómetro Digital</h3>
+          <p class="text-muted">Registro térmico con precisión ±0.5°C</p>
+        </div>
+
+        <div class="sensor-item">
+          <div class="sensor-icon">
+            <i class="bi bi-flask fs-1 text-seagreen"></i>
+          </div>
+          <h3 class="h4 mt-3">Analizador de Calidad</h3>
+          <p class="text-muted">Control de pH y composición química</p>
+        </div>
+
+        <div class="sensor-item">
+          <div class="sensor-icon">
+            <i class="bi bi-binoculars fs-1 text-sunset"></i>
+          </div>
+          <h3 class="h4 mt-3">Detector de Partículas</h3>
+          <p class="text-muted">Sistema óptico para medición de turbidez</p>
+        </div>
+
+        <div class="sensor-item">
+          <div class="sensor-icon">
+            <i class="bi bi-diamond fs-1 text-crystal"></i>
+          </div>
+          <h3 class="h4 mt-3">Monitor TDS</h3>
+          <p class="text-muted">Análisis de sólidos disueltos en tiempo real</p>
+        </div>
+      </div>
     </div>
-    <div class="text-center mt-5">
-      <h2 class="display-5">Sensores</h2>
-      <p class="lead text-muted">
-        Utilizamos sensores de alta calidad para medir el nivel del agua en tu tinaco.
-      </p>
+  </div>
+
+  <!-- Sección Producto Final -->
+  <div class="row py-5 align-items-center bg-dark text-white position-relative">
+    <div class="col-md-6 position-relative">
+      <img src="dashboard.jpg" alt="Panel de control" class="img-fluid rounded-3 shadow-lg glow-effect">
     </div>
-    <div class="text-center mt-5">
-      <h2 class="display-5">Producto final</h2>
-      <p class="lead text-muted">
-        Nuestro producto final ofrece una solución eficiente para el monitoreo y control del agua en tu hogar o empresa.
+    <div class="col-md-6 mt-4 mt-md-0 px-5">
+      <h2 class="display-4 mb-4">Sistema Integral de Gestión</h2>
+      <p class="lead mb-4">
+        Solución tecnológica completa que transforma tu tinaco en un recurso inteligente:
+      </p>
+      <ul class="list-unstyled feature-list">
+        <li class="mb-3">
+          <i class="bi bi-phone fs-4 text-info"></i>
+          <span class="ms-3">Monitoreo remoto 24/7 desde cualquier dispositivo</span>
+        </li>
+        <li class="mb-3">
+          <i class="bi bi-graph-up fs-4 text-success"></i>
+          <span class="ms-3">Históricos y análisis predictivo</span>
+        </li>
+        <li class="mb-3">
+          <i class="bi bi-shield-check fs-4 text-danger"></i>
+          <span class="ms-3">Alertas automáticas para mantenimiento preventivo</span>
+        </li>
+        <li>
+          <i class="bi bi-cloud-arrow-up fs-4 text-primary"></i>
+          <span class="ms-3">Plataforma en la nube con acceso multi-usuario</span>
+        </li>
+      </ul>
+      <p class="mt-4 fs-5">
+        Integración perfecta entre hardware ESP32 de última generación y software Angular empresarial, 
+        ofreciendo datos precisos y accionables para toma de decisiones informadas.
       </p>
     </div>
   </div>
