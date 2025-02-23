@@ -1,52 +1,66 @@
 .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding: 58px 0 0;
-    width: 240px;
-    background-color: #d8fffb;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 70px 0 0; /* espacio extra para el logo */
+  width: 240px;
+  background-color: #2c3e50; /* tono oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.sidebar .sidebar-content {
+  height: 100%;
+}
+
+/* Estilo del logo en el sidebar */
+.sidebar-logo {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 15px;
+}
+
+.sidebar .nav {
+  margin-top: 10px;
+}
+
+.sidebar .nav-item {
+  margin-bottom: 18px;
+}
+
+.sidebar .nav-link {
+  color: #ecf0f1; /* color claro para el texto */
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.sidebar .nav-link i {
+  width: 20px;
+  margin-right: 10px;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 100%;
   }
-  
-  /* Separa cada item para mayor legibilidad */
-  .sidebar .nav-item {
-    margin-bottom: 22px;
-  }
-  
-  /* Estilos para los enlaces */
-  .sidebar .nav-link {
-    color: #333;
-    font-weight: 500;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-radius: 5px;
-  }
-  
-  /* Hover con efecto y fondo azul */
-  .sidebar .nav-link:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  /* Estilos para el ícono, con margen para separar del texto */
-  .sidebar .nav-link i {
-    width: 20px;
-    margin-right: 10px;
-  }
-  
-  /* En pantallas pequeñas, el sidebar ocupa todo el ancho */
-  @media (max-width: 991.98px) {
-    .sidebar {
-      width: 100%;
-    }
-  }
-  
-  /* Estilo para el enlace activo */
-  .active {
-    background-color: #007bff !important;
-    color: #fff !important;
-    border-radius: 5px;
-  }
-  
+}
+
+.active {
+  background-color: #34495e !important;
+  color: #fff !important;
+  border-radius: 5px;
+}
+
+.profile-img {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
