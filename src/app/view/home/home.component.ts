@@ -16,11 +16,11 @@ import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangl
 })
 export class HomeComponent {
   features = [
-    { title: 'Monitoreo en Tiempo Real', description: 'Supervisa el nivel de agua en tu tinaco con datos actualizados al instante.' },
-    { title: 'Alertas Inteligentes', description: 'Recibe notificaciones cuando el nivel de agua esté bajo o se detecten fugas.' },
-    { title: 'Acceso Remoto', description: 'Consulta el estado de tu tinaco desde cualquier lugar con nuestra app web y móvil.' },
-    { title: 'Ahorro de Agua', description: 'Optimiza el consumo y evita desperdicios con reportes detallados de uso.' },
-    { title: 'Instalación Sencilla', description: 'Sensores de fácil montaje y configuración sin necesidad de obras complicadas.' },
+    { name: 'Monitoreo en Tiempo Real', description: 'Supervisa el nivel de agua en tu tinaco con datos actualizados al instante.' },
+    { name: 'Alertas Inteligentes', description: 'Recibe notificaciones cuando el nivel de agua esté bajo o se detecten fugas.' },
+    { name: 'Acceso Remoto', description: 'Consulta el estado de tu tinaco desde cualquier lugar con nuestra app web y móvil.' },
+    { name: 'Ahorro de Agua', description: 'Optimiza el consumo y evita desperdicios con reportes detallados de uso.' },
+    { name: 'Instalación Sencilla', description: 'Sensores de fácil montaje y configuración sin necesidad de obras complicadas.' },
   ];
   
 }

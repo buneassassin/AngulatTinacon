@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TinacoIndivComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  //housingService = inject(nombre del servicio); // para cuando tengamos algun servicio
+  //housingService = inject(Tinaco); // para cuando tengamos algun servicio
 
  
 
