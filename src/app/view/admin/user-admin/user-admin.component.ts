@@ -12,17 +12,16 @@ import { HeaderComponent } from '../../../Components/header/header.component';
 })
 export class UserAdminComponent {
   users: User[] = [
-    { id: 1, name: 'Juan Pérez', email: 'juan@example.com', role: 'Administrador' },
-    { id: 2, name: 'Ana García', email: 'ana@example.com', role: 'Usuario' },
-    { id: 3, name: 'Carlos Ruiz', email: 'carlos@example.com', role: 'Usuario' },
-    { id: 4, name: 'Laura Sánchez', email: 'laura@example.com', role: 'Moderador' }
+    { id: 1, usuario_nom: 'Juan Pérez', email: 'juan@example.com', rol: 'Administrador',id_persona: 1,email_verified_at: '', foto_perfil: '', is_active: true, is_Inactive: false, password: '', apellidoMaterno: '', apellidoPaterno: '', nombres: '', telefono: ''  },
+    
+
   ];
   
   get adminCount(): number {
-    return this.users.filter(u => u.role === 'Administrador').length;
+    return this.users.filter(u => u.rol === 'Administrador').length;
   }
 
   get userCount(): number {
-    return this.users.filter(u => u.role === 'Usuario').length;
+    return this.users.filter(u => u.rol === 'Usuario').length;
   }
 }
