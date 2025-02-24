@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SensoresData } from '../../../Interface/Tinacon/tinaco_indiv/sensores-data';
 
 
 @Component({
@@ -10,7 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './tinaco-indiv.component.css'
 })
 export class TinacoIndivComponent {
-  route: ActivatedRoute = inject(ActivatedRoute);
+  features:SensoresData[] = [ ];
+  
+
+  route:ActivatedRoute = inject(ActivatedRoute);
   //housingService = inject(Tinaco); // para cuando tengamos algun servicio
 
  

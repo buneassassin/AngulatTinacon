@@ -33,6 +33,9 @@
             <p>Nivel del agua: {{ feature.nivel_del_agua }}%</p>
           </div>
         </ng-container>
+        <ng-container *ngIf="feature.description !== undefined">
+          <p class="card-text">{{ feature.description }}</p>
+        </ng-container>
       </div>
     </div>
   </div>
