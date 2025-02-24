@@ -1,9 +1,11 @@
 // tinaco.component.ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
 import { ModalComponent } from '../../Components/modal/modal.component';
 import { CommonModule } from '@angular/common';
+import { Tinacos } from '../../Interface/Tinacon/tinacos';
+import { TinacoBasicService } from '../../Services/Tinacon/tinaco-basic.service';
 
 @Component({
   selector: 'app-tinaco',
@@ -13,12 +15,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./tinaco.component.css']
 })
 export class TinacoComponent {
-  features = [
-    { title: 'Tinaco1', nivel_del_agua: 100, id_tinaco: 1 },
-    { title: 'Tinaco2', nivel_del_agua: 50, id_tinaco: 2 },
-    { title: 'Tinaco4', nivel_del_agua: 20, id_tinaco: 4 },
+  features:Tinacos[] = [ ];
+  obtenerServicio: TinacoBasicService = inject(TinacoBasicService);
 
-  ];
+  constructor() {
+    this.features = this.obtenerServicio.getAllTinacos();
+  }
 
   isModalOpen = false;
 

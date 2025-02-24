@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-tinaco-indiv',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './tinaco-indiv.component.html',
   styleUrl: './tinaco-indiv.component.css'
 })
 export class TinacoIndivComponent {
+  route: ActivatedRoute = inject(ActivatedRoute);
+  //housingService = inject(nombre del servicio); // para cuando tengamos algun servicio
+
+ 
 
 }
