@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './rectangle-rows.component.css'
 })
 export class RectangleRowsComponent {
-  @Input() features: { title: string; description?: string; nivel_del_agua?: number }[] = [];
+  @Input() features: { title: string; description?: string; nivel_del_agua?: number; id_tinaco?: number }[] = [];
   getColor(nivel: number): string {
     if (nivel >= 70) {
       return 'green';

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RectangleRowsComponent} from '../../Components/rectangle-rows/rectangle-rows.component';
-import { BreadcrumbComponent  } from '../../Components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-info',
-  imports: [CommonModule, RectangleRowsComponent, BreadcrumbComponent],
+  imports: [CommonModule],
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.css']
 })

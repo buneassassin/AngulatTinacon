@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ProfileComponent } from './view/profile/profile.component';
 import { HomeComponent } from './view/home/home.component';
 import { TinacoComponent } from './view/Tinacon/tinaco.component';
+import { TinacoIndivComponent } from './view/Tinacon/tinaco-indiv/tinaco-indiv.component';
 import { NotificacionComponent } from './view/notificacion/notificacion.component';
 import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
@@ -29,6 +30,10 @@ export const routes: Routes = [
   {
     path: 'tinaco',
     component: TinacoComponent,
+  },
+  {
+    path: 'tinaco/:id',
+    component: TinacoIndivComponent,
   },
   {
     path: 'informacion',
