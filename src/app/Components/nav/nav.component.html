@@ -1,57 +1,62 @@
 <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow fixed-top">
   <div class="container">
     <!-- Marca a la izquierda -->
-    <a class="navbar-brand " routerLink="/home">
-      <img class="me-2 rounded-circle" src="assets/icono.png" alt="Angular" height="40">
+    <a class="navbar-brand" routerLink="/home">
+      <img class="me-2 rounded-circle" src="assets/icono.png" alt="Logo" height="40">
     </a>
-    <div class=" justify-content-center d-flex">
-      <!-- Botón de colapso (para móviles) -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <!-- Enlaces centrados -->
-      <div class="collapse navbar-collapse justify-content-center text-center" id="navbarContent">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/informacion" routerLinkActive="active" class="nav-link">Información</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/tinaco" routerLinkActive="active" class="nav-link">Tinacon</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/register" routerLinkActive="active"  class="nav-link">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- Menú de usuario a la derecha -->
-    <div class="d-flex align-items-center"> <!-- Agregar ms-auto -->
-      <div class="dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="30"
-            alt="Avatar">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
-          <li><a class="dropdown-item" routerLink="/notificaciones">Notificaciones</a></li>
-          <li><a class="dropdown-item" routerLink="/admin">Administración</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" routerLink="/cerrar-sesion">Cerrar sesión</a></li>
-        </ul>
-      </div>
+    <!-- Botón de menú hamburguesa -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Enlaces centrados -->
+    <div class="collapse navbar-collapse justify-content-center text-center" id="navbarContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/informacion" routerLinkActive="active" class="nav-link">Información</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/tinaco" routerLinkActive="active" class="nav-link">Tinacon</a>
+        </li>
+      </ul>
     </div>
 
+    <!-- Botones de Login/Register o Menú de usuario alineados a la derecha -->
+    <div class="d-flex align-items-center ms-auto">
+      <ng-container *ngIf="!isLoggedIn">
+        <button routerLink="/login" class="btn btn-outline-primary mx-1">
+          Login
+        </button>
+        <button routerLink="/register" class="btn btn-outline-secondary mx-1">
+          Register
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="30"
+              alt="Avatar">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
+            <li><a class="dropdown-item" routerLink="/notificaciones">Notificaciones</a></li>
+            <li><a class="dropdown-item" routerLink="/admin">Administración</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" routerLink="/cerrar-sesion">Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </ng-container>
+    </div>
 
   </div>
 </nav>
