@@ -1,47 +1,32 @@
 <div class="container my-5 py-5">
     <div class="card shadow notificaciones-card">
-        <div class="card-header bg-primary text-white text-center">
-            <h3 class="mb-0">Notificaciones</h3>
-        </div>
-        <div class="card-body p-0">
-            <ul class="list-group list-group-flush">
-                <!-- Notificación 1 -->
-                <li class="list-group-item d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-bell text-primary me-3"></i>
-                        <div>
-                            <h6 class="mb-1">Alerta: Nivel Bajo</h6>
-                            <small class="text-muted">Tinaco A: 45% de agua</small>
-                        </div>
-                    </div>
-                    <span class="badge bg-danger rounded-pill">Nuevo</span>
-                </li>
-                <!-- Notificación 2 -->
-                <li class="list-group-item d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-info-circle text-success me-3"></i>
-                        <div>
-                            <h6 class="mb-1">Actualización del Sistema</h6>
-                            <small class="text-muted">Firmware actualizado en Tinaco B</small>
-                        </div>
-                    </div>
-                    <span class="badge bg-secondary rounded-pill">Leído</span>
-                </li>
-                <!-- Notificación 3 -->
-                <li class="list-group-item d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-exclamation-triangle text-warning me-3"></i>
-                        <div>
-                            <h6 class="mb-1">Mantenimiento Programado</h6>
-                            <small class="text-muted">Tinaco C: 25/02/2025</small>
-                        </div>
-                    </div>
-                    <span class="badge bg-danger rounded-pill">Nuevo</span>
-                </li>
-            </ul>
-        </div>
-        <div class="card-footer text-center">
-            <button class="btn btn-outline-primary">Ver todas las notificaciones</button>
-        </div>
+      <div class="card-header bg-primary text-white text-center">
+        <h3 class="mb-0">Notificaciones</h3>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+          <!-- Itera sobre las notificaciones -->
+          <li *ngFor="let noti of notifications" class="list-group-item d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <!-- Puedes cambiar el icono según noti.type -->
+              <i class="fas fa-bell text-primary me-3"></i>
+              <div>
+                <h6 class="mb-1">{{ noti.title }}</h6>
+                <small class="text-muted">{{ noti.message }}</small>
+                <br>
+                <small class="text-muted">{{ noti.formatted_created_at }}</small>
+              </div>
+            </div>
+            <span class="badge rounded-pill" 
+                  [ngClass]="{'bg-danger': noti.is_read === 0, 'bg-secondary': noti.is_read !== 0}">
+              {{ noti.is_read === 0 ? 'Nuevo' : 'Leído' }}
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer text-center">
+        <button class="btn btn-outline-primary">Ver todas las notificaciones</button>
+      </div>
     </div>
-</div>
+  </div>
+  
