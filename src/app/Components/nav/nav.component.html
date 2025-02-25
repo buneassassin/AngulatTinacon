@@ -40,9 +40,9 @@
 
       <ng-container *ngIf="isLoggedIn">
         <div class="dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+          <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="30"
+            <img [src]="user?.foto_perfil" class="rounded-circle" height="45" width="45"
               alt="Avatar">
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
