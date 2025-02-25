@@ -1,52 +1,27 @@
 /* Header del Dashboard */
 .dashboard-header {
-    background-color: #343a40;
-    color: #fff;
-    padding: 20px 40px;
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 40px;
 }
 
 .dashboard-header h1 {
-    margin: 0;
-    font-size: 2rem;
+  margin: 0;
+  font-size: 2rem;
 }
 
 body {
-    background-color: #fbfbfb;
+  background-color: #fbfbfb;
 }
 
 @media (min-width: 991.98px) {
-    main {
-        padding-left: 240px;
-    }
+  main {
+    padding-left: 240px;
+  }
 }
+
 /* Título principal */
 h2 {
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  /* Tarjetas con bordes redondeados y sombra */
-  .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  
-  /* Efecto hover en las tarjetas */
-  .card:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-  }
-  
-  /* Efecto hover en botones */
-  .btn-outline-primary:hover,
-  .btn-outline-danger:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  /* Estilo de la tabla: realce al pasar el mouse */
-  .table-hover tbody tr:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-  }
-  
+  font-weight: bold;
+  margin-bottom: 20px;
+}

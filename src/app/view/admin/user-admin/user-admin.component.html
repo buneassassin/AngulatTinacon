@@ -10,33 +10,33 @@
 
             <!-- Tarjetas de Estadísticas -->
             <div class="row g-4">
-                <div class="col-md-4">
+                <app-card-hover class="col-md-4">
                     <div class="card card-stat text-center">
                         <div class="card-body">
                             <i class="fas fa-users"></i>
                             <h5 class="card-title mt-2">Total de Usuarios</h5>
-                            <p class="card-text display-4">{{ users.length }}</p>
+                            <p class="card-text display-4">{{ informacionesUser?.totalUsers }}</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
+                </app-card-hover>
+                <app-card-hover class="col-md-4">
                     <div class="card card-stat text-center">
                         <div class="card-body">
                             <i class="fas fa-user-shield"></i>
                             <h5 class="card-title mt-2">Administradores</h5>
-                            <p class="card-text display-4">{{ adminCount }}</p>
+                            <p class="card-text display-4">{{ informacionesUser?.adminUsers }}</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
+                </app-card-hover>
+                <app-card-hover class="col-md-4">
                     <div class="card card-stat text-center">
                         <div class="card-body">
                             <i class="fas fa-user"></i>
                             <h5 class="card-title mt-2">Usuarios</h5>
-                            <p class="card-text display-4">{{ userCount }}</p>
+                            <p class="card-text display-4">{{ informacionesUser?.userUsers }}</p>
                         </div>
                     </div>
-                </div>
+                </app-card-hover>
             </div>
 
             <!-- Tabla de Usuarios -->
@@ -58,7 +58,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let user of users">
-                                    <td>{{ user.id_persona }}</td>
+                                    <td>{{ user.id }}</td>
                                     <td>{{ user.usuario_nom }}</td>
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.rol }}</td>
