@@ -1,34 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Tinacos } from '../../../Interface/Tinacon/tinacos';
 import { HeaderComponent } from '../../../Components/header/header.component';
-
-
+import { AdminService } from '../../../Services/admin/admin.service';
 
 @Component({
   selector: 'app-tinacos-admin',
-  standalone: true, 
+  standalone: true,
   imports: [CommonModule, HeaderComponent],
   templateUrl: './tinacos-admin.component.html',
   styleUrls: ['./tinacos-admin.component.css']
 })
-export class TinacosAdminComponent {
-  tinacos: Tinacos[] = [
-    { id: 1, name: 'Tinaco A', owner: 'Juan Pérez', isOn: true, nivel_del_agua: 75 },
-    { id: 2, name: 'Tinaco B', owner: 'Ana García', isOn: true, nivel_del_agua: 60 },
-    { id: 3, name: 'Tinaco C', owner: 'Carlos Ruiz', isOn: false, nivel_del_agua: 30 },
-    { id: 4, name: 'Tinaco D', owner: 'Laura Sánchez', isOn: true, nivel_del_agua: 90 }
-  ];
+export class TinacosAdminComponent implements OnInit {
+  // Almacenará el arreglo de usuarios con sus tinacos
+  usersWithTinacos: any[] = [];
 
-  toggleTinaco(t: Tinacos): void {
-    t.isOn = !t.isOn;
+  constructor(private adminService: AdminService) {}
+
+  ngOnInit(): void {
+    this.adminService.obtenerUsuariosConTinacos().subscribe({
+      next: (response: any) => {
+        this.usersWithTinacos = response;
+        console.log(response);
+      },
+      error: (error) =>
+        console.error('Error al obtener datos de usuarios con tinacos', error)
+    });
   }
 
+  // Ejemplo de toggle para un tinaco (puedes adaptar la lógica)
+  toggleTinaco(tinaco: any): void {
+    tinaco.nivel_del_agua = tinaco.nivel_del_agua > 0 ? 0 : 100;
+  }
+
+  // Getter para total de tinacos
   get totalTinacos(): number {
-    return this.tinacos.length;
+    return this.usersWithTinacos.reduce((total, user) => {
+      return total + (user.tinacos ? user.tinacos.length : 0);
+    }, 0);
   }
 
+  // Getter para tinacos activos (consideramos activos aquellos con nivel_del_agua > 0)
   get activeTinacos(): number {
-    return this.tinacos.filter(t => t.isOn).length;
+    return this.usersWithTinacos.reduce((total, user) => {
+      return total + (user.tinacos ? user.tinacos.filter((t: any) => t.nivel_del_agua > 0).length : 0);
+    }, 0);
   }
 }
