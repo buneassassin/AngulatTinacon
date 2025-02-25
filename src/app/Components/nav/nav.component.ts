@@ -23,10 +23,11 @@ export class NavComponent implements OnInit {
   }
   info(): void {
     this.authService.getUserData().subscribe({
+
       next: (response: any) => {
         if (response.success) {
           this.user = response.user;
-        }
+         }
       },
       error: (error) => console.error('Error al obtener datos del usuario', error)
     });

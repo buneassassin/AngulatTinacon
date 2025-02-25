@@ -48,7 +48,10 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
             <li><a class="dropdown-item" routerLink="/notificaciones">Notificaciones</a></li>
-            <li><a class="dropdown-item" routerLink="/admin">Administración</a></li>
+            <!--VEREFICAMOS SI EL USUARIO ES ADMIN-->
+            <ng-container *ngIf="user?.rol == 'Admin'">
+              <li><a class="dropdown-item" routerLink="/admin">Administracion</a></li>
+            </ng-container>
             <li>
               <hr class="dropdown-divider">
             </li>
