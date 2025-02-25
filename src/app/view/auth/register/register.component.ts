@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../Services/auth/auth.service'; // Ajusta la ruta según tu estructura
 import { User } from '../../../Interface/user';
+import { Persona } from '../../../Interface/persona';
 
 @Component({
   selector: 'app-register',

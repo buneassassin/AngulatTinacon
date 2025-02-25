@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // Importa tus interfaces (modelos) si las tienes
 import { User } from '../../Interface/user';
@@ -20,7 +20,9 @@ export class AuthService {
   }
   // me de los datos del usuario
   getUserData(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/me`);
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.baseUrl}/me`, { headers });
   }
   // logout de usuario
   logoutUser(): Observable<any> {

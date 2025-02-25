@@ -1,18 +1,21 @@
-<div class="container my-5 py-5">
+<div class="container my-5 py-5" *ngIf="user">
   <div class="row justify-content-center">
     <div class="col-md-8">
-
+      
       <!-- Card de Encabezado de Perfil -->
       <app-card-hover>
         <div class="card-header text-center bg-primary text-white">
-          <h2 class="mb-0">Marie Campbell</h2>
-          <small>mariecampbellexample.com</small>
+          <h2 class="mb-0">
+            {{ persona?.nombres }} {{ user.persona.a_p }} {{ user.persona.a_m }}
+          </h2>
+          <small>{{ user.email }}</small>
         </div>
         <div class="card-body text-center">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" alt="Foto de Perfil"
-            class="rounded-circle mb-3 profile-img" style="width: 120px; height: 120px; object-fit: cover;" />
+          <img [src]="user.foto_perfil" alt="Foto de Perfil"
+               class="rounded-circle mb-3 profile-img"
+               style="width: 120px; height: 120px; object-fit: cover;">
           <p class="mb-0"><strong>Posición:</strong> Administradora de Proyectos</p>
-          <p class="mb-0"><strong>Email:</strong> marie.example.com</p>
+          <p class="mb-0"><strong>Email:</strong> {{ user.email }}</p>
         </div>
       </app-card-hover>
 
@@ -23,66 +26,16 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <i class="fas fa-user me-2"></i>
-              <strong>Usuario:</strong> mariecampbell
-            </li>
-            <li class="list-group-item">
-              <i class="fas fa-map-marker-alt me-2"></i>
-              <strong>Ubicación:</strong> United Kingdom
-            </li>
-            <li class="list-group-item">
-              <i class="fas fa-calendar-alt me-2"></i>
-              <strong>Ingreso:</strong> January 2020
-            </li>
-            <li class="list-group-item">
-              <i class="fas fa-briefcase me-2"></i>
-              <strong>Departamento:</strong> Operaciones
-            </li>
-            <li class="list-group-item">
-              <i class="fas fa-envelope me-2"></i>
-              <strong>Email:</strong> marie.com
+              <strong>Usuario:</strong> {{ user.usuario_nom }}
             </li>
             <li class="list-group-item">
               <i class="fas fa-phone me-2"></i>
-              <strong>Teléfono:</strong> +44 1234 567890
+              <strong>Teléfono:</strong> {{ user.persona.telefono  }}
             </li>
+            <!-- Puedes agregar más detalles aquí -->
           </ul>
         </div>
       </app-card-hover>
-      <!-- Card de Biografía -->
-      <app-card-hover>
-        <h4 class="card-title mb-3">Biografía</h4>
-        <p class="card-text">
-          Marie Campbell es una profesional dedicada con más de 10 años de experiencia en administración y gestión de
-          proyectos.
-          Apasionada por la innovación y la eficiencia, ha liderado equipos multidisciplinarios para mejorar procesos y
-          resultados
-          en el sector. Su compromiso con la excelencia la convierte en una figura clave para impulsar el desarrollo en
-          su organización.
-        </p>
-      </app-card-hover>
-
-
-      <!-- Card de Redes Sociales -->
-      <app-card-hover>
-        <div class="mb-4">
-          <div class="card-body text-center">
-            <h4 class="card-title mb-3">Redes Sociales</h4>
-            <a href="#" class="btn btn-outline-primary me-2">
-              <i class="fab fa-facebook-f"></i> Facebook
-            </a>
-            <a href="#" class="btn btn-outline-info me-2">
-              <i class="fab fa-twitter"></i> Twitter
-            </a>
-            <a href="#" class="btn btn-outline-danger me-2">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="#" class="btn btn-outline-primary">
-              <i class="fab fa-linkedin-in"></i> LinkedIn
-            </a>
-          </div>
-        </div>
-      </app-card-hover>
-
       <!-- Acciones del Perfil -->
       <div class="d-flex justify-content-center mb-4">
         <button class="btn btn-primary me-2">Editar Perfil</button>

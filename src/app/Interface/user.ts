@@ -1,16 +1,19 @@
+import { Persona } from './persona';
+
 export interface User {
   id: number;
   id_persona: number;
-  usuario_nom: string;
-  apellidoPaterno: string;
-  apellidoMaterno: string;
-  nombres: string;
-  rol: string;
   email: string;
-  telefono: string;
-  email_verified_at: string;
+  usuario_nom: string;
   foto_perfil: string;
+  persona: Persona;
+  email_verified_at: string;
   password: string;
+  rol: string;
   is_active: boolean;
   is_Inactive: boolean;
+  nombres: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  telefono: string;
 }

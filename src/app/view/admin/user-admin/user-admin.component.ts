@@ -12,7 +12,6 @@ import { HeaderComponent } from '../../../Components/header/header.component';
 })
 export class UserAdminComponent {
   users: User[] = [
-    { id: 1, usuario_nom: 'Juan Pérez', email: 'juan@example.com', rol: 'Administrador',id_persona: 1,email_verified_at: '', foto_perfil: '', is_active: true, is_Inactive: false, password: '', apellidoMaterno: '', apellidoPaterno: '', nombres: '', telefono: ''  },
     
 
   ];
