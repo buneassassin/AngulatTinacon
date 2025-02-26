@@ -24,3 +24,19 @@
   font-weight: bold;
   color: #343a40;
 }
+/* Oculta el icono (label) por defecto */
+button.border-0.bg-transparent.p-0 label {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Al pasar el mouse sobre el botón, se aplica un filtro grayscale a la imagen */
+button.border-0.bg-transparent.p-0:hover .profile-img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+/* Al hacer hover, el icono aparece (label se vuelve opaco) */
+button.border-0.bg-transparent.p-0:hover label {
+  opacity: 1;
+}
