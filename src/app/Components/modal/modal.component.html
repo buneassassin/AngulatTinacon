@@ -1,18 +1,16 @@
 <div class="modal-overlay" (click)="close.emit()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h2>{{ title }}</h2>
-      <button class="close-btn" (click)="close.emit()">×</button>
+    <div class="modal-header bg-primary text-white">
+      <h2 class="modal-title">{{ title }}</h2>
+      <button type="button" class="btn-close btn-close-white ms-auto" aria-label="Close" (click)="close.emit()"></button>
     </div>
-
     <div class="modal-body">
       <ng-content></ng-content>
-      <!-- Inserta contenido dinámico -->
     </div>
-
     <div class="modal-footer">
-      <button class="cancel-btn" (click)="close.emit()">Cancelar</button>
-      <button class="save-btn" (click)="save.emit()">Guardar</button>
+      <button type="button" class="btn btn-danger" (click)="close.emit()">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="save.emit()">Guardar</button>
     </div>
   </div>
+  <div class="modal-backdrop"></div>
 </div>

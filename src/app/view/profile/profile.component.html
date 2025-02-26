@@ -1,19 +1,18 @@
 <div class="container my-5 py-5" *ngIf="user">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      
+
       <!-- Card de Encabezado de Perfil -->
       <app-card-hover>
         <div class="card-header text-center bg-primary text-white">
           <h2 class="mb-0">
-            {{ persona?.nombres }} {{ user.persona.a_p }} {{ user.persona.a_m }}
+            {{ user.persona.nombres }} {{ user.persona.a_p }} {{ user.persona.a_m }}
           </h2>
           <small>{{ user.email }}</small>
         </div>
         <div class="card-body text-center">
-          <img [src]="user.foto_perfil" alt="Foto de Perfil"
-               class="rounded-circle mb-3 profile-img"
-               style="width: 120px; height: 120px; object-fit: cover;">
+          <img [src]="user.foto_perfil" alt="Foto de Perfil" class="rounded-circle mb-3 profile-img"
+            style="width: 120px; height: 120px; object-fit: cover;">
           <p class="mb-0"><strong>Posición:</strong> Administradora de Proyectos</p>
           <p class="mb-0"><strong>Email:</strong> {{ user.email }}</p>
         </div>
@@ -30,18 +29,80 @@
             </li>
             <li class="list-group-item">
               <i class="fas fa-phone me-2"></i>
-              <strong>Teléfono:</strong> {{ user.persona.telefono  }}
+              <strong>Teléfono:</strong> {{ user.persona.telefono }}
             </li>
             <!-- Puedes agregar más detalles aquí -->
           </ul>
         </div>
       </app-card-hover>
+
       <!-- Acciones del Perfil -->
       <div class="d-flex justify-content-center mb-4">
-        <button class="btn btn-primary me-2">Editar Perfil</button>
-        <button class="btn btn-secondary">Cambiar Contraseña</button>
+        <button class="btn btn-primary me-2" (click)="openModalPerfil()">Editar Perfil</button>
+        <button class="btn btn-secondary" (click)="openModalContrasena()">Cambiar Contraseña</button>
       </div>
 
     </div>
   </div>
 </div>
+
+<!-- Modal para Editar Perfil -->
+<app-modal *ngIf="isModalOpenPerfil" title="Editar Perfil" (close)="closeModal()" (save)="saveModal()">
+  <form>
+    <!-- Sección de la foto de perfil -->
+    <div class="mb-3 text-center">
+      <div class="position-relative d-inline-block">
+        <img [src]="user?.foto_perfil" alt="Foto de Perfil" class="rounded-circle profile-img"
+          style="width: 120px; height: 120px; object-fit: cover; ">
+        <!-- Botón superpuesto para cambiar foto -->
+        <label for="profilePicture"
+          class="position-absolute top-50 start-50 translate-middle  rounded-circle text-white"
+          style="cursor: pointer;">
+          <i class="fas fa-camera"></i>
+        </label>
+      </div>
+      <!-- Input file oculto que se activa al dar clic en el label -->
+      <input type="file" class="d-none" id="profilePicture" />
+    </div>
+
+    <!-- Resto del formulario -->
+    <div class="mb-3">
+      <label for="username" class="form-label">Nombre de Usuario</label>
+      <input type="text" class="form-control" id="username" placeholder="Ingrese nombre de usuario"
+        [value]="user?.usuario_nom" />
+    </div>
+    <div class="mb-3">
+      <label for="fullName" class="form-label">Nombre Completo</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Ingrese nombre completo"
+        [value]="user?.persona?.nombres + ' ' + user?.persona?.a_p + ' ' + user?.persona?.a_m" />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo Electrónico</label>
+      <input type="email" class="form-control" id="email" placeholder="Ingrese correo" [value]="user?.email" />
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Teléfono</label>
+      <input type="text" class="form-control" id="phone" placeholder="Ingrese teléfono"
+        [value]="user?.persona?.telefono" />
+    </div>
+  </form>
+
+</app-modal>
+
+<!-- Modal para Cambiar Contraseña -->
+<app-modal *ngIf="isModalOpenContrasena" title="Cambiar Contraseña" (close)="closeModal()" (save)="saveModal()">
+  <form>
+    <div class="mb-3">
+      <label for="currentPassword" class="form-label">Contraseña Actual</label>
+      <input type="password" class="form-control" id="currentPassword" placeholder="Ingrese su contraseña actual" />
+    </div>
+    <div class="mb-3">
+      <label for="newPassword" class="form-label">Nueva Contraseña</label>
+      <input type="password" class="form-control" id="newPassword" placeholder="Ingrese la nueva contraseña" />
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
+      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme la nueva contraseña" />
+    </div>
+  </form>
+</app-modal>
