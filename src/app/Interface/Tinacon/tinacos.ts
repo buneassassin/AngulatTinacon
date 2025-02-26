@@ -4,4 +4,7 @@ export interface Tinacos {
     nivel_del_agua: number;
     owner: string;
     isOn: boolean;
+    description?: string;
+    created_at?: Date;
+
 }

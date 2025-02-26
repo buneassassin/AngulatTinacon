@@ -1,39 +1,53 @@
-// tinaco.component.ts
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
 import { ModalComponent } from '../../Components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { Tinacos } from '../../Interface/Tinacon/tinacos';
-import { TinacoBasicService } from '../../Services/Tinacon/tinaco-basic.service';
+import { TinacoService } from '../../Services/tinaco/tinaco.service';
 
 @Component({
   selector: 'app-tinaco',
   standalone: true,
-  imports: [RouterModule, RectangleRowsComponent, ModalComponent,CommonModule],
+  imports: [RouterModule, RectangleRowsComponent, ModalComponent, CommonModule],
   templateUrl: './tinaco.component.html',
   styleUrls: ['./tinaco.component.css']
 })
-export class TinacoComponent {
-  features:Tinacos[] = [ ];
-  obtenerServicio: TinacoBasicService = inject(TinacoBasicService);
-
-  constructor() {
-    this.features = this.obtenerServicio.getAllTinacos();
-  }
-
+export class TinacoComponent implements OnInit {
+  tinacos: Tinacos[] = [];
   isModalOpen = false;
 
-  openModal() {
+
+  constructor(private tinacoService: TinacoService) {
+  }
+
+
+  ngOnInit(): void {
+    this.tinacoService.getTinacos().subscribe({
+      next: (response: any) => {
+        // Se espera que la API devuelva un arreglo de tinacos
+        this.tinacos = response;
+        console.log('Tinacos:', response);
+      },
+      error: (error) => console.error('Error al obtener tinacos:', error)
+    });
+  }
+
+  openModal(): void {
     this.isModalOpen = true;
   }
 
-  closeModal() {
+  closeModal(): void {
     this.isModalOpen = false;
   }
 
-  saveModal() {
+  saveModal(): void {
     console.log('Guardado con éxito');
     this.closeModal();
+  }
+
+  // Ejemplo de toggle: si el tinaco está "encendido" (nivel > 0), se apaga (nivel = 0) y viceversa.
+  toggleTinaco(t: Tinacos): void {
+    t.nivel_del_agua = t.nivel_del_agua > 0 ? 0 : 100;
   }
 }
