@@ -5,18 +5,21 @@ import { AuthService } from '../../Services/auth/auth.service'; // Ajusta la rut
 import { User } from '../../Interface/user';
 import { Persona } from '../../Interface/persona';
 import { CardHoverComponent } from '../../Components/card-hover/card-hover.component';
+import { ModalComponent } from '../../Components/modal/modal.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, CardHoverComponent],
+  imports: [CommonModule, CardHoverComponent, ModalComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   user: User | null = null; // Aquí se almacenará la información del usuario
   persona: Persona | null = null;
-
+  isModalOpenPerfil = false;
+  isModalOpenContrasena = false;
+  
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -28,5 +31,21 @@ export class ProfileComponent implements OnInit {
       },
       error: (error) => console.error('Error al obtener datos del usuario', error)
     });
+  }
+  openModalPerfil(): void {
+    this.isModalOpenPerfil = true;
+  }
+  openModalContrasena(): void {
+    this.isModalOpenContrasena = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpenPerfil = false;
+    this.isModalOpenContrasena = false;
+  }
+
+  saveModal(): void {
+    console.log('Guardado con éxito');
+    this.closeModal();
   }
 }

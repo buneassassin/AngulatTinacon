@@ -46,7 +46,6 @@ export class TinacoComponent implements OnInit {
     this.closeModal();
   }
 
-  // Ejemplo de toggle: si el tinaco está "encendido" (nivel > 0), se apaga (nivel = 0) y viceversa.
   toggleTinaco(t: Tinacos): void {
     t.nivel_del_agua = t.nivel_del_agua > 0 ? 0 : 100;
   }
