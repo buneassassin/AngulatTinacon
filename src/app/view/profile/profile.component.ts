@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   persona: Persona | null = null;
   isModalOpenPerfil = false;
   isModalOpenContrasena = false;
+  isModalOpenModalFoto = false;
 
   // Propiedades para el formulario de cambio de contraseña
   currentPassword: string = '';
@@ -49,9 +50,19 @@ export class ProfileComponent implements OnInit {
   openModalContrasena(): void {
     this.isModalOpenContrasena = true;
   }
+  openModalFoto(): void {
+    this.isModalOpenModalFoto = true;
+  }
   closeModal(): void {
-    this.isModalOpenPerfil = false;
-    this.isModalOpenContrasena = false;
+    if (this.isModalOpenContrasena) {
+      this.isModalOpenContrasena = false;
+    }
+    if (this.isModalOpenModalFoto) {
+      this.isModalOpenModalFoto = false;
+    }
+    if (this.isModalOpenPerfil) {
+      this.isModalOpenPerfil = false;
+    }
   }
 
   // Método para guardar los cambios de contraseña
@@ -93,16 +104,19 @@ export class ProfileComponent implements OnInit {
         console.error('Error al actualizar el perfil:', error);
       },
     });
-    
   }
+
+  // Metodo para gusrdar la foto de perfil
+  saveProfilePicture(): void {}
 
   // Este método se invoca cuando se hace clic en el botón "Guardar" del modal.
   saveModal(): void {
     if (this.isModalOpenContrasena) {
       this.savePasswordChange();
-    }
-    else if (this.isModalOpenPerfil) {
+    } else if (this.isModalOpenPerfil) {
       this.saveProfileChanges();
+    } else if (this.isModalOpenModalFoto) {
+      this.saveProfilePicture();
     } else {
       // Lógica para guardar cambios de perfil si aplica
       console.log('Guardado cambios de perfil');
