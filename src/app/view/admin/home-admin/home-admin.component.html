@@ -1,10 +1,15 @@
 <main style="margin-top: 58px;">
   <div class="container p-3">
     <!-- Encabezado del Dashboard -->
-    <app-header>
-      <h1>Bienvenido al Panel de Administración</h1>
-      <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.</p>
+    <app-header class="py-5 ">
+      <div class="container">
+        <h2 class="text-secondary mb-2">Bienvenido de nuevo</h2>
+        <h1 class=" text-white fw-bold">{{ informacionesAdmin?.user.usuario_nom }}</h1>
+        <h2 class="text-secondary mb-4">al módulo de Administración</h2>
+        <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.</p>
+      </div>
     </app-header>
+    
 
     <!-- Tarjetas de Estadísticas -->
     <div class="row">

@@ -14,6 +14,7 @@ import { AdminService } from '../../../Services/admin/admin.service';
 export class HomeAdminComponent implements OnInit {
   informacionesUser: any = {}; // Ahora es un objeto en lugar de un array
   informacionesTinaco: any = {};
+  informacionesAdmin: any = {};
 
   constructor(private adminService: AdminService) { }
 
@@ -32,6 +33,13 @@ export class HomeAdminComponent implements OnInit {
       },
       error: (error) => console.error('Error al obtener datos del usuario', error)
       
+    })
+    this.adminService.getinfoAdmin().subscribe({
+      next: (response: any) => {
+        this.informacionesAdmin = response; // Asigna directamente el objeto
+        console.log(response);
+      },
+      error: (error) => console.error('Error al obtener datos del usuario', error)
     })
 
   }
