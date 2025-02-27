@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
   saveProfileChanges(): void {
     const payload = {
       nombres: this.user?.persona.nombres,
-      usuario_nom: this.user?.persona.nombres,
+      usuario_nom: this.user?.usuario_nom,
       apellidoPaterno: this.user?.persona.a_p,
       apellidoMaterno: this.user?.persona.a_m,
       telefono: this.user?.persona.telefono,

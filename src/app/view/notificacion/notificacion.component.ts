@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificacionService } from '../../Services/notificacion/notificacion.service'; // Ajusta la ruta según tu proyecto
 import { CommonModule } from '@angular/common';
+import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-notificacion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoadingSkeletonComponent],
   templateUrl: './notificacion.component.html',
   styleUrls: ['./notificacion.component.css']
 })
 export class NotificacionComponent implements OnInit {
   notifications: any[] = [];
+  isLoading: boolean = true;
 
   constructor(private notificacionService: NotificacionService) {}
 
@@ -24,9 +26,11 @@ export class NotificacionComponent implements OnInit {
         if (response.success) {
           this.notifications = response.data;
         }
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error al obtener notificaciones:', error);
+        this.isLoading = false;
       }
     });
   }

@@ -1,32 +1,38 @@
-<div class="container my-5 py-5">
-    <div class="card shadow notificaciones-card">
-      <div class="card-header bg-primary text-white text-center">
-        <h3 class="mb-0">Notificaciones</h3>
-      </div>
-      <div class="card-body p-0">
-        <ul class="list-group list-group-flush">
-          <!-- Itera sobre las notificaciones -->
-          <li *ngFor="let noti of notifications" class="list-group-item d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-              <!-- Puedes cambiar el icono según noti.type -->
-              <i class="fas fa-bell text-primary me-3"></i>
-              <div>
-                <h6 class="mb-1">{{ noti.title }}</h6>
-                <small class="text-muted">{{ noti.message }}</small>
-                <br>
-                <small class="text-muted">{{ noti.formatted_created_at }}</small>
-              </div>
+<div class="container my-5 py-5" *ngIf="!isLoading">
+  <div class="card shadow notificaciones-card">
+    <div class="card-header bg-primary text-white text-center">
+      <h3 class="mb-0">Notificaciones</h3>
+    </div>
+    <div class="card-body p-0">
+      <ul class="list-group list-group-flush">
+        <!-- Itera sobre las notificaciones -->
+        <li *ngFor="let noti of notifications" class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <!-- Icono según noti.type (puedes ajustar) -->
+            <i class="fas fa-bell text-primary me-3"></i>
+            <div>
+              <h6 class="mb-1">{{ noti.title }}</h6>
+              <small class="text-muted">{{ noti.message }}</small>
+              <br>
+              <small class="text-muted">{{ noti.formatted_created_at }}</small>
             </div>
-            <span class="badge rounded-pill" 
-                  [ngClass]="{'bg-danger': noti.is_read === 0, 'bg-secondary': noti.is_read !== 0}">
-              {{ noti.is_read === 0 ? 'Nuevo' : 'Leído' }}
-            </span>
-          </li>
-        </ul>
-      </div>
-      <div class="card-footer text-center">
-        <button class="btn btn-outline-primary">Ver todas las notificaciones</button>
-      </div>
+          </div>
+          <span class="badge rounded-pill" 
+                [ngClass]="{'bg-danger': noti.is_read === 0, 'bg-secondary': noti.is_read !== 0}">
+            {{ noti.is_read === 0 ? 'Nuevo' : 'Leído' }}
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-outline-primary">Ver todas las notificaciones</button>
     </div>
   </div>
-  
+</div>
+
+<!-- Loader: Se muestra mientras se cargan los datos -->
+<div class="container p-5" *ngIf="isLoading">
+  <div class="d-flex justify-content-center align-items-center my-5 py-5">
+  <app-loading-skeleton></app-loading-skeleton>
+  </div>
+</div>
