@@ -43,4 +43,16 @@ export class AdminService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.baseUrl}/obtenerRol`, { headers });
   }
+
+  desactivarUsuario(data: { email: string }): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/desactivarUsuario`, data, { headers });
+  } 
+
+  activarUsuario(data: { email: string }): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión    
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/activarUsuario`, data, { headers });
+  }
 }

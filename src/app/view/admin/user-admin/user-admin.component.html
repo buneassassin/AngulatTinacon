@@ -68,11 +68,23 @@
                                         <span *ngIf="user.is_Inactive" class="badge bg-success">Activo</span>
                                         <span *ngIf="!user.is_Inactive" class="badge bg-danger">Inactivo</span>
                                     </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-sm btn-outline-primary me-2"
-                                            (click)="openModalEditRol(user)">Editar rol</button>
-                                        <button class="btn btn-sm btn-outline-danger">Deshabilitar</button>
+                                    <td class="text-center d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-outline-primary me-2 w-50 "
+                                            (click)="openModalEditRol(user)">
+                                            Editar rol
+                                        </button>
+                                        <button (click)="toggleUserState(user)"
+                                            class="btn btn-sm btn-outline-danger w-50 "
+                                            *ngIf="user.is_Inactive">
+                                            Deshabilitar
+                                        </button>
+                                        <button (click)="toggleUserStateActive(user)"
+                                            class="btn btn-sm btn-outline-success w-50 "
+                                            *ngIf="!user.is_Inactive">
+                                            Habilitar
+                                        </button>
                                     </td>
+
                                 </tr>
                             </tbody>
                         </table>

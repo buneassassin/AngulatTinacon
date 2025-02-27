@@ -10,7 +10,13 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-user-admin',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, CardHoverComponent, ModalComponent,FormsModule ],
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    CardHoverComponent,
+    ModalComponent,
+    FormsModule,
+  ],
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.css'],
 })
@@ -20,7 +26,7 @@ export class UserAdminComponent implements OnInit {
   isModalOpenEditRol = false;
   usuariEditar: User | null = null;
   rolesSelected: string | null = null;
-  roles: any[] = []; 
+  roles: any[] = [];
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
@@ -49,9 +55,7 @@ export class UserAdminComponent implements OnInit {
       error: (error) =>
         console.error('Error al obtener datos del usuario', error),
     });
-    
   }
-
 
   get adminCount(): number {
     return this.users.filter((u) => u.rol === 'Administrador').length;
@@ -66,7 +70,6 @@ export class UserAdminComponent implements OnInit {
     this.usuariEditar = user;
     this.rolesSelected = user.rol;
   }
-  
 
   closeModal() {
     if (this.isModalOpenEditRol) {
@@ -87,7 +90,7 @@ export class UserAdminComponent implements OnInit {
         email: this.usuariEditar.email,
         rol: this.rolesSelected,
       };
-  
+
       this.adminService.cambiarRol(payload).subscribe({
         next: (response: any) => {
           console.log(response);
@@ -98,16 +101,46 @@ export class UserAdminComponent implements OnInit {
     }
   }
   validarCambioRol() {
-    console.log("Rol seleccionado:", this.rolesSelected);
-    
+    console.log('Rol seleccionado:', this.rolesSelected);
+
     if (this.rolesSelected === 'Admin') {
-      const confirmacion = confirm('Si asignas este usuario como admin, no podrás revertirlo. ¿Deseas continuar?');
+      const confirmacion = confirm(
+        'Si asignas este usuario como admin, no podrás revertirlo. ¿Deseas continuar?'
+      );
       if (!confirmacion) {
         this.rolesSelected = this.usuariEditar?.rol || null; // Restaurar valor anterior
       }
     }
   }
-  
-  
-  
+
+  toggleUserState(user: User) {
+    //mostramos mesaje de confirmacion
+    const confirmacion = confirm('¿Deseas deshabilitar a este usuario?');
+    if (confirmacion) {
+      const payload = {
+        email: user.email,
+      };
+      this.adminService.desactivarUsuario(payload).subscribe({
+        next: (response: any) => {
+          console.log(response);
+        },
+        error: (error) => console.error('Error al editar el rol', error),
+      });
+    }
+  }
+  toggleUserStateActive(user: User) {
+    //mostramos mesaje de confirmacion
+    const confirmacion = confirm('¿Deseas habilitar a este usuario?');
+    if (confirmacion) {
+      const payload = {
+        email: user.email,
+      };
+      this.adminService.activarUsuario(payload).subscribe({
+        next: (response: any) => {
+          console.log(response);
+        },
+        error: (error) => console.error('Error al editar el rol', error),
+      });
+    }
+  }
 }
