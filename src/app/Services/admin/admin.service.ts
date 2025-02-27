@@ -33,4 +33,14 @@ export class AdminService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.baseUrl}/admin-action`, { headers });
   }
+  cambiarRol(data: { email: string; rol: string }): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/cambiarRol`, data, { headers });
+  }
+  obtenerRol(): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.baseUrl}/obtenerRol`, { headers });
+  }
 }

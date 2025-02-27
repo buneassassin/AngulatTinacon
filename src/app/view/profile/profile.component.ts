@@ -106,25 +106,27 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-// Metodo para gusrdar la foto de perfil
-saveProfilePicture(): void {
-  const fileInput = document.getElementById('profilePicture') as HTMLInputElement;
-  const files = fileInput.files;
-  if (files && files.length > 0) {
-    const file = files[0];
-    this.perfilService.uploadImage(file).subscribe({
-      next: (response: any) => {
-        console.log('Foto de perfil actualizada con éxito:', response);
-        this.closeModal();
-      },
-      error: (error: any) => {
-        console.error('Error al actualizar la foto de perfil:', error);
-      },
-    });
-  } else {
-    console.error('No file selected');
+  // Metodo para gusrdar la foto de perfil
+  saveProfilePicture(): void {
+    const fileInput = document.getElementById(
+      'profilePicture'
+    ) as HTMLInputElement;
+    const files = fileInput.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      this.perfilService.uploadImage(file).subscribe({
+        next: (response: any) => {
+          console.log('Foto de perfil actualizada con éxito:', response);
+          this.closeModal();
+        },
+        error: (error: any) => {
+          console.error('Error al actualizar la foto de perfil:', error);
+        },
+      });
+    } else {
+      console.error('No file selected');
+    }
   }
-}
 
   // Este método se invoca cuando se hace clic en el botón "Guardar" del modal.
   saveModal(): void {

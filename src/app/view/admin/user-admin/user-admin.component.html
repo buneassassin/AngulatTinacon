@@ -53,7 +53,8 @@
                                     <th>Nombre</th>
                                     <th>Email</th>
                                     <th>Rol</th>
-                                    <th>Acciones</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,9 +63,15 @@
                                     <td>{{ user.usuario_nom }}</td>
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.rol }}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
-                                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    <!--Mostramos bonito si enta activo o inactiv0-->
+                                    <td class="text-center">
+                                        <span *ngIf="user.is_Inactive" class="badge bg-success">Activo</span>
+                                        <span *ngIf="!user.is_Inactive" class="badge bg-danger">Inactivo</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-2"
+                                            (click)="openModalEditRol(user)">Editar rol</button>
+                                        <button class="btn btn-sm btn-outline-danger">Deshabilitar</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -73,7 +80,24 @@
                 </div>
             </div>
         </div>
-
-
     </div>
+
+    <app-modal *ngIf="isModalOpenEditRol" title="Formulario de Usuario" (close)="closeModal()" (save)="saveModal()">
+        <div class="mb-3">
+            <label for="editRol" class="form-label">Rol:</label>
+            <select class="form-select" id="editRol" [(ngModel)]="rolesSelected" name="editRol"
+                [disabled]="usuariEditar?.rol === 'admin'" (change)="validarCambioRol()">
+                <option *ngFor="let role of roles" [value]="role">
+                    {{ role }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Mensaje de advertencia si el usuario ya es admin -->
+        <div *ngIf="usuariEditar?.rol === 'Admin'" class="alert alert-warning mt-2">
+            <strong>Atención:</strong> No puedes cambiar el rol de un administrador.
+        </div>
+    </app-modal>
+
+
 </main>
