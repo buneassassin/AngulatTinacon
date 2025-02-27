@@ -12,6 +12,7 @@ import { UserAdminComponent } from './view/admin/user-admin/user-admin.component
 import { GraficasAdminComponent } from './view/admin/graficas-admin/graficas-admin.component';
 import { TinacosAdminComponent } from './view/admin/tinacos-admin/tinacos-admin.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
+import { ExitGuard } from './Guards/exit.guard';
 
 export const routes: Routes = [
   {
@@ -46,6 +47,7 @@ export const routes: Routes = [
   {
     path:'login',
     component: LoginComponent,
+    canDeactivate: [ExitGuard]
   },
   {
     path: 'register',
