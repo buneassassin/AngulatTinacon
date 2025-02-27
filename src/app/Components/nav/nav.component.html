@@ -3,6 +3,7 @@
     <!-- Marca a la izquierda -->
     <a class="navbar-brand" routerLink="/home">
       <img class="me-2 rounded-circle" src="assets/icono.png" alt="Logo" height="40">
+
     </a>
 
     <!-- Botón de menú hamburguesa -->
@@ -10,7 +11,7 @@
       aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-   
+
     <!-- Enlaces centrados -->
     <div class="collapse navbar-collapse justify-content-center text-center" id="navbarContent">
       <ul class="navbar-nav">
@@ -44,12 +45,14 @@
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn">
-      <div class="d-flex align-items-center ms-auto me-3">
+      <div class="d-flex align-items-center ms-auto me-3" *ngIf="!isLoadingUser">
         <div class="dropdown">
           <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             <img [src]="user?.foto_perfil" class="rounded-circle" height="45" width="45" alt="Avatar">
+
           </a>
+
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
             <li><a class="dropdown-item" routerLink="/notificaciones">Notificaciones</a></li>
@@ -63,8 +66,12 @@
             <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
           </ul>
         </div>
+
+      </div>
+      <div *ngIf="isLoadingUser">
+        <app-loading-skeleton [size]="10"></app-loading-skeleton>
       </div>
     </ng-container>
   </div>
-  
+
 </nav>

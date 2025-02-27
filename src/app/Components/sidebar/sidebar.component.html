@@ -6,7 +6,10 @@
       <!-- Logo del Sidebar -->
       <div class="sidebar-logo text-center py-3">
         <!-- foto de perfil generico -->
-        <img [src]="informacionesAdmin.user.foto_perfil" class=" profile-img" alt="Avatar">
+        <img [src]="informacionesAdmin.user.foto_perfil" class=" profile-img" alt="Avatar" *ngIf="!isLoadingAdmin">
+        <div *ngIf="isLoadingAdmin" class="d-flex justify-content-center align-items-center p-5">
+          <app-loading-skeleton></app-loading-skeleton>
+        </div>
 
       </div>
       <ul class="nav flex-column mt-3 px-3">

@@ -9,48 +9,58 @@
         <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.</p>
       </div>
     </app-header>
-    
+
 
     <!-- Tarjetas de Estadísticas -->
     <div class="row">
       <!-- Tarjetas de Estadísticas -->
-        <app-card-hover class="col-md-3">
-          <div class="card text-white bg-primary shadow">
-            <div class="card-body text-center">
-              <i class="fas fa-users fa-2x"></i>
-              <h5 class="card-title mt-2">Usuarios</h5>
-              <!--Mostramos la iformacion de la api-->
-              <p class="card-text display-4">{{ informacionesUser?.totalUsers }}</p>
+      <app-card-hover class="col-md-3">
+        <div class="card text-white bg-primary shadow">
+          <div class="card-body text-center">
+            <i class="fas fa-users fa-2x"></i>
+            <h5 class="card-title mt-2">Usuarios</h5>
+            <!--Mostramos la iformacion de la api-->
+            <p class="card-text display-4" *ngIf="!isLoadingUser">{{ informacionesUser?.totalUsers }}</p>
+            <div *ngIf="isLoadingUser">
+              <app-loading-skeleton></app-loading-skeleton>
             </div>
           </div>
-        </app-card-hover>
-        <app-card-hover class="col-md-3">
-          <div class="card text-white bg-success shadow">
-            <div class="card-body text-center">
-              <i class="fas fa-tint fa-2x"></i>
-              <h5 class="card-title mt-2">Tinacos</h5>
-              <p class="card-text display-4">{{ informacionesTinaco?.totalTinacos }}</p>
+
+
+        </div>
+
+      </app-card-hover>
+      <app-card-hover class="col-md-3">
+        <div class="card text-white bg-success shadow">
+          <div class="card-body text-center">
+            <i class="fas fa-tint fa-2x"></i>
+            <h5 class="card-title mt-2">Tinacos</h5>
+            <p class="card-text display-4" *ngIf="!isLoadingTinaco">{{ informacionesTinaco?.totalTinacos }}</p>
+            <div *ngIf="isLoadingTinaco">
+              <app-loading-skeleton></app-loading-skeleton>
             </div>
           </div>
-        </app-card-hover>
-        <app-card-hover class="col-md-3">
-          <div class="card text-white bg-warning shadow">
-            <div class="card-body text-center">
-              <i class="fas fa-chart-bar fa-2x"></i>
-              <h5 class="card-title mt-2">Reportes</h5>
-              <p class="card-text display-4">78</p>
-            </div>
+        </div>
+
+      </app-card-hover>
+      <app-card-hover class="col-md-3">
+        <div class="card text-white bg-warning shadow">
+          <div class="card-body text-center">
+            <i class="fas fa-chart-bar fa-2x"></i>
+            <h5 class="card-title mt-2">Reportes</h5>
+            <p class="card-text display-4">78</p>
           </div>
-        </app-card-hover>
-        <app-card-hover class="col-md-3">
-          <div class="card text-white bg-danger shadow">
-            <div class="card-body text-center">
-              <i class="fas fa-bell fa-2x"></i>
-              <h5 class="card-title mt-2">Alertas</h5>
-              <p class="card-text display-4">5</p>
-            </div>
+        </div>
+      </app-card-hover>
+      <app-card-hover class="col-md-3">
+        <div class="card text-white bg-danger shadow">
+          <div class="card-body text-center">
+            <i class="fas fa-bell fa-2x"></i>
+            <h5 class="card-title mt-2">Alertas</h5>
+            <p class="card-text display-4">5</p>
           </div>
-        </app-card-hover>
+        </div>
+      </app-card-hover>
     </div>
 
 
