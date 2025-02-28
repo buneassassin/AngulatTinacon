@@ -4,13 +4,20 @@ import { CardHoverComponent } from '../../../Components/card-hover/card-hover.co
 import { HeaderComponent } from '../../../Components/header/header.component';
 import { AdminService } from '../../../Services/admin/admin.service';
 import { LoadingSkeletonComponent } from '../../../Components/loading-skeleton/loading-skeleton.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
   standalone: true,
-  imports: [CommonModule, CardHoverComponent, HeaderComponent, LoadingSkeletonComponent],
+  imports: [
+    CommonModule,
+    CardHoverComponent,
+    HeaderComponent,
+    LoadingSkeletonComponent,
+    RouterLink,
+  ],
   templateUrl: './home-admin.component.html',
-  styleUrl: './home-admin.component.css'
+  styleUrl: './home-admin.component.css',
 })
 export class HomeAdminComponent implements OnInit {
   informacionesUser: any = {}; // Ahora es un objeto en lugar de un array
@@ -19,7 +26,7 @@ export class HomeAdminComponent implements OnInit {
   isLoadingUser: boolean = true;
   isLoadingTinaco: boolean = true;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.adminService.getUserStatistics().subscribe({
@@ -28,7 +35,8 @@ export class HomeAdminComponent implements OnInit {
         console.log(response);
         this.isLoadingUser = false;
       },
-      error: (error) => console.error('Error al obtener datos del usuario', error)
+      error: (error) =>
+        console.error('Error al obtener datos del usuario', error),
     });
     this.adminService.getTinacoStatistics().subscribe({
       next: (response: any) => {
@@ -36,16 +44,16 @@ export class HomeAdminComponent implements OnInit {
         console.log(response);
         this.isLoadingTinaco = false;
       },
-      error: (error) => console.error('Error al obtener datos del usuario', error)
-      
-    })
+      error: (error) =>
+        console.error('Error al obtener datos del usuario', error),
+    });
     this.adminService.getinfoAdmin().subscribe({
       next: (response: any) => {
         this.informacionesAdmin = response; // Asigna directamente el objeto
         console.log(response);
       },
-      error: (error) => console.error('Error al obtener datos del usuario', error)
-    })
-
+      error: (error) =>
+        console.error('Error al obtener datos del usuario', error),
+    });
   }
 }

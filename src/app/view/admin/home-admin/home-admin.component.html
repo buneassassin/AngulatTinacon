@@ -1,146 +1,81 @@
 <main style="margin-top: 58px;">
   <div class="container p-3">
     <!-- Encabezado del Dashboard -->
-    <app-header class="py-5 ">
-      <div class="container">
+    <app-header class="py-5">
+      <div class="container text-center">
         <h2 class="text-secondary mb-2">Bienvenido de nuevo</h2>
-        <h1 class=" text-white fw-bold">{{ informacionesAdmin?.user.usuario_nom }}</h1>
+        <h1 class="text-white fw-bold">{{ informacionesAdmin?.user.usuario_nom }}</h1>
         <h2 class="text-secondary mb-4">al módulo de Administración</h2>
-        <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.</p>
+        <p class="lead">
+          Supervisa, gestiona y analiza toda la información de tus tinacos y usuarios en tiempo real.
+        </p>
       </div>
     </app-header>
 
-
     <!-- Tarjetas de Estadísticas -->
-    <div class="row">
-      <!-- Tarjetas de Estadísticas -->
-      <app-card-hover class="col-md-3">
+    <div class="row g-4">
+      <app-card-hover class="col-md-6" routerLink="/admin/user">
         <div class="card text-white bg-primary shadow">
           <div class="card-body text-center">
             <i class="fas fa-users fa-2x"></i>
             <h5 class="card-title mt-2">Usuarios</h5>
-            <!--Mostramos la iformacion de la api-->
-            <p class="card-text display-4" *ngIf="!isLoadingUser">{{ informacionesUser?.totalUsers }}</p>
+            <p class="card-text display-4" *ngIf="!isLoadingUser">
+              {{ informacionesUser?.totalUsers }}
+            </p>
             <div *ngIf="isLoadingUser">
               <app-loading-skeleton></app-loading-skeleton>
             </div>
           </div>
-
-
         </div>
-
       </app-card-hover>
-      <app-card-hover class="col-md-3">
+
+      <app-card-hover class="col-md-6" routerLink="/admin/tinacos">
         <div class="card text-white bg-success shadow">
           <div class="card-body text-center">
             <i class="fas fa-tint fa-2x"></i>
             <h5 class="card-title mt-2">Tinacos</h5>
-            <p class="card-text display-4" *ngIf="!isLoadingTinaco">{{ informacionesTinaco?.totalTinacos }}</p>
+            <p class="card-text display-4" *ngIf="!isLoadingTinaco">
+              {{ informacionesTinaco?.totalTinacos }}
+            </p>
             <div *ngIf="isLoadingTinaco">
               <app-loading-skeleton></app-loading-skeleton>
             </div>
           </div>
         </div>
-
       </app-card-hover>
-      <app-card-hover class="col-md-3">
-        <div class="card text-white bg-warning shadow">
-          <div class="card-body text-center">
-            <i class="fas fa-chart-bar fa-2x"></i>
-            <h5 class="card-title mt-2">Reportes</h5>
-            <p class="card-text display-4">78</p>
+    </div>
+
+    <!-- Sección de Acciones y Reglas -->
+    <div class="row g-4 mt-4">
+      <app-card-hover class="col-md-6">
+        <div class="card shadow">
+          <div class="card-header bg-secondary text-white text-center">
+            Acciones del Administrador
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Gestionar Usuarios</li>
+              <li class="list-group-item">Gestionar Tinacos</li>
+              <li class="list-group-item">Gestionar Reglas</li>
+            </ul>
           </div>
         </div>
       </app-card-hover>
-      <app-card-hover class="col-md-3">
-        <div class="card text-white bg-danger shadow">
-          <div class="card-body text-center">
-            <i class="fas fa-bell fa-2x"></i>
-            <h5 class="card-title mt-2">Alertas</h5>
-            <p class="card-text display-4">5</p>
+
+      <app-card-hover class="col-md-6">
+        <div class="card shadow">
+          <div class="card-header bg-secondary text-white text-center">
+            Reglas del Sistema
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">1- Ser Guapo</li>
+              <li class="list-group-item">2- Ser Chulo</li>
+              <li class="list-group-item">3- Ser Rico</li>
+            </ul>
           </div>
         </div>
       </app-card-hover>
     </div>
-
-
-    <!-- Sección de Noticias / Actualizaciones -->
-    <app-card-hover>
-      <div class="row">
-        <div class="col">
-          <div class="card-header bg-secondary text-white">
-            Últimas Noticias
-          </div>
-          <div class="card-body">
-            <div class="list-group">
-              <a href="#" class="list-group-item list-group-item-action">
-                <strong>Actualización del Sistema:</strong> Se ha implementado un nuevo módulo de monitoreo en tiempo
-                real.
-              </a>
-              <a href="#" class="list-group-item list-group-item-action">
-                <strong>Evento de Capacitación:</strong> Próximamente se realizará una capacitación para el uso de la
-                plataforma.
-              </a>
-              <a href="#" class="list-group-item list-group-item-action">
-                <strong>Mantenimiento Programado:</strong> Se llevará a cabo mantenimiento el próximo sábado.
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </app-card-hover>
-    <!-- Sección de Tabla de Detalles Recientes -->
-    <app-card-hover>
-      <div class="row">
-        <div class="col">
-          <div class="card-header bg-secondary text-white">
-            Detalles Recientes
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Tinaco</th>
-                    <th>Nivel (%)</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>101</td>
-                    <td>Juan Pérez</td>
-                    <td>Tinaco A</td>
-                    <td>75%</td>
-                    <td><span class="badge bg-success">Normal</span></td>
-                    <td>2025-02-20</td>
-                  </tr>
-                  <tr>
-                    <td>102</td>
-                    <td>Ana García</td>
-                    <td>Tinaco B</td>
-                    <td>55%</td>
-                    <td><span class="badge bg-danger">Bajo</span></td>
-                    <td>2025-02-20</td>
-                  </tr>
-                  <tr>
-                    <td>103</td>
-                    <td>Carlos Ruiz</td>
-                    <td>Tinaco C</td>
-                    <td>81%</td>
-                    <td><span class="badge bg-warning">Alto</span></td>
-                    <td>2025-02-20</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </app-card-hover>
-
   </div>
 </main>
