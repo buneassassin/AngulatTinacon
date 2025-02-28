@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NotificacionService } from '../../Services/notificacion/notificacion.service'; // Ajusta la ruta según tu proyecto
 import { CommonModule } from '@angular/common';
 import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-notificacion',
   standalone: true,
-  imports: [CommonModule, LoadingSkeletonComponent],
+  imports: [CommonModule, LoadingSkeletonComponent,RouterLink],
   templateUrl: './notificacion.component.html',
   styleUrls: ['./notificacion.component.css']
 })

@@ -4,6 +4,7 @@ import { HomeComponent } from './view/home/home.component';
 import { TinacoComponent } from './view/Tinacon/tinaco.component';
 import { TinacoIndivComponent } from './view/Tinacon/tinaco-indiv/tinaco-indiv.component';
 import { NotificacionComponent } from './view/notificacion/notificacion.component';
+import { NotificacionIndivComponent } from './view/notificacion/notificacion-indiv/notificacion-indiv.component';
 import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
 import { RecuperarComponent } from './view/auth/recuperar/recuperar.component';
@@ -44,6 +45,10 @@ export const routes: Routes = [
   {
     path: 'notificaciones',
     component: NotificacionComponent,
+  },
+  {
+    path: 'notificaciones/:id',
+    component: NotificacionIndivComponent,
   },
   {
     path:'login',

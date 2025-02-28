@@ -6,7 +6,7 @@
     <div class="card-body p-0">
       <ul class="list-group list-group-flush">
         <!-- Itera sobre las notificaciones -->
-        <li *ngFor="let noti of notifications" class="list-group-item d-flex align-items-center justify-content-between">
+        <li *ngFor="let noti of notifications" class="list-group-item d-flex align-items-center justify-content-between" routerLink="/notificaciones/{{ noti.id }}">
           <div class="d-flex align-items-center">
             <!-- Icono según noti.type (puedes ajustar) -->
             <i class="fas fa-bell text-primary me-3"></i>
