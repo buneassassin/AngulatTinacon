@@ -5,17 +5,19 @@ import { ModalComponent } from '../../Components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { Tinacos } from '../../Interface/Tinacon/tinacos';
 import { TinacoService } from '../../Services/tinaco/tinaco.service';
+import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-tinaco',
   standalone: true,
-  imports: [RouterModule, RectangleRowsComponent, ModalComponent, CommonModule],
+  imports: [RouterModule, RectangleRowsComponent, ModalComponent, CommonModule, LoadingSkeletonComponent],
   templateUrl: './tinaco.component.html',
   styleUrls: ['./tinaco.component.css']
 })
 export class TinacoComponent implements OnInit {
   tinacos: Tinacos[] = [];
   isModalOpen = false;
+  isLoading: boolean = true;
 
 
   constructor(private tinacoService: TinacoService) {
@@ -27,6 +29,7 @@ export class TinacoComponent implements OnInit {
       next: (response: any) => {
         // Se espera que la API devuelva un arreglo de tinacos
         this.tinacos = response;
+        this.isLoading = false;
         console.log('Tinacos:', response);
       },
       error: (error) => console.error('Error al obtener tinacos:', error)

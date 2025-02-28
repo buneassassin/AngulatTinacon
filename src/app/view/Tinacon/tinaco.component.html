@@ -1,17 +1,26 @@
 <section class="py-5">
-    <div class="container py-5">
-      <app-rectangle-rows [features]="tinacos"></app-rectangle-rows>
-      <button class="btn btn-primary fixed-btn" (click)="openModal()">Abrir Modal</button>
+  <!-- Sección de Beneficios -->
+  <div class="benefits-section py-5 bg-gradient-primary">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-6 mb-3 fw-bold">Transforma tu Gestión del Agua</h2>
+          <p class="lead">La revolución tecnológica para un recurso vital</p>
+        </div>
+      </div>
     </div>
-  </section>
-  
-  <!-- Modal fuera de la sección y contenedor -->
-  <app-modal
-    *ngIf="isModalOpen"
-    title="Formulario de Tinaco"
-    (close)="closeModal()"
-    (save)="saveModal()"
-  >
-    <p>Este es un modal completamente reutilizable.</p>
-    <input type="text" placeholder="Ingrese un valor" />
-  </app-modal>
+  </div>
+  <div class="container py-5" *ngIf="!isLoading">
+    <app-rectangle-rows [features]="tinacos"></app-rectangle-rows>
+    <button class="btn btn-primary fixed-btn" (click)="openModal()">Abrir Modal</button>
+  </div>
+  <div class="container py-5" *ngIf="isLoading">
+    <app-loading-skeleton></app-loading-skeleton>
+  </div>
+</section>
+
+<!-- Modal fuera de la sección y contenedor -->
+<app-modal *ngIf="isModalOpen" title="Formulario de Tinaco" (close)="closeModal()" (save)="saveModal()">
+  <p>Este es un modal completamente reutilizable.</p>
+  <input type="text" placeholder="Ingrese un valor" />
+</app-modal>

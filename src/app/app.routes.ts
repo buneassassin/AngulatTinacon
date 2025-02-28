@@ -6,6 +6,7 @@ import { TinacoIndivComponent } from './view/Tinacon/tinaco-indiv/tinaco-indiv.c
 import { NotificacionComponent } from './view/notificacion/notificacion.component';
 import { LoginComponent } from './view/auth/login/login.component';
 import { RegisterComponent } from './view/auth/register/register.component';
+import { RecuperarComponent } from './view/auth/recuperar/recuperar.component';
 import { InfoComponent } from './view/info/info.component';
 import { HomeAdminComponent } from './view/admin/home-admin/home-admin.component';
 import { UserAdminComponent } from './view/admin/user-admin/user-admin.component';
@@ -52,6 +53,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'recuperar',
+    component: RecuperarComponent,   
   },
   {
     path: 'admin',

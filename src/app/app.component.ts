@@ -23,7 +23,7 @@ export class AppComponent {
   constructor(private router: Router) {
     // Detectar cambios en la ruta
     this.router.events.subscribe(() => {
-      const authRoutes = ['/login', '/register', '/admin', '/admin/user','/admin/graficas','/admin/tinacos']; // Rutas donde NO quieres mostrar el navbar y footer
+      const authRoutes = ['/login', '/register','/recuperar', '/admin', '/admin/user','/admin/graficas','/admin/tinacos']; // Rutas donde NO quieres mostrar el navbar y footer
       this.isAuthPage = authRoutes.includes(this.router.url);
     });
 

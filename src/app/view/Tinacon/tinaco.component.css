@@ -1,13 +1,20 @@
 .fixed-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 50px;
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 50px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.benefits-section {
+  background: linear-gradient(135deg, #1a365d 0%, #2a4b5e 100%);
+  color: white;
+  padding: 4rem 0;
+}
+

@@ -32,9 +32,9 @@ export class AuthService {
   updateUser(user: User): Observable<any> {
     return this.http.put(`${this.baseUrl}/update`, user);
   }
-  // Reset de password
   resetPassword(email: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/reset-password`, { email });
+    const url = `${this.baseUrl}/reset-password`;
+    return this.http.post(url, { email });
   }
 
  
