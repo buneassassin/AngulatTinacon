@@ -1,3 +1,48 @@
-<section class="py-5">
-    
-</section>
+<div class="container mt-5 pt-5 p-5 justify-content-center d-flex">
+    <div class="card w-100">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">Detalles del Tinaco</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Columna de ícono representativo -->
+                <div class="col-md-4 text-center mb-3 mb-md-0 justify-content-center align-items-center d-flex">
+                    <i class="fas fa-tint fa-5x text-info"></i>
+                </div>
+                <!-- Columna de información general -->
+                <div class="col-md-8">
+                    <h4 class="fw-bold">{{ tinaco?.name }}</h4>
+                    <p><strong>ID:</strong> {{ tinaco?.id }}</p>
+                    <p>
+                        <strong>Creado:</strong>
+                        {{ tinaco?.created_at | date:'medium' }}
+                    </p>
+                    <p>
+                        <strong>Actualizado:</strong>
+                        {{ tinaco?.updated_at | date:'medium' }}
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <!-- Sección de nivel de agua -->
+            <div>
+                <h5 class="mb-2">Nivel de Agua</h5>
+                <p class="lead">{{ tinaco?.nivel_del_agua }}%</p>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-info" role="progressbar" [style.width]="tinaco?.nivel_del_agua + '%'"
+                        [attr.aria-valuenow]="tinaco?.nivel_del_agua" aria-valuemin="0" aria-valuemax="100">
+                        {{ tinaco?.nivel_del_agua }}%
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-end">
+            <a routerLink="/tinaco" class="btn btn-outline-secondary">
+                Volver a la lista
+            </a>
+        </div>
+    </div>
+</div>
