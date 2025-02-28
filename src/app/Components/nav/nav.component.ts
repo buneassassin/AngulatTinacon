@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/auth/auth.service';
 import { User } from '../../Interface/user';
 import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
+import { NotificacionService } from '../../Services/notificacion/notificacion.service'; // Ajusta la ruta según tu proyecto
 
 @Component({
   selector: 'app-nav',
@@ -16,12 +17,14 @@ export class NavComponent implements OnInit {
   isLoggedIn: boolean = false;
   user: User | null = null; // Aquí se almacenará la información del usuario
   isLoadingUser: boolean = true;
+  countNoti:any={};
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private notificacionService: NotificacionService) {}
 
   ngOnInit(): void {
     this.isLoggedIn = !!localStorage.getItem('token');
     this.info();
+    this.getNotiCount();
   }
   info(): void {
     this.authService.getUserData().subscribe({
@@ -47,7 +50,18 @@ export class NavComponent implements OnInit {
       },
     });
   }
-
+  getNotiCount(): void {
+    this.notificacionService.getNotificationsCount().subscribe({
+      next: (response: any) => {
+        // Asumiendo que la respuesta es un objeto { success: true, unread_count: 85 }
+        this.countNoti = response.unread_count;
+      },
+      error: (error) => {
+        console.error('Error al obtener el contador de notificaciones', error);
+      }
+    });
+  }
+  
   private clearSession(): void {
     localStorage.removeItem('token');
     this.isLoggedIn = false;

@@ -43,16 +43,18 @@
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn">
-      <div class="d-flex align-items-center ms-auto">
+      <div class="d-flex align-items-center ms-auto" *ngIf="!isLoadingUser">
         <!-- Notificaciones -->
-        <div class="position-relative me-4">
+        <div class="position-relative me-4" > 
           <a class="nav-link" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLink="/notificaciones">
             <i class="fas fa-bell fa-lg"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              <span class="visually-hidden">unread messages</span>
+              {{ countNoti }}
+              <span class="visually-hidden">Notificaciones sin leer</span>
             </span>
           </a>
         </div>
+        
 
         <!-- Usuario -->
         <div class="dropdown">

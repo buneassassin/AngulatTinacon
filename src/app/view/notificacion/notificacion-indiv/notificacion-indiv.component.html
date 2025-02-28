@@ -1,1 +1,48 @@
-<p>notificacion-indiv works!</p>
+<div class="container mt-5 pt-5 p-5 justify-content-center d-flex">
+    <div class="card w-100">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Detalle de Notificación</h3>
+      </div>
+      <div class="card-body">
+        <ng-container *ngIf="ifoNotificacion && ifoNotificacion.data; else loading">
+          <div class="mb-3">
+            <strong>Título:</strong> {{ ifoNotificacion.data.title }}
+          </div>
+          <div class="mb-3">
+            <strong>Tipo:</strong> {{ ifoNotificacion.data.type }}
+          </div>
+          <div class="mb-3">
+            <strong>Mensaje:</strong>
+            <p class="mb-0">{{ ifoNotificacion.data.message }}</p>
+          </div>
+          <div class="mb-3">
+            <strong>Estado:</strong>
+            <span [ngClass]="{'text-success': ifoNotificacion.data.is_read, 'text-danger': !ifoNotificacion.data.is_read}">
+              {{ ifoNotificacion.data.is_read ? 'Leída' : 'No leída' }}
+            </span>
+          </div>
+          <div class="mb-3">
+            <strong>Fecha de Creación:</strong>
+            {{ ifoNotificacion.data.created_at | date:'medium' }}
+          </div>
+          <div class="mb-3">
+            <strong>Última Actualización:</strong>
+            {{ ifoNotificacion.data.updated_at | date:'medium' }}
+          </div>
+          <div class="mt-4 text-end">
+            <a routerLink="/notificaciones" class="btn btn-outline-secondary">
+              Volver a Notificaciones
+            </a>
+          </div>
+        </ng-container>
+        <ng-template #loading>
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

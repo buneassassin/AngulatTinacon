@@ -15,4 +15,16 @@ export class NotificacionService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.baseUrl}/notifications`, { headers });
   }
+
+  markAsRead(notificationId: number): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(`${this.baseUrl}/notifications/${notificationId}`, null, { headers });
+  }
+  getNotificationsCount(): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.baseUrl}/notificationsCount`, { headers });
+  }
+
 }
