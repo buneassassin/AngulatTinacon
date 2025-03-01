@@ -12,15 +12,16 @@
   </div>
   <div class="container py-5" *ngIf="!isLoading">
     <app-rectangle-rows [features]="tinacos"></app-rectangle-rows>
-    <button class="btn btn-primary fixed-btn" (click)="openModal()">Abrir Modal</button>
+    <!--<button class="btn btn-primary fixed-btn" (click)="openModal()">Abrir Modal</button>-->
   </div>
   <div class="container py-5" *ngIf="isLoading">
     <app-loading-skeleton></app-loading-skeleton>
   </div>
 </section>
 
-<!-- Modal fuera de la sección y contenedor -->
+<!-- Modal fuera de la sección y contenedor 
 <app-modal *ngIf="isModalOpen" title="Formulario de Tinaco" (close)="closeModal()" (save)="saveModal()">
   <p>Este es un modal completamente reutilizable.</p>
   <input type="text" placeholder="Ingrese un valor" />
 </app-modal>
+-->

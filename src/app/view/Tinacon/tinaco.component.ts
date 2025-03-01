@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
-import { ModalComponent } from '../../Components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { Tinacos } from '../../Interface/Tinacon/tinacos';
 import { TinacoService } from '../../Services/tinaco/tinaco.service';
@@ -10,7 +9,7 @@ import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/load
 @Component({
   selector: 'app-tinaco',
   standalone: true,
-  imports: [RouterModule, RectangleRowsComponent, ModalComponent, CommonModule, LoadingSkeletonComponent],
+  imports: [RouterModule, RectangleRowsComponent, CommonModule, LoadingSkeletonComponent],
   templateUrl: './tinaco.component.html',
   styleUrls: ['./tinaco.component.css']
 })
