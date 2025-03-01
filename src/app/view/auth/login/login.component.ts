@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { AuthService } from '../../../Services/auth/auth.service'; // Ajusta la ruta según tu estructura
+import { AuthService } from '../../../Services/auth/auth.service';
 import { User } from '../../../Interface/user';
-import { CanComponentDeactivate } from '../../../Interface/Guards/can-component-deactivate';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +13,7 @@ import { CanComponentDeactivate } from '../../../Interface/Guards/can-component-
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements CanComponentDeactivate {
+export class LoginComponent{
   email: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -23,7 +21,7 @@ export class LoginComponent implements CanComponentDeactivate {
 
 // Método del Guard Exit
 canExit(): boolean {
-  console.log('canExit() llamado en LoginComponent');
+  console.log('canExit() llamado. Comprobando si hay cambios sin guardar...');
   if (this.datosNoGuardados) {
     console.log('Hay cambios sin guardar. Mostrando confirmación...');
     const confirmacion = confirm('¿Seguro que quieres salir sin enviar los datos?');
@@ -34,11 +32,19 @@ canExit(): boolean {
   return true;
 }
 
-// Simular cambios no guardados
+// Se llama cada vez que el usuario interactúa con el formulario
 onInputChange() {
-  console.log('onInputChange() llamado. Marcando datosNoGuardados como true...');
-  this.datosNoGuardados = true;
+  const formularioVacio = !this.email && !this.password;
+  
+  if (formularioVacio) {
+    console.log('Formulario vacío. Marcando datosNoGuardados como false.');
+    this.datosNoGuardados = false;
+  } else {
+    console.log('Se detectaron cambios en el formulario. Marcando datosNoGuardados como true.');
+    this.datosNoGuardados = true;
+  }
 }
+
 
 constructor(private authService: AuthService, private router: Router) {}
 

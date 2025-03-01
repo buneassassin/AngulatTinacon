@@ -58,10 +58,12 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    canDeactivate: [ExitGuard]
   },
   {
     path: 'recuperar',
-    component: RecuperarComponent,   
+    component: RecuperarComponent,
+    canDeactivate: [ExitGuard] 
   },
   {
     path: 'admin',
