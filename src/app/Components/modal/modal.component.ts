@@ -12,6 +12,11 @@ export class ModalComponent {
   @Output() save = new EventEmitter<void>(); // Evento para el botón guardar
   @Output() close = new EventEmitter<void>(); // Evento para cerrar el modal
 
+    // para manejar el clic en el overlay
+    onOverlayClick(event: MouseEvent): void {
+      event.stopPropagation(); 
+    }
+
   /*
   para utilizar el modal se debe de poner los siguientes metodos para que el modal funcione correctamente en archivo ts del
   lugar donde se vaya a guardar(no pense en que el metodo save guardara realmente los datos 

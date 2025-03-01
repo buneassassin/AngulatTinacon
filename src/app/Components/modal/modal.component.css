@@ -1,14 +1,14 @@
 .modal-overlay {
-  position: fixed;
+  position: fixed; /* Fijamos el overlay para que cubra toda la pantalla */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; /* Usamos flexbox para centrar el contenido */
+  justify-content: center; /* Alineamos horizontalmente */
+  align-items: center; /* Alineamos verticalmente */
+  z-index: 1050; /* Aseguramos que el overlay esté debajo del modal */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
 }
 
 .modal-content {
@@ -17,8 +17,9 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   width: 90%;
   max-width: 500px;
-  z-index: 1060;
+  z-index: 1060; /* El modal debe estar por encima del overlay */
   overflow: hidden;
+  position: relative; /* Para asegurarse de que el modal esté posicionado correctamente dentro del overlay */
 }
 
 .modal-header {
@@ -38,7 +39,6 @@
   gap: 0.5rem;
 }
 
-/* Opcional: Fondo para el modal (si no se usa el overlay en el HTML) */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -46,5 +46,5 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5;
+  z-index: 1040; /* El backdrop está por debajo del modal */
 }

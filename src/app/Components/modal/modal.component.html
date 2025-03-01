@@ -1,4 +1,4 @@
-<div class="modal-overlay" (click)="close.emit()">
+<div class="modal-overlay" (click)="onOverlayClick($event)"> //(click)="close.emit() lo quité, ya no cierra si haces click afuera
   <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="modal-header bg-primary text-white">
       <h2 class="modal-title">{{ title }}</h2>

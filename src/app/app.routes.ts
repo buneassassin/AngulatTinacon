@@ -29,6 +29,7 @@ export const routes: Routes = [
   {
     path: 'perfil',
     component: ProfileComponent,
+    canDeactivate: [ExitGuard]
   },
   {
     path: 'tinaco',

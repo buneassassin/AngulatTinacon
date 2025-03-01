@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   isModalOpenPerfil = false;
   isModalOpenContrasena = false;
   isModalOpenModalFoto = false;
+  datosNoGuardados: boolean = false;
 
   // Propiedades para el formulario de cambio de contraseña
   currentPassword: string = '';
@@ -54,6 +55,11 @@ export class ProfileComponent implements OnInit {
     this.isModalOpenModalFoto = true;
   }
   closeModal(): void {
+    if (this.datosNoGuardados) {
+      const confirmacion = confirm('Tienes cambios sin guardar. ¿Seguro que quieres cerrar?');
+      if (!confirmacion) return;
+    }
+    
     if (this.isModalOpenContrasena) {
       this.isModalOpenContrasena = false;
     }
@@ -142,4 +148,41 @@ export class ProfileComponent implements OnInit {
       this.closeModal();
     }
   }
+
+  // Método del Guard Exit
+  canExit(): boolean {
+    console.log('canExit() llamado. Comprobando si hay cambios sin guardar...');
+    if (this.datosNoGuardados) {
+      console.log('Hay cambios sin guardar. Mostrando confirmación...');
+      const confirmacion = confirm('¿Seguro que quieres salir sin enviar los datos?');
+      console.log('Confirmación del usuario:', confirmacion);
+      return confirmacion;
+    }
+    console.log('No hay cambios sin guardar. Permitiendo salir...');
+    return true;
+  }
+
+  // Se llama cada vez que el usuario interactúa con el formulario
+  onInputChange() {
+    console.log('Ejecutando onInputChange()');
+    console.log('Estado actual de user:', this.user);
+    console.log('Estado actual de datosNoGuardados:', this.datosNoGuardados);
+    if (!this.user) return;
+
+    const formularioVacio =
+      !this.user.usuario_nom &&
+      !this.user.persona.nombres &&
+      !this.user.persona.a_p &&
+      !this.user.persona.a_m &&
+      !this.user.persona.telefono;
+
+    if (formularioVacio) {
+      console.log('Formulario vacío. Marcando datosNoGuardados como false.');
+      this.datosNoGuardados = false;
+    } else {
+      console.log('Se detectaron cambios en el formulario. Marcando datosNoGuardados como true.');
+      this.datosNoGuardados = true;
+    }
+  }
+
 }
