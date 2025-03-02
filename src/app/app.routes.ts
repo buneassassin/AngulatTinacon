@@ -11,6 +11,7 @@ import { RecuperarComponent } from './view/auth/recuperar/recuperar.component';
 import { InfoComponent } from './view/info/info.component';
 import { HomeAdminComponent } from './view/admin/home-admin/home-admin.component';
 import { UserAdminComponent } from './view/admin/user-admin/user-admin.component';
+import { NotificacionAdminComponent } from './view/admin/notificacion-admin/notificacion-admin.component';
 import { GraficasAdminComponent } from './view/admin/graficas-admin/graficas-admin.component';
 import { TinacosAdminComponent } from './view/admin/tinacos-admin/tinacos-admin.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
@@ -77,6 +78,10 @@ export const routes: Routes = [
   {
     path: 'admin/tinacos',
     component: TinacosAdminComponent,
+  },
+  {
+    path: 'admin/notificaciones',
+    component: NotificacionAdminComponent,
   },
   {
     path: 'admin/graficas',

@@ -1,0 +1,48 @@
+<main style="margin-top: 58px;">
+    <div class="container p-3">
+        <!-- Header del Dashboard -->
+        <app-header>
+            <h1>Dashboard de Notificaciones</h1>
+            <p class="lead">Gestiona y envía notificaciones a tus usuarios</p>
+        </app-header>
+        <!-- Tarjeta del formulario -->
+        <div class="card shadow-lg ">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Crear Notificación</h5>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="enviarNotificacion()">
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Título</label>
+                    <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="Ingresa el título">
+                  </div>
+              
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Mensaje</label>
+                    <textarea class="form-control" [(ngModel)]="mesaje" name="mensaje" rows="4" placeholder="Escribe el mensaje"></textarea>
+                  </div>
+              
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Tipo</label>
+                    <select class="form-select" [(ngModel)]="type" name="type">
+                      <option value="" disabled selected>Seleccione un tipo</option>
+                      <option value="success">Éxito</option>
+                      <option value="info">Información</option>
+                      <option value="warning">Advertencia</option>
+                      <option value="alert">Alerta</option>
+                    </select>
+                  </div>
+              
+                  <div *ngIf="mensajeExito" class="alert alert-success">{{ mensajeExito }}</div>
+                  <div *ngIf="mensajeError" class="alert alert-danger">{{ mensajeError }}</div>
+              
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Enviar Notificación</button>
+                  </div>
+                </form>
+              </div>
+              
+
+        </div>
+    </div>
+</main>

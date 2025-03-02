@@ -55,4 +55,9 @@ export class AdminService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.baseUrl}/activarUsuario`, data, { headers });
   }
+  enviarNotificacion(data: any): Observable<any> {
+    const token = localStorage.getItem('token'); 
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/EnviarNotificacionesGeneral`, data, { headers });
+  }
 }

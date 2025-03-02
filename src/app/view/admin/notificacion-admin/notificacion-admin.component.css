@@ -1,0 +1,69 @@
+/* Header del Dashboard */
+.dashboard-header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 40px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+@media (min-width: 991.98px) {
+    main {
+        padding-left: 240px;
+    }
+} 
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Estilos para el formulario */
+form {
+    padding: 20px;
+}
+
+/* Campos del formulario */
+.form-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Botón de envío */
+.btn-primary {
+    background: linear-gradient(135deg, #0062E6, #33AEFF);
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0053C9, #2A99E6);
+}

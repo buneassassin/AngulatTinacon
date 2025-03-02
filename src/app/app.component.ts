@@ -23,13 +23,13 @@ export class AppComponent {
   constructor(private router: Router) {
     // Detectar cambios en la ruta
     this.router.events.subscribe(() => {
-      const authRoutes = ['/login', '/register','/recuperar', '/admin', '/admin/user','/admin/graficas','/admin/tinacos']; // Rutas donde NO quieres mostrar el navbar y footer
+      const authRoutes = ['/login', '/register','/recuperar', '/admin', '/admin/user','/admin/graficas','/admin/tinacos','/admin/notificaciones']; // Rutas donde NO quieres mostrar el navbar y footer
       this.isAuthPage = authRoutes.includes(this.router.url);
     });
 
     // Detectar cambios en la ruta
     this.router.events.subscribe(() => {
-      const adminRoutes = ['/admin', '/admin/user','/admin/graficas','/admin/tinacos']; // Rutas donde NO quieres mostrar el navbar y footer
+      const adminRoutes = ['/admin', '/admin/user','/admin/graficas','/admin/tinacos','/admin/notificaciones']; // Rutas donde NO quieres mostrar el navbar y footer
       this.isAdminPage = adminRoutes.includes(this.router.url);
     });
   }
