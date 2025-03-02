@@ -8,8 +8,14 @@
         <li *ngFor="let noti of notifications" class="list-group-item noti-item position-relative">
           <!-- Enlace que abarca el contenido principal -->
           <a class="d-flex align-items-center text-decoration-none" routerLink="/notificaciones/{{ noti.id }}">
-            <i class="fas fa-bell text-primary me-3 fa-2x"></i>
-            <div>
+            <!-- Icono dependiendo del type de notificacion -->             
+            <div [ngSwitch]="noti.type">
+              <i *ngSwitchCase="'alert'" class="fas fa-circle-exclamation text-danger me-3 fa-2x"></i>
+              <i *ngSwitchCase="'info'" class="fas fa-info-circle text-info me-3 fa-2x"></i>
+              <i *ngSwitchCase="'warning'" class="fas fa-exclamation-circle text-warning me-3 fa-2x"></i>
+              <i *ngSwitchCase="'success'" class="fas fa-check-circle text-success me-3 fa-2x"></i>
+              <i *ngSwitchDefault class="fas fa-bell text-primary me-3 fa-2x"></i>
+            </div>            <div>
               <h6 class="mb-1">{{ noti.title }}</h6>
               <small class="text-muted">{{ noti.message }}</small>
               <br>

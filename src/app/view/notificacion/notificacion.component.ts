@@ -25,6 +25,7 @@ export class NotificacionComponent implements OnInit {
     this.notificacionService.getNotificaciones().subscribe({
       next: (response) => {
         if (response.success) {
+          console.log(response.data);
           this.notifications = response.data;
         }
         this.isLoading = false;
