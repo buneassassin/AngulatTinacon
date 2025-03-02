@@ -35,4 +35,16 @@ export class NotificacionComponent implements OnInit {
       }
     });
   }
+  deleteNotification(notificationId: number): void {
+    this.notificacionService.deleteNotification(notificationId).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.getNotificaciones();
+        }
+      },
+      error: (error) => {
+        console.error('Error al eliminar notificacion:', error);
+      }
+    });
+  }
 }

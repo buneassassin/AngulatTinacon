@@ -11,22 +11,34 @@
     border-bottom: none;
 }
 
-/* List Group Items con transición */
-.list-group-item {
-    transition: background-color 0.3s ease;
+/* Estilo para cada item de notificación */
+.noti-item {
+    border: none;
+    padding: 1rem;
+    background-color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
 }
 
-.list-group-item:hover {
-    background-color: rgba(0, 123, 255, 0.1);
+.noti-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Estilos para los badges */
-.badge {
-    font-size: 0.85rem;
+/* Enlace que cubre el contenido principal de la notificación */
+.noti-item a {
+    display: flex;
+    width: 100%;
+    color: inherit;
 }
 
-/* Estilo para los íconos, con margen para separarlos */
-.list-group-item i {
+
+.noti-actions .badge {
+    font-size: 0.75rem;
+}
+
+/* Íconos */
+.noti-item i {
     font-size: 1.5rem;
 }
 

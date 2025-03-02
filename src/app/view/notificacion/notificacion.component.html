@@ -3,24 +3,33 @@
     <div class="card-header bg-primary text-white text-center">
       <h3 class="mb-0">Notificaciones</h3>
     </div>
-    <div class="card-body p-0">
+    <div class="card-body">
       <ul class="list-group list-group-flush">
-        <!-- Itera sobre las notificaciones -->
-        <li *ngFor="let noti of notifications" class="list-group-item d-flex align-items-center justify-content-between" routerLink="/notificaciones/{{ noti.id }}">
-          <div class="d-flex align-items-center">
-            <!-- Icono según noti.type (puedes ajustar) -->
-            <i class="fas fa-bell text-primary me-3"></i>
+        <li *ngFor="let noti of notifications" class="list-group-item noti-item position-relative">
+          <!-- Enlace que abarca el contenido principal -->
+          <a class="d-flex align-items-center text-decoration-none" routerLink="/notificaciones/{{ noti.id }}">
+            <i class="fas fa-bell text-primary me-3 fa-2x"></i>
             <div>
               <h6 class="mb-1">{{ noti.title }}</h6>
               <small class="text-muted">{{ noti.message }}</small>
               <br>
               <small class="text-muted">{{ noti.formatted_created_at }}</small>
             </div>
-          </div>
-          <span class="badge rounded-pill" 
+          </a>
+          <!-- Acciones: badge y botón de borrar, posicionados en la esquina superior derecha -->
+          <div class="noti-actions position-absolute top-0 end-0 text-end">
+           
+            <div class=" mt-2 me-2">
+              <span class="badge rounded-pill"
                 [ngClass]="{'bg-danger': noti.is_read === 0, 'bg-secondary': noti.is_read !== 0}">
-            {{ noti.is_read === 0 ? 'Nuevo' : 'Leído' }}
-          </span>
+                {{ noti.is_read === 0 ? 'Nuevo' : 'Leído' }}
+              </span>
+            </div>
+            <button class="btn btn-outline-danger btn-sm ms-2 m-3" (click)="deleteNotification(noti.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+
+          </div>
         </li>
       </ul>
     </div>
@@ -33,6 +42,6 @@
 <!-- Loader: Se muestra mientras se cargan los datos -->
 <div class="container p-5" *ngIf="isLoading">
   <div class="d-flex justify-content-center align-items-center my-5 py-5">
-  <app-loading-skeleton></app-loading-skeleton>
+    <app-loading-skeleton></app-loading-skeleton>
   </div>
 </div>
