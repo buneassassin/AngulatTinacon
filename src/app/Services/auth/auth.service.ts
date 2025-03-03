@@ -36,6 +36,9 @@ export class AuthService {
     const url = `${this.baseUrl}/reset-password`;
     return this.http.post(url, { email });
   }
-
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token; // Devuelve true si el token existe, de lo contrario, false
+  }
  
 }

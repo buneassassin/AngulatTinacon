@@ -11,6 +11,7 @@ import { User } from '../../../Interface/user';
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
+
 })
 
 export class LoginComponent{

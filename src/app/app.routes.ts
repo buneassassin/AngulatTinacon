@@ -16,8 +16,29 @@ import { GraficasAdminComponent } from './view/admin/graficas-admin/graficas-adm
 import { TinacosAdminComponent } from './view/admin/tinacos-admin/tinacos-admin.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
 import { ExitGuard } from './Guards/exit.guard';
+import { authGuard } from './Guards/auth/auth/auth.guard';
+import { noAuthGuard } from './Guards/auth/no_auth/no-auth.guard';
+import { adminAuthGuard } from './Guards/admin/admin-auth.guard';
 
 export const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+    canDeactivate: [ExitGuard],
+    canActivate: [noAuthGuard],
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canDeactivate: [ExitGuard],
+    canActivate: [noAuthGuard],
+  },
+  {
+    path: 'recuperar',
+    component: RecuperarComponent,
+    canDeactivate: [ExitGuard],
+    canActivate: [noAuthGuard],
+  },
   {
     path: '',
     redirectTo: 'home',
@@ -30,15 +51,19 @@ export const routes: Routes = [
   {
     path: 'perfil',
     component: ProfileComponent,
-    canDeactivate: [ExitGuard]
+    canDeactivate: [ExitGuard],
+    canActivate: [authGuard],
   },
   {
     path: 'tinaco',
     component: TinacoComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'tinaco/:id',
     component: TinacoIndivComponent,
+    canActivate: [authGuard],
+
   },
   {
     path: 'informacion',
@@ -47,48 +72,41 @@ export const routes: Routes = [
   {
     path: 'notificaciones',
     component: NotificacionComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'notificaciones/:id',
     component: NotificacionIndivComponent,
+    canActivate: [authGuard],
   },
-  {
-    path:'login',
-    component: LoginComponent,
-    canDeactivate: [ExitGuard]
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    canDeactivate: [ExitGuard]
-  },
-  {
-    path: 'recuperar',
-    component: RecuperarComponent,
-    canDeactivate: [ExitGuard] 
-  },
+
   {
     path: 'admin',
     component: HomeAdminComponent,
+    canActivate: [authGuard, adminAuthGuard],
   },
   {
     path: 'admin/user',
     component: UserAdminComponent,
+    canActivate: [authGuard, adminAuthGuard],
   },
   {
     path: 'admin/tinacos',
     component: TinacosAdminComponent,
+    canActivate: [authGuard, adminAuthGuard],
   },
   {
     path: 'admin/notificaciones',
     component: NotificacionAdminComponent,
+    canActivate: [authGuard, adminAuthGuard],
   },
   {
     path: 'admin/graficas',
     component: GraficasAdminComponent,
+    canActivate: [authGuard, adminAuthGuard],
   },
   {
     path: '**',
     component: NotFoundComponent,
-  }
+  },
 ];
