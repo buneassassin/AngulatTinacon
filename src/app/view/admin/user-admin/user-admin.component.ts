@@ -1,3 +1,4 @@
+// user-admin.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../Interface/user';
@@ -27,36 +28,61 @@ export class UserAdminComponent implements OnInit {
   usuariEditar: User | null = null;
   rolesSelected: string | null = null;
   roles: any[] = [];
+
+  // Variables de paginación
+  currentPage: number = 1;
+  perPage: number = 5;
+  totalPages: number = 0;
+
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.adminService.getUserStatistics().subscribe({
       next: (response: any) => {
-        this.informacionesUser = response; // Asigna directamente el objeto
+        this.informacionesUser = response;
         console.log(response);
       },
       error: (error) =>
         console.error('Error al obtener datos del usuario', error),
     });
 
-    this.adminService.obtenerUsuariosConTinacos().subscribe({
-      next: (response: any) => {
-        this.users = response; // Asigna directamente el objeto
-        console.log(response);
-      },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
-    });
+    // Cargar la primera página de usuarios
+    this.loadUsers(this.currentPage);
+
     this.adminService.obtenerRol().subscribe({
       next: (response: any) => {
-        console.log(response); // Verifica la estructura
-        this.roles = response.roles; // Extraemos el array de roles
+        console.log(response);
+        this.roles = response.roles;
       },
       error: (error) =>
         console.error('Error al obtener datos del usuario', error),
     });
   }
 
+  // Método para cargar los usuarios de una página específica
+  loadUsers(page: number): void {
+    this.adminService.obtenerUsuariosConTinacos(page, this.perPage).subscribe({
+      next: (response: any) => {
+        this.users = response.data; // Asumimos que los usuarios están en "data"
+        this.currentPage = response.current_page;
+        this.totalPages = response.last_page;
+        console.log(response);
+      },
+      error: (error) =>
+        console.error('Error al obtener datos del usuario', error),
+    });
+  }
+
+  // Getter para generar un arreglo de números de páginas para iterar en la vista
+  get pages(): number[] {
+    const pages: number[] = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
+  // Resto de métodos de tu componente...
   get adminCount(): number {
     return this.users.filter((u) => u.rol === 'Administrador').length;
   }
@@ -78,6 +104,7 @@ export class UserAdminComponent implements OnInit {
       this.rolesSelected = null;
     }
   }
+
   saveModal() {
     if (this.isModalOpenEditRol) {
       this.saveRolChange();
@@ -100,6 +127,7 @@ export class UserAdminComponent implements OnInit {
       });
     }
   }
+
   validarCambioRol() {
     console.log('Rol seleccionado:', this.rolesSelected);
 
@@ -108,13 +136,12 @@ export class UserAdminComponent implements OnInit {
         'Si asignas este usuario como admin, no podrás revertirlo. ¿Deseas continuar?'
       );
       if (!confirmacion) {
-        this.rolesSelected = this.usuariEditar?.rol || null; // Restaurar valor anterior
+        this.rolesSelected = this.usuariEditar?.rol || null;
       }
     }
   }
 
   toggleUserState(user: User) {
-    //mostramos mesaje de confirmacion
     const confirmacion = confirm('¿Deseas deshabilitar a este usuario?');
     if (confirmacion) {
       const payload = {
@@ -128,8 +155,8 @@ export class UserAdminComponent implements OnInit {
       });
     }
   }
+
   toggleUserStateActive(user: User) {
-    //mostramos mesaje de confirmacion
     const confirmacion = confirm('¿Deseas habilitar a este usuario?');
     if (confirmacion) {
       const payload = {

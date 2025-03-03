@@ -28,10 +28,10 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getTinacoStatistics`, { headers });
   }
 
-  obtenerUsuariosConTinacos(): Observable<any> {
+  obtenerUsuariosConTinacos(page: number = 1, perPage: number = 10): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/usuariosConTinacos`, { headers });
+    return this.http.get(`${this.baseUrl}/usuariosConTinacos2?per_page=${perPage}&page=${page}`, { headers });
   }
   getinfoAdmin(): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión

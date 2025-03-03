@@ -10,10 +10,10 @@ export class NotificacionService {
 
   constructor(private http: HttpClient) {}
   // obtener notificaciones
-  getNotificaciones(): Observable<any> {
+  getNotificaciones(page: number = 1, perPage: number = 10): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/notifications`, { headers });
+    return this.http.get(`${this.baseUrl}/notifications2?per_page=${perPage}&page=${page}`, { headers });
   }
 
   markAsRead(notificationId: number): Observable<any> {

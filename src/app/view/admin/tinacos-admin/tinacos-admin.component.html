@@ -1,80 +1,100 @@
 <main style="margin-top: 58px;">
-    <div class="container p-3">
-      <!-- Header -->
-      <app-header>
-        <h1>Gestión de Tinacos</h1>
-        <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos en tiempo real.</p>
-      </app-header>
-      <div class="container my-4">
-        <!-- Tarjetas de Resumen -->
-        <div class="row mb-4">
-          <div class="col-md-6">
-            <div class="card text-white bg-primary mb-3">
-              <div class="card-body text-center">
-                <h5 class="card-title">Total de Tinacos</h5>
-                <p class="card-text display-4">{{ totalTinacos }}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card text-white bg-success mb-3">
-              <div class="card-body text-center">
-                <h5 class="card-title">Tinacos Activos</h5>
-                <p class="card-text display-4">{{ activeTinacos }}</p>
-              </div>
+  <div class="container p-3">
+    <!-- Header -->
+    <app-header>
+      <h1>Gestión de Tinacos</h1>
+      <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos en tiempo real.</p>
+    </app-header>
+    <div class="container my-4">
+      <!-- Tarjetas de Resumen -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card text-white bg-primary mb-3">
+            <div class="card-body text-center">
+              <h5 class="card-title">Total de Tinacos</h5>
+              <p class="card-text display-4">{{ totalTinacos }}</p>
             </div>
           </div>
         </div>
-    
-        <!-- Tabla de Detalles -->
-        <div class="card">
-          <div class="card-header bg-dark text-white">
-            Detalles de Tinacos
+        <div class="col-md-6">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-body text-center">
+              <h5 class="card-title">Tinacos Activos</h5>
+              <p class="card-text display-4">{{ activeTinacos }}</p>
+            </div>
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>ID Tinaco</th>
-                    <th>Nombre</th>
-                    <th>Propietario</th>
-                    <th>Estado</th>
-                    <th>Nivel de Agua</th>
-                    <th>Acciones</th>
+        </div>
+      </div>
+      
+      <!-- Tabla de Detalles -->
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          Detalles de Tinacos
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>ID Tinaco</th>
+                  <th>Nombre</th>
+                  <th>Propietario</th>
+                  <th>Estado</th>
+                  <th>Nivel de Agua</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Iteramos sobre cada usuario -->
+                <ng-container *ngFor="let user of usersWithTinacos">
+                  <!-- Por cada usuario, iteramos sobre sus tinacos -->
+                  <tr *ngFor="let tinaco of user.tinacos">
+                    <td>{{ tinaco.id }}</td>
+                    <td>{{ tinaco.name }}</td>
+                    <td>{{ user.usuario_nom }}</td>
+                    <td>
+                      <span class="badge"
+                        [ngClass]="{'bg-success': tinaco.nivel_del_agua > 0, 'bg-danger': tinaco.nivel_del_agua === 0}">
+                        {{ tinaco.nivel_del_agua > 0 ? 'Encendido' : 'Apagado' }}
+                      </span>
+                    </td>
+                    <td>{{ tinaco.nivel_del_agua }}%</td>
+                    <td>
+                      <button class="btn btn-sm"
+                        [ngClass]="{'btn-warning': tinaco.nivel_del_agua > 0, 'btn-info': tinaco.nivel_del_agua === 0}"
+                        (click)="toggleTinaco(tinaco)">
+                        {{ tinaco.nivel_del_agua > 0 ? 'Apagar' : 'Encender' }}
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  <!-- Iteramos sobre cada usuario -->
-                  <ng-container *ngFor="let user of usersWithTinacos">
-                    <!-- Por cada usuario, iteramos sobre sus tinacos -->
-                    <tr *ngFor="let tinaco of user.tinacos">
-                      <td>{{ tinaco.id }}</td>
-                      <td>{{ tinaco.name }}</td>
-                      <td>{{ user.usuario_nom }}</td>
-                      <td>
-                        <span class="badge"
-                          [ngClass]="{'bg-success': tinaco.nivel_del_agua > 0, 'bg-danger': tinaco.nivel_del_agua === 0}">
-                          {{ tinaco.nivel_del_agua > 0 ? 'Encendido' : 'Apagado' }}
-                        </span>
-                      </td>
-                      <td>{{ tinaco.nivel_del_agua }}%</td>
-                      <td>
-                        <button class="btn btn-sm"
-                          [ngClass]="{'btn-warning': tinaco.nivel_del_agua > 0, 'btn-info': tinaco.nivel_del_agua === 0}"
-                          (click)="toggleTinaco(tinaco)">
-                          {{ tinaco.nivel_del_agua > 0 ? 'Apagar' : 'Encender' }}
-                        </button>
-                      </td>
-                    </tr>
-                  </ng-container>
-                </tbody>
-              </table>
-            </div>
+                </ng-container>
+              </tbody>
+            </table>
           </div>
+          
+          <!-- Controles de paginación -->
+          <nav aria-label="Navegación de páginas" *ngIf="totalPages > 1">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="loadUsers(currentPage - 1)" aria-label="Anterior"
+                   [attr.tabindex]="currentPage === 1 ? '-1' : '0'">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+                <a class="page-link" (click)="loadUsers(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="loadUsers(currentPage + 1)" aria-label="Siguiente"
+                   [attr.tabindex]="currentPage === totalPages ? '-1' : '0'">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          
         </div>
-    
       </div>
     </div>
-  </main>
-  
+  </div>
+</main>

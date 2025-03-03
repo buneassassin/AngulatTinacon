@@ -11,20 +11,42 @@ import { AdminService } from '../../../Services/admin/admin.service';
   styleUrls: ['./tinacos-admin.component.css']
 })
 export class TinacosAdminComponent implements OnInit {
-  // Almacenará el arreglo de usuarios con sus tinacos
+  // Almacenará el arreglo paginado de usuarios con sus tinacos
   usersWithTinacos: any[] = [];
+  
+  // Variables de paginación
+  currentPage: number = 1;
+  perPage: number = 5;
+  totalPages: number = 0;
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.adminService.obtenerUsuariosConTinacos().subscribe({
+    this.loadUsers(this.currentPage);
+  }
+
+  // Cargar los usuarios (con tinacos) según la página solicitada
+  loadUsers(page: number): void {
+    this.adminService.obtenerUsuariosConTinacos(page, this.perPage).subscribe({
       next: (response: any) => {
-        this.usersWithTinacos = response;
+        // Se asume que la respuesta paginada tiene una estructura con "data", "current_page" y "last_page"
+        this.usersWithTinacos = response.data;
+        this.currentPage = response.current_page;
+        this.totalPages = response.last_page;
         console.log(response);
       },
       error: (error) =>
         console.error('Error al obtener datos de usuarios con tinacos', error)
     });
+  }
+
+  // Getter para generar un arreglo de números de página
+  get pages(): number[] {
+    const pages: number[] = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 
   // Ejemplo de toggle para un tinaco (puedes adaptar la lógica)
