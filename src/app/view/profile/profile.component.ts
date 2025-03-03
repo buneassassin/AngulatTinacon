@@ -7,11 +7,12 @@ import { ModalComponent } from '../../Components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../Interface/user';
 import { Persona } from '../../Interface/persona';
+import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, CardHoverComponent, ModalComponent, FormsModule],
+  imports: [CommonModule, CardHoverComponent, ModalComponent, FormsModule, LoadingSkeletonComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
   isModalOpenContrasena = false;
   isModalOpenModalFoto = false;
   datosNoGuardados: boolean = false;
+  isLoading: boolean = true;
 
   // Propiedades para el formulario de cambio de contraseña
   currentPassword: string = '';
@@ -38,6 +40,7 @@ export class ProfileComponent implements OnInit {
       next: (response: any) => {
         if (response.success) {
           this.user = response.user;
+          this.isLoading = false;
         }
       },
       error: (error) =>

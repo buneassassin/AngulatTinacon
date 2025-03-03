@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./loading-skeleton.component.css']
 })
 export class LoadingSkeletonComponent {
-  @Input() size: number = 20; // Tamaño predeterminado
+  @Input() size: number = 170; // Tamaño predeterminado
 }
