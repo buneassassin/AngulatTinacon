@@ -5,7 +5,7 @@
       <h1>Gestión de Tinacos</h1>
       <p class="lead">Supervisa, gestiona y analiza toda la información de tus tinacos en tiempo real.</p>
     </app-header>
-    <div class="container my-4">
+    <div class="container my-4" *ngIf="!isLoading">
       <!-- Tarjetas de Resumen -->
       <div class="row mb-4">
         <div class="col-md-6">
@@ -96,5 +96,8 @@
         </div>
       </div>
     </div>
+    <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
+      <app-loading-skeleton></app-loading-skeleton>
+  </div> 
   </div>
 </main>

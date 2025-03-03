@@ -1,4 +1,3 @@
-// user-admin.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../Interface/user';
@@ -7,6 +6,7 @@ import { HeaderComponent } from '../../../Components/header/header.component';
 import { AdminService } from '../../../Services/admin/admin.service';
 import { ModalComponent } from '../../../Components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
+import { LoadingSkeletonComponent } from '../../../Components/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-user-admin',
@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     CardHoverComponent,
     ModalComponent,
     FormsModule,
+    LoadingSkeletonComponent,
   ],
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.css'],
@@ -28,6 +29,7 @@ export class UserAdminComponent implements OnInit {
   usuariEditar: User | null = null;
   rolesSelected: string | null = null;
   roles: any[] = [];
+  isLoading: boolean = true;
 
   // Variables de paginación
   currentPage: number = 1;
@@ -40,6 +42,7 @@ export class UserAdminComponent implements OnInit {
     this.adminService.getUserStatistics().subscribe({
       next: (response: any) => {
         this.informacionesUser = response;
+        this.isLoading = false;
         console.log(response);
       },
       error: (error) =>

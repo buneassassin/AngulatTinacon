@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../Components/header/header.component';
 import { AdminService } from '../../../Services/admin/admin.service';
+import { LoadingSkeletonComponent } from '../../../Components/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-tinacos-admin',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent],
   templateUrl: './tinacos-admin.component.html',
   styleUrls: ['./tinacos-admin.component.css']
 })
 export class TinacosAdminComponent implements OnInit {
   // Almacenará el arreglo paginado de usuarios con sus tinacos
   usersWithTinacos: any[] = [];
-  
+  isLoading: boolean = true;
+
   // Variables de paginación
   currentPage: number = 1;
   perPage: number = 5;
@@ -33,6 +35,7 @@ export class TinacosAdminComponent implements OnInit {
         this.usersWithTinacos = response.data;
         this.currentPage = response.current_page;
         this.totalPages = response.last_page;
+        this.isLoading = false;
         console.log(response);
       },
       error: (error) =>

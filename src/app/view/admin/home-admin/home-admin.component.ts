@@ -23,8 +23,7 @@ export class HomeAdminComponent implements OnInit {
   informacionesUser: any = {}; // Ahora es un objeto en lugar de un array
   informacionesTinaco: any = {};
   informacionesAdmin: any = {};
-  isLoadingUser: boolean = true;
-  isLoadingTinaco: boolean = true;
+  isLoading: boolean = true;
 
   constructor(private adminService: AdminService) {}
 
@@ -33,7 +32,6 @@ export class HomeAdminComponent implements OnInit {
       next: (response: any) => {
         this.informacionesUser = response; // Asigna directamente el objeto
         console.log(response);
-        this.isLoadingUser = false;
       },
       error: (error) =>
         console.error('Error al obtener datos del usuario', error),
@@ -42,7 +40,6 @@ export class HomeAdminComponent implements OnInit {
       next: (response: any) => {
         this.informacionesTinaco = response; // Asigna directamente el objeto
         console.log(response);
-        this.isLoadingTinaco = false;
       },
       error: (error) =>
         console.error('Error al obtener datos del usuario', error),
@@ -55,5 +52,9 @@ export class HomeAdminComponent implements OnInit {
       error: (error) =>
         console.error('Error al obtener datos del usuario', error),
     });
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   }
 }

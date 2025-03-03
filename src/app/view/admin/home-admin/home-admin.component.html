@@ -13,18 +13,15 @@
     </app-header>
 
     <!-- Tarjetas de Estadísticas -->
-    <div class="row g-4">
+    <div class="row g-4" *ngIf="!isLoading">
       <app-card-hover class="col-md-6" routerLink="/admin/user">
         <div class="card text-white bg-primary shadow">
           <div class="card-body text-center">
             <i class="fas fa-users fa-2x"></i>
             <h5 class="card-title mt-2">Usuarios</h5>
-            <p class="card-text display-4" *ngIf="!isLoadingUser">
+            <p class="card-text display-4">
               {{ informacionesUser?.totalUsers }}
             </p>
-            <div *ngIf="isLoadingUser">
-              <app-loading-skeleton></app-loading-skeleton>
-            </div>
           </div>
         </div>
       </app-card-hover>
@@ -34,15 +31,15 @@
           <div class="card-body text-center">
             <i class="fas fa-tint fa-2x"></i>
             <h5 class="card-title mt-2">Tinacos</h5>
-            <p class="card-text display-4" *ngIf="!isLoadingTinaco">
+            <p class="card-text display-4">
               {{ informacionesTinaco?.totalTinacos }}
             </p>
-            <div *ngIf="isLoadingTinaco">
-              <app-loading-skeleton></app-loading-skeleton>
-            </div>
           </div>
         </div>
       </app-card-hover>
+    </div>
+    <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
+      <app-loading-skeleton></app-loading-skeleton>
     </div>
 
     <!-- Sección de Acciones y Reglas -->
