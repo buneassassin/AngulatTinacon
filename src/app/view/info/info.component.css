@@ -1,6 +1,6 @@
 /* Sección de Información */
 .info-section {
-  padding: 60px 0;
+  padding: 60px 0 0 0;
 }
 
 .info-section h2 {
@@ -13,10 +13,6 @@
 }
 
 
-/* Estilos Generales */
-.info-section {
-  padding: 60px 0;
-}
 
 .info-section h2 {
   font-size: 2.5rem;

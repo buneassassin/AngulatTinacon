@@ -7,11 +7,12 @@ import { SidebarComponent } from './Components/sidebar/sidebar.component';
 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FondoComponent } from './Components/fondo/fondo.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule,FooterComponent,NavComponent,CommonModule,SidebarComponent], // Importa RouterOutlet aquí
+  imports: [RouterModule,FooterComponent,NavComponent,CommonModule,SidebarComponent, FondoComponent], // Importa RouterOutlet aquí
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

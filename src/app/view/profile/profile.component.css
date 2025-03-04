@@ -18,25 +18,43 @@
   font-size: 1rem;
   color: #555;
 }
-
-/* Títulos */
-.card-title {
-  font-weight: bold;
-  color: #343a40;
+.button-profile {
+  position: relative;
+  display: inline-block;
 }
-/* Oculta el icono (label) por defecto */
-button.border-0.bg-transparent.p-0 label {
+
+.button-profile label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-/* Al pasar el mouse sobre el botón, se aplica un filtro grayscale a la imagen */
-button.border-0.bg-transparent.p-0:hover .profile-img {
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
-
-/* Al hacer hover, el icono aparece (label se vuelve opaco) */
-button.border-0.bg-transparent.p-0:hover label {
+.button-profile:hover label {
+  
   opacity: 1;
+  pointer-events: auto;
+}
+.button-profile:hover img {
+  opacity: 0.5;
+}
+/* Títulos */
+/* Sección del encabezado de perfil */
+.benefits-section {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #1a365d 0%, #2a4b5e 100%);
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Opcional: ajustar el tamaño del texto en el header */
+.card-header h2 {
+  font-weight: 600;
 }
