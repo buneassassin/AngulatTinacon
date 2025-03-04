@@ -19,6 +19,7 @@ import { ExitGuard } from './Guards/exit.guard';
 import { authGuard } from './Guards/auth/auth/auth.guard';
 import { noAuthGuard } from './Guards/auth/no_auth/no-auth.guard';
 import { adminAuthGuard } from './Guards/admin/admin-auth.guard';
+import { PruebasComponent } from './view/pruebas/pruebas.component';
 
 export const routes: Routes = [
   {
@@ -79,7 +80,6 @@ export const routes: Routes = [
     component: NotificacionIndivComponent,
     canActivate: [authGuard],
   },
-
   {
     path: 'admin',
     component: HomeAdminComponent,
@@ -104,6 +104,10 @@ export const routes: Routes = [
     path: 'admin/graficas',
     component: GraficasAdminComponent,
     canActivate: [authGuard, adminAuthGuard],
+  },
+  { //PARA PROBAR COMPONENTES ANTES DE PONERLOS EN SU LUGAR
+    path: 'pruebas',
+    component: PruebasComponent
   },
   {
     path: '**',
