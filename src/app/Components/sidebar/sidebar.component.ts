@@ -3,10 +3,11 @@ import { RouterLink,RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../../Services/admin/admin.service';
 import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
+import { Fondo2Component } from '../fondo2/fondo2.component';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink,RouterLinkActive,CommonModule,LoadingSkeletonComponent],
+  imports: [RouterLink,RouterLinkActive,CommonModule,LoadingSkeletonComponent, Fondo2Component],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
