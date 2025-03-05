@@ -33,7 +33,7 @@ export class UserAdminComponent implements OnInit {
 
   // Variables de paginación
   currentPage: number = 1;
-  perPage: number = 5;
+  perPage: number = 15;
   totalPages: number = 0;
 
   constructor(private adminService: AdminService) {}

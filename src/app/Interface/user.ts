@@ -10,7 +10,7 @@ export interface User {
   email_verified_at: string;
   password: string;
   rol: string;
-  is_active: boolean;
+  is_active: any;
   is_Inactive: boolean;
   nombres: string;
   apellidoPaterno: string;

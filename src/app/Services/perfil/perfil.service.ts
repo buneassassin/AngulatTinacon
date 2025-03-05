@@ -37,4 +37,8 @@ export class PerfilService {
     const url = `${this.baseUrl}/reset-password`;
     return this.http.post(url, { email });
   }
+  sendEmail(email: string): Observable<any> {
+    const url = `${this.baseUrl}/sendEmail`;
+    return this.http.post(url, { email });
+  }
 }

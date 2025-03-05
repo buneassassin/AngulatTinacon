@@ -21,12 +21,22 @@
                 <i class="fas fa-camera"></i>
               </label>
             </button>
-            
-            <p class="mb-1"><strong>Rol:</strong> {{ user.rol }}</p>
-            <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="mb-1">
+              <strong>Email:</strong> {{ user.email }}
+              <button class="btn btn-sm btn-outline-success ms-2" (click)="verifyEmail()" *ngIf="!user.is_active">
+                <i class="fas fa-check"></i> Verificar
+              </button>
+            </p>
+      
+            <!-- Mensaje de éxito -->
+            <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
+              {{ successMessage }}
+            </div>
           </div>
         </div>
       </app-card-hover>
+      
+      
 
         <!-- Card de Detalles del Perfil -->
         <app-card-hover>

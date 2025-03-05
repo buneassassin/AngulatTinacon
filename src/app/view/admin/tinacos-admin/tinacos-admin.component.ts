@@ -18,7 +18,7 @@ export class TinacosAdminComponent implements OnInit {
 
   // Variables de paginación
   currentPage: number = 1;
-  perPage: number = 5;
+  perPage: number = 30;
   totalPages: number = 0;
 
   constructor(private adminService: AdminService) {}

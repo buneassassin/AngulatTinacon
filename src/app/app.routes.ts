@@ -47,6 +47,8 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [authGuard],
+    data: { public: true }
   },
   {
     path: 'perfil',
@@ -68,11 +70,14 @@ export const routes: Routes = [
   {
     path: 'informacion',
     component: InfoComponent,
+    canActivate: [authGuard],
+    data: { public: true }
   },
   {
     path: 'notificaciones',
     component: NotificacionComponent,
     canActivate: [authGuard],
+    
   },
   {
     path: 'notificaciones/:id',

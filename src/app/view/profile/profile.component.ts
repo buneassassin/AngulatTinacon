@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   isModalOpenModalFoto = false;
   datosNoGuardados: boolean = false;
   isLoading: boolean = true;
+  successMessage: string | null = null;
 
   // Propiedades para el formulario de cambio de contraseña
   currentPassword: string = '';
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserData().subscribe({
       next: (response: any) => {
         if (response.success) {
+          console.log('Datos del usuario obtenidos con éxito:', response);
           this.user = response.user;
           this.isLoading = false;
         }
@@ -187,5 +189,26 @@ export class ProfileComponent implements OnInit {
       this.datosNoGuardados = true;
     }
   }
+  verifyEmail(): void {
+    if (this.user && this.user.email) {
+      this.perfilService.sendEmail(this.user.email).subscribe({
+        next: (response: any) => {
+          console.log('Email verificado con éxito:', response);
+          this.successMessage = 'Correo enviado con éxito';
+  
+          // Ocultar el mensaje después de 3 segundos
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 3000);
+        },
+        error: (error: any) => {
+          console.error('Error al verificar el email:', error);
+        },
+      });
+    } else {
+      console.error('User or email is not defined');
+    }
+  }
+  
 
 }

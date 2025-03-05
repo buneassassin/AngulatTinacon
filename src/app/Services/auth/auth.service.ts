@@ -40,5 +40,6 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !!token; // Devuelve true si el token existe, de lo contrario, false
   }
+
  
 }

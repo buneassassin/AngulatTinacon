@@ -7,7 +7,7 @@ import { Fondo2Component } from '../fondo2/fondo2.component';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink,RouterLinkActive,CommonModule,LoadingSkeletonComponent, Fondo2Component],
+  imports: [RouterLink,RouterLinkActive,CommonModule,LoadingSkeletonComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
