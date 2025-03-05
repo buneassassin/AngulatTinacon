@@ -1,0 +1,16 @@
+.benefit-card {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .benefit-card i {
+    color: #4caf93;
+    margin-bottom: 1rem;
+  }
