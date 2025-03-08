@@ -103,7 +103,9 @@ export const routes: Routes = [
   {
     path: 'admin/notificaciones',
     component: NotificacionAdminComponent,
+    canDeactivate: [ExitGuard],
     canActivate: [authGuard, adminAuthGuard],
+
   },
   {
     path: 'admin/graficas',
