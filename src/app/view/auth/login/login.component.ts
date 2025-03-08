@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CanComponentDeactivate } from '../../../Interface/Guards/can-component-deactivate';
 import {
   FormBuilder,
   FormGroup,
@@ -17,7 +18,7 @@ import { User } from '../../../Interface/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements CanComponentDeactivate {
   loginForm: FormGroup;
   apiErrorMessage: string = '';
   successMessage: string = '';
@@ -47,7 +48,9 @@ export class LoginComponent {
       next: (response) => {
         console.log('Respuesta del servidor recibida:', response);
         localStorage.setItem('token', response.token);
+        this.apiErrorMessage = '';
         this.successMessage = 'Inicio de sesión exitoso';
+        this.loginForm.reset();
         setTimeout(() => {
           this.router.navigate(['/home']);
         }, 2000);
@@ -55,8 +58,16 @@ export class LoginComponent {
       error: (error) => {
         console.error('Error en el login:', error);
         // Si la API devuelve un mensaje de error, lo mostramos; de lo contrario, mensaje genérico
-        this.apiErrorMessage = error.error?.message || 'Ocurrió un error. Por favor, inténtalo de nuevo.';
+        this.apiErrorMessage =
+          error.error?.message ||
+          'Ocurrió un error. Por favor, inténtalo de nuevo.';
       },
     });
+  }
+  canDeactivate(): boolean {
+    if (this.loginForm.dirty) {
+      return confirm('Tienes cambios sin guardar. ¿Seguro que deseas salir?');
+    }
+    return true;
   }
 }

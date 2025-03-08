@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CanComponentDeactivate } from '../../../Interface/Guards/can-component-deactivate';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth/auth.service';
 import { User } from '../../../Interface/user';
@@ -12,7 +13,7 @@ import { User } from '../../../Interface/user';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements CanComponentDeactivate {
   registerForm: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
@@ -61,7 +62,7 @@ export class RegisterComponent {
         console.log('Registro exitoso:', response);
         this.errorMessage = '';
         this.successMessage = 'Registro exitoso, redirigiendo a login...';
-        // Redirigir después de unos segundos para que el usuario vea el mensaje
+        this.registerForm.reset();
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000);
@@ -77,5 +78,11 @@ export class RegisterComponent {
         }
       },
     });
+  }
+  canDeactivate(): boolean {
+    if (this.registerForm.dirty) {
+      return confirm('Tienes cambios sin guardar. ¿Seguro que deseas salir?');
+    }
+    return true;
   }
 }

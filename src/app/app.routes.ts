@@ -25,19 +25,19 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    //canDeactivate: [ExitGuard],
+    canDeactivate: [ExitGuard],
     canActivate: [noAuthGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    //canDeactivate: [ExitGuard],
+    canDeactivate: [ExitGuard],
     canActivate: [noAuthGuard],
   },
   {
     path: 'recuperar',
     component: RecuperarComponent,
-    //canDeactivate: [ExitGuard],
+    canDeactivate: [ExitGuard],
     canActivate: [noAuthGuard],
   },
   {

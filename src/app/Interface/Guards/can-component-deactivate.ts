@@ -1,4 +1,4 @@
-// interfaz para exit.guard.ts
+import { Observable } from 'rxjs';
 export interface CanComponentDeactivate {
-    canExit: () => boolean;
-  }
+  canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
+}
