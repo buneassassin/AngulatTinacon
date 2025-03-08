@@ -189,6 +189,7 @@ export class ProfileComponent implements OnInit {
       this.datosNoGuardados = true;
     }
   }
+  
   verifyEmail(): void {
     if (this.user && this.user.email) {
       this.perfilService.sendEmail(this.user.email).subscribe({

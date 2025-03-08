@@ -1,60 +1,63 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthService } from '../../../Services/auth/auth.service';
 
 @Component({
   selector: 'app-recuperar',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './recuperar.component.html',
-  styleUrl: './recuperar.component.css'
+  styleUrl: './recuperar.component.css',
 })
 export class RecuperarComponent {
-  email: string = '';
-  datosNoGuardados: boolean = false;
+  recuperarForm: FormGroup;
+  errorMessage: string = '';
+  successMessage: string = '';
 
-  // Método del Guard Exit
-  canExit(): boolean {
-    console.log('canExit() llamado. Comprobando si hay cambios sin guardar...');
-    if (this.datosNoGuardados) {
-      console.log('Hay cambios sin guardar. Mostrando confirmación...');
-      const confirmacion = confirm('¿Seguro que quieres salir sin enviar los datos?');
-      console.log('Confirmación del usuario:', confirmacion);
-      return confirmacion;
-    }
-    console.log('No hay cambios sin guardar. Permitiendo salir...');
-    return true;
-  }
-
-  // Se llama cada vez que el usuario interactúa con el formulario
-  onInputChange() {
-    const formularioVacio = !this.email;
-    
-    if (formularioVacio) {
-      console.log('Formulario vacío. Marcando datosNoGuardados como false.');
-      this.datosNoGuardados = false;
-    } else {
-      console.log('Se detectaron cambios en el formulario. Marcando datosNoGuardados como true.');
-      this.datosNoGuardados = true;
-    }
-  }
-  
-  constructor(private authService: AuthService, private router: Router) {}
-
-  onSubmit(): void {
-    //resetPassword
-    this.authService.resetPassword(this.email).subscribe({
-      next: (response) => {
-        // Registro exitoso: redirige a login
-        this.router.navigate(['/login']);
-      },
-      error: (error) => {
-        console.error(error);
-        alert('No se pudo registrar, por favor intenta nuevamente.');
-      }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.recuperarForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
     });
   }
+  get f() {
+    return this.recuperarForm.controls;
+  }
+  onSubmit(): void {
+    if (this.recuperarForm.invalid) return;
+    const email = this.recuperarForm.value.email;
 
+    //resetPassword
+    this.authService.resetPassword(email).subscribe({
+      next: (response) => {
+        console.log('Registro exitoso:', response);
+        this.errorMessage = '';
+        this.successMessage = 'Registro exitoso, redirigiendo a login...';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
+
+      },
+      error: (error) => {
+        console.error('Error en el registro:', error);
+        if (error.status === 400) {
+          this.errorMessage = error.error.message || 'Datos inválidos. Verifica tu información.';
+        } else if (error.status === 500) {
+          this.errorMessage = 'Error del servidor. Inténtalo más tarde.';
+        } else {
+          this.errorMessage = 'No se pudo registrar. Inténtalo nuevamente.';
+        }
+      },
+    });
+  }
 }
