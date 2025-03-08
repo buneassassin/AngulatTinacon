@@ -8,7 +8,7 @@
         <div class="card benefits-section text-center">
           <div class="card-header bg-gradient-primary py-4">
             <h2 class="mb-1" style="font-size: 1.5rem;">
-              {{ user.persona.nombres }} {{ user.persona.a_p }} {{ user.persona.a_m }}
+              {{ user.persona?.nombres }} {{ user.persona?.a_p }} {{ user.persona?.a_m }}
             </h2>
             <small>{{ user.email }}</small>
           </div>
@@ -49,7 +49,7 @@
               </li>
               <li class="my-3">
                 <i class="fas fa-phone me-2"></i>
-                <strong>Teléfono:</strong> {{ user.persona.telefono }}
+                <strong>Teléfono:</strong> {{ user.persona?.telefono }}
               </li>
 
             </ul>
@@ -68,7 +68,7 @@
 
     <app-modal *ngIf="isModalOpenPerfil" title="Editar Perfil" (close)="closeModal()" (save)="saveModal()">
       <form *ngIf="user" #profileForm="ngForm">
-
+ 
         <!-- Nombre de Usuario -->
         <div class="mb-3">
           <label for="username" class="form-label">Nombre de Usuario</label>
@@ -80,17 +80,17 @@
           <div class="mb-3 col-md-12">
             <label for="firstName" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="firstName" placeholder="Ingrese su nombre"
-              (input)="onInputChange()" [(ngModel)]="user.persona.nombres" name="firstName" required />
+              (input)="onInputChange()" [(ngModel)]="user.persona.nombres" name="firstName" required *ngIf="user.persona" />
           </div>
           <div class="mb-3 col-md-6">
             <label for="lastNameP" class="form-label">Apellido Paterno</label>
             <input type="text" class="form-control" id="lastNameP" placeholder="Ingrese apellido paterno"
-              (input)="onInputChange()" [(ngModel)]="user.persona.a_p" name="lastNameP" required />
+              (input)="onInputChange()" [(ngModel)]="user.persona.a_p" name="lastNameP" required  *ngIf="user.persona"/>
           </div>
           <div class="mb-3 col-md-6">
             <label for="lastNameM" class="form-label">Apellido Materno</label>
             <input type="text" class="form-control" id="lastNameM" placeholder="Ingrese apellido materno"
-              (input)="onInputChange()" [(ngModel)]="user.persona.a_m" name="lastNameM" required />
+              (input)="onInputChange()" [(ngModel)]="user.persona.a_m" name="lastNameM" required *ngIf="user.persona" />
           </div>
         </div>
 
@@ -98,7 +98,7 @@
         <div class="mb-3">
           <label for="phone" class="form-label">Teléfono</label>
           <input type="text" class="form-control" id="phone" placeholder="Ingrese teléfono" (input)="onInputChange()"
-            [(ngModel)]="user.persona.telefono" name="phone" required />
+            [(ngModel)]="user.persona.telefono" name="phone" required  *ngIf="user.persona"/>
         </div>
       </form>
     </app-modal>

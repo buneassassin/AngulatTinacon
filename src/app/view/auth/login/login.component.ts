@@ -1,73 +1,62 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthService } from '../../../Services/auth/auth.service';
 import { User } from '../../../Interface/user';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, RouterModule, RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-
+  styleUrls: ['./login.component.css'],
 })
+export class LoginComponent {
+  loginForm: FormGroup;
+  apiErrorMessage: string = '';
+  successMessage: string = '';
 
-export class LoginComponent{
-  email: string = '';
-  password: string = '';
-  errorMessage: string = '';
-  datosNoGuardados: boolean = false;
-
-// Método del Guard Exit
-canExit(): boolean {
-  console.log('canExit() llamado. Comprobando si hay cambios sin guardar...');
-  if (this.datosNoGuardados) {
-    console.log('Hay cambios sin guardar. Mostrando confirmación...');
-    const confirmacion = confirm('¿Seguro que quieres salir sin enviar los datos?');
-    console.log('Confirmación del usuario:', confirmacion);
-    return confirmacion;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
   }
-  console.log('No hay cambios sin guardar. Permitiendo salir...');
-  return true;
-}
-
-// Se llama cada vez que el usuario interactúa con el formulario
-onInputChange() {
-  const formularioVacio = !this.email && !this.password;
-  
-  if (formularioVacio) {
-    console.log('Formulario vacío. Marcando datosNoGuardados como false.');
-    this.datosNoGuardados = false;
-  } else {
-    console.log('Se detectaron cambios en el formulario. Marcando datosNoGuardados como true.');
-    this.datosNoGuardados = true;
+  get f() {
+    return this.loginForm.controls;
   }
-}
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.apiErrorMessage = '';
+    this.successMessage = '';
+    const userCredentials: Partial<User> = this.loginForm.value;
 
-
-constructor(private authService: AuthService, private router: Router) {}
-
-onSubmit(): void {
-  console.log('onSubmit() llamado. Enviando datos...');
-  const userCredentials: Partial<User> = {
-    email: this.email,
-    password: this.password,
-  };
-
-  this.authService.loginUser(userCredentials as User).subscribe({
-    next: (response) => {
-      console.log('Respuesta del servidor recibida:', response);
-      localStorage.setItem('token', response.token);
-      this.datosNoGuardados = false;
-      console.log('Navegando a /home...');
-      this.router.navigate(['/home']);
-    },
-    error: () => {
-      console.error('Error en el login. Mostrando mensaje de error...');
-      this.errorMessage = 'Credenciales inválidas, intenta de nuevo.';
-    },
-  });
-}
+    this.authService.loginUser(userCredentials as User).subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor recibida:', response);
+        localStorage.setItem('token', response.token);
+        this.successMessage = 'Inicio de sesión exitoso';
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 2000);
+      },
+      error: (error) => {
+        console.error('Error en el login:', error);
+        // Si la API devuelve un mensaje de error, lo mostramos; de lo contrario, mensaje genérico
+        this.apiErrorMessage = error.error?.message || 'Ocurrió un error. Por favor, inténtalo de nuevo.';
+      },
+    });
+  }
 }

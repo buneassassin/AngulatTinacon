@@ -1,81 +1,81 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth/auth.service';
 import { User } from '../../../Interface/user';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  name: string = '';
-  lastNamePaterno: string = '';
-  lastNameMaterno: string = '';
-  email: string = '';
-  password: string = '';
-  phone: string = '';
-  username: string = '';
+  registerForm: FormGroup;
   errorMessage: string = '';
-  datosNoGuardados: boolean = false;
+  successMessage: string = '';
 
-  // Método del Guard Exit
-  canExit(): boolean {
-    console.log('canExit() llamado. Comprobando si hay cambios sin guardar...');
-    if (this.datosNoGuardados) {
-      console.log('Hay cambios sin guardar. Mostrando confirmación...');
-      const confirmacion = confirm('¿Seguro que quieres salir sin enviar los datos?');
-      console.log('Confirmación del usuario:', confirmacion);
-      return confirmacion;
-    }
-    console.log('No hay cambios sin guardar. Permitiendo salir...');
-    return true;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    // Se define el formulario con todos los campos y validadores
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      lastNamePaterno: ['', [Validators.required, Validators.minLength(2)]],
+      lastNameMaterno: ['', [Validators.required, Validators.minLength(2)]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
   }
 
-  // Se llama cada vez que el usuario interactúa con el formulario
-  onInputChange() {
-    const formularioVacio = !this.email && !this.password && !this.name &&
-    !this.lastNamePaterno && !this.lastNameMaterno &&
-    !this.phone && !this.username;
 
-    if (formularioVacio) {
-      console.log('Formulario vacío. Marcando datosNoGuardados como false.');
-      this.datosNoGuardados = false;
-    } else {
-      console.log('Se detectaron cambios en el formulario. Marcando datosNoGuardados como true.');
-      this.datosNoGuardados = true;
-    }
+  // Método auxiliar para facilitar el acceso a los controles
+  get f() {
+    return this.registerForm.controls;
   }
- 
-  constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit(): void {
-    // Combina nombre y apellido para formar el nombre de usuario
-    const newUser: Partial<User> = {
-      usuario_nom:this.name,
-      email: this.email,
-      password: this.password,
-      nombres: this.username,
-      apellidoPaterno: this.lastNamePaterno,
-      apellidoMaterno: this.lastNameMaterno,
-      telefono: this.phone,
+    if (this.registerForm.invalid) return;
 
-      rol: 'Usuario'
+
+    // Construir el objeto newUser a partir de los valores del formulario
+    const newUser: User = {
+      nombres: this.registerForm.value.name,
+      apellidoPaterno: this.registerForm.value.lastNamePaterno,
+      apellidoMaterno: this.registerForm.value.lastNameMaterno,
+      telefono: this.registerForm.value.phone,
+      usuario_nom: this.registerForm.value.username,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      rol: ''
     };
 
-    this.authService.registerUser(newUser as User).subscribe({
+    this.authService.registerUser(newUser).subscribe({
       next: (response) => {
-        // Registro exitoso: redirige a login
-        this.router.navigate(['/login']);
+        console.log('Registro exitoso:', response);
+        this.errorMessage = '';
+        this.successMessage = 'Registro exitoso, redirigiendo a login...';
+        // Redirigir después de unos segundos para que el usuario vea el mensaje
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
       },
       error: (error) => {
-        console.error(error);
-        this.errorMessage = 'No se pudo registrar, por favor intenta nuevamente.';
-      }
+        console.error('Error en el registro:', error);
+        if (error.status === 400) {
+          this.errorMessage = error.error.message || 'Datos inválidos. Verifica tu información.';
+        } else if (error.status === 500) {
+          this.errorMessage = 'Error del servidor. Inténtalo más tarde.';
+        } else {
+          this.errorMessage = 'No se pudo registrar. Inténtalo nuevamente.';
+        }
+      },
     });
   }
 }

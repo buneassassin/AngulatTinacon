@@ -100,11 +100,11 @@ export class ProfileComponent implements OnInit {
   // Método para guardar los cambios de perfil
   saveProfileChanges(): void {
     const payload = {
-      nombres: this.user?.persona.nombres,
+      nombres: this.user?.persona?.nombres,
       usuario_nom: this.user?.usuario_nom,
-      apellidoPaterno: this.user?.persona.a_p,
-      apellidoMaterno: this.user?.persona.a_m,
-      telefono: this.user?.persona.telefono,
+      apellidoPaterno: this.user?.persona?.a_p,
+      apellidoMaterno: this.user?.persona?.a_m,
+      telefono: this.user?.persona?.telefono,
     };
     this.perfilService.updateUser(payload).subscribe({
       next: (response: any) => {
@@ -176,10 +176,10 @@ export class ProfileComponent implements OnInit {
 
     const formularioVacio =
       !this.user.usuario_nom &&
-      !this.user.persona.nombres &&
-      !this.user.persona.a_p &&
-      !this.user.persona.a_m &&
-      !this.user.persona.telefono;
+      !this.user.persona?.nombres &&
+      !this.user.persona?.a_p &&
+      !this.user.persona?.a_m &&
+      !this.user.persona?.telefono;
 
     if (formularioVacio) {
       console.log('Formulario vacío. Marcando datosNoGuardados como false.');
