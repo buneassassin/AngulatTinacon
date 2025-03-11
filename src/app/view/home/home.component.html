@@ -10,9 +10,9 @@
 
   <!-- Componente Carrusel -->
   <app-carousel [images]="[
-      { src: 'assets/imagen1.jpg', alt: 'Monitoreo de tinacos 1' },
-      { src: 'assets/imagen2.jpg', alt: 'Monitoreo de tinacos 2' },
-      { src: 'assets/imagen3.jpg', alt: 'Monitoreo de tinacos 3' }
+      { src: 'assets/imagen1.png', alt: 'Monitoreo de tinacos 1' },
+      { src: 'assets/imagen2.png', alt: 'Monitoreo de tinacos 2' },
+      { src: 'assets/imagen3.png', alt: 'Monitoreo de tinacos 3' }
     ]" carouselId="carouselExampleIndicators" height="700px">
   </app-carousel>
 </main>
@@ -25,16 +25,11 @@
       <h2 class="mb-4">Características</h2>
     </div>
     <app-rectangle-rows [features]="features"></app-rectangle-rows>
-
-
-
-
-
   </div>
 </section>
 <app-parallax
-  [backgroundImage]="'https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&'">
-  <h2 class="mb-3">🔍 Monitoreo Inteligente de Tinacos</h2>
+[backgroundImage]="'https://www.elfinanciero.com.mx/resizer/v2/RFJBUHMRAZDMFJU76WRMDLF6AY.jpg?smart=true&auth=3ae4dfd3f693b7be1d1762ed436a44a4cb31d9ec51c5c920683d7b17fc2c350d&width=800&'">
+<h2 class="mb-3">🔍 Monitoreo Inteligente de Tinacos</h2>
   <p class="lead">Optimiza el uso del agua en tu hogar o empresa con tecnología avanzada.</p>
 
   <div class="features">
@@ -60,7 +55,7 @@
     <div class="row g-4">
       <div class="col-lg-4 col-md-6">
         <app-card 
-          imgSrc="assets/imagen6.jpg" 
+          imgSrc="assets/imagen6.png" 
           imgAlt="Proyecto Innovador" 
           title="Proyecto Innovador" 
           description="Descubre soluciones innovadoras para el monitoreo y control de tinacos.">
@@ -68,7 +63,7 @@
       </div>
       <div class="col-lg-4 col-md-6">
         <app-card 
-          imgSrc="assets/imagen4.jpg" 
+          imgSrc="assets/imagen4.png" 
           imgAlt="Gestión Eficiente" 
           title="Gestión Eficiente" 
           description="Optimiza el uso del agua con un sistema de monitoreo avanzado.">
@@ -76,7 +71,7 @@
       </div>
       <div class="col-lg-4 col-md-6">
         <app-card 
-          imgSrc="assets/imagen5.jpeg" 
+          imgSrc="assets/imagen5.png" 
           imgAlt="Tecnología Avanzada" 
           title="Tecnología Avanzada" 
           description="Incorpora sensores inteligentes y análisis de datos para garantizar un control óptimo.">
