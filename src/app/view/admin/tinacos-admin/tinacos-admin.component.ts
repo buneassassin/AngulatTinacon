@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../Components/header/header.component';
 import { AdminService } from '../../../Services/admin/admin.service';
 import { LoadingSkeletonComponent } from '../../../Components/loading-skeleton/loading-skeleton.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tinacos-admin',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent],
+  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent,],
   templateUrl: './tinacos-admin.component.html',
   styleUrls: ['./tinacos-admin.component.css']
 })
@@ -21,7 +22,7 @@ export class TinacosAdminComponent implements OnInit {
   perPage: number = 30;
   totalPages: number = 0;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadUsers(this.currentPage);
@@ -69,5 +70,8 @@ export class TinacosAdminComponent implements OnInit {
     return this.usersWithTinacos.reduce((total, user) => {
       return total + (user.tinacos ? user.tinacos.filter((t: any) => t.nivel_del_agua > 0).length : 0);
     }, 0);
+  }
+  goToTinaco(tinaco: any): void {
+    this.router.navigate(['/admin/tinacos', tinaco.id]);
   }
 }

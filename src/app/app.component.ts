@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, Route } from '@angular/router';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { NavComponent } from './Components/nav/nav.component';
-import { FooterComponent } from './Components/footer/footer.component';
-import { SidebarComponent } from './Components/sidebar/sidebar.component';
-
-import { Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './Components/footer/footer.component';
+import { NavComponent } from './Components/nav/nav.component';
+import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { FondoComponent } from './Components/fondo/fondo.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule,FooterComponent,NavComponent,CommonModule,SidebarComponent, FondoComponent], // Importa RouterOutlet aquí
+  imports: [RouterModule, FooterComponent, NavComponent, CommonModule, SidebarComponent, FondoComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -21,17 +18,44 @@ export class AppComponent {
   isAuthPage = false; 
   isAdminPage = false;
 
-  constructor(private router: Router) {
-    // Detectar cambios en la ruta
-    this.router.events.subscribe(() => {
-      const authRoutes = ['/login', '/register','/recuperar', '/admin', '/admin/user','/admin/graficas','/admin/tinacos','/admin/notificaciones']; // Rutas donde NO quieres mostrar el navbar y footer
-      this.isAuthPage = authRoutes.includes(this.router.url);
-    });
+  private authRoutes: string[] = [
+    '/login', 
+    '/register',
+    '/recuperar', 
+    '/admin', 
+    '/admin/user',
+    '/admin/graficas',
+    '/admin/tinacos',
+    '/admin/tinacos/:id',
+    '/admin/notificaciones'
+  ];
 
-    // Detectar cambios en la ruta
-    this.router.events.subscribe(() => {
-      const adminRoutes = ['/admin', '/admin/user','/admin/graficas','/admin/tinacos','/admin/notificaciones']; // Rutas donde NO quieres mostrar el navbar y footer
-      this.isAdminPage = adminRoutes.includes(this.router.url);
+  private adminRoutes: string[] = [
+    '/admin', 
+    '/admin/user',
+    '/admin/graficas',
+    '/admin/tinacos',
+    '/admin/tinacos/:id',
+    '/admin/notificaciones'
+  ];
+
+  constructor(private router: Router) {
+    // Suscribirse a eventos del router (filtrando solo NavigationEnd)
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const url = event.urlAfterRedirects;
+        this.isAuthPage = this.authRoutes.some(route => this.matchRoute(route, url));
+        this.isAdminPage = this.adminRoutes.some(route => this.matchRoute(route, url));
+      }
     });
+  }
+
+  private matchRoute(route: string, url: string): boolean {
+    // Si la ruta contiene parámetros dinámicos (por ejemplo, :id), comparamos solo la parte fija.
+    if (route.includes(':')) {
+      const baseRoute = route.split('/:')[0];
+      return url.startsWith(baseRoute);
+    }
+    return url === route;
   }
 }

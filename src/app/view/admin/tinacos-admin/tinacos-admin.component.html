@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Tabla de Detalles -->
       <div class="card">
         <div class="card-header bg-dark text-white">
@@ -48,36 +48,38 @@
                 <!-- Iteramos sobre cada usuario -->
                 <ng-container *ngFor="let user of usersWithTinacos">
                   <!-- Por cada usuario, iteramos sobre sus tinacos -->
-                  <tr *ngFor="let tinaco of user.tinacos">
+                  <tr *ngFor="let tinaco of user.tinacos" (click)="goToTinaco(tinaco)" style="cursor: pointer;">
                     <td>{{ tinaco.id }}</td>
                     <td>{{ tinaco.name }}</td>
                     <td>{{ user.usuario_nom }}</td>
                     <td>
                       <span class="badge"
-                        [ngClass]="{'bg-success': tinaco.nivel_del_agua > 0, 'bg-danger': tinaco.nivel_del_agua === 0}">
+                            [ngClass]="{'bg-success': tinaco.nivel_del_agua > 0, 'bg-danger': tinaco.nivel_del_agua === 0}">
                         {{ tinaco.nivel_del_agua > 0 ? 'Encendido' : 'Apagado' }}
                       </span>
                     </td>
                     <td>{{ tinaco.nivel_del_agua }}%</td>
                     <td>
+                      <!-- El botón de toggle tiene un click y se detiene la propagación para que no active el click del tr -->
                       <button class="btn btn-sm"
-                        [ngClass]="{'btn-warning': tinaco.nivel_del_agua > 0, 'btn-info': tinaco.nivel_del_agua === 0}"
-                        (click)="toggleTinaco(tinaco)">
+                              [ngClass]="{'btn-warning': tinaco.nivel_del_agua > 0, 'btn-info': tinaco.nivel_del_agua === 0}"
+                              (click)="toggleTinaco(tinaco); $event.stopPropagation()">
                         {{ tinaco.nivel_del_agua > 0 ? 'Apagar' : 'Encender' }}
                       </button>
                     </td>
                   </tr>
                 </ng-container>
+                
               </tbody>
             </table>
           </div>
-          
+
           <!-- Controles de paginación -->
           <nav aria-label="Navegación de páginas" *ngIf="totalPages > 1">
             <ul class="pagination justify-content-center">
               <li class="page-item" [class.disabled]="currentPage === 1">
                 <a class="page-link" (click)="loadUsers(currentPage - 1)" aria-label="Anterior"
-                   [attr.tabindex]="currentPage === 1 ? '-1' : '0'">
+                  [attr.tabindex]="currentPage === 1 ? '-1' : '0'">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
@@ -86,18 +88,18 @@
               </li>
               <li class="page-item" [class.disabled]="currentPage === totalPages">
                 <a class="page-link" (click)="loadUsers(currentPage + 1)" aria-label="Siguiente"
-                   [attr.tabindex]="currentPage === totalPages ? '-1' : '0'">
+                  [attr.tabindex]="currentPage === totalPages ? '-1' : '0'">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>
             </ul>
           </nav>
-          
+
         </div>
       </div>
     </div>
     <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
       <app-loading-skeleton></app-loading-skeleton>
-  </div> 
+    </div>
   </div>
 </main>

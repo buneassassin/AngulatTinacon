@@ -1,0 +1,55 @@
+<main style="margin-top: 58px;">
+    <div class="container p-3">
+        <!-- Header -->
+        <app-header>
+            <h1>Detalles de Sensores</h1>
+            <p class="lead">
+                Supervisa, gestiona y analiza la información de tus sensores en tiempo real.
+            </p>
+        </app-header>
+        <div *ngIf="!isLoading">
+            <!-- Información del Tinaco sin Card -->
+            <div class="bg-light border-none rounded p-4 mb-4">
+                <h2 class="text-info mb-3">Información de los Tinacos</h2>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Nombre:</strong></p>
+                        <p class="mb-0">{{ tinaco?.name }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Creado:</strong></p>
+                        <p class="mb-0">{{ tinaco?.created_at | date:'short' }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Nivel de Agua:</strong></p>
+                        <p class="mb-0">{{ tinaco?.nivel_del_agua }}%</p>
+                    </div>
+                </div>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-info" role="progressbar" [style.width.%]="tinaco?.nivel_del_agua"
+                        aria-valuenow="tinaco?.nivel_del_agua" aria-valuemin="0" aria-valuemax="100">
+                        {{ tinaco?.nivel_del_agua }}%
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards de Sensores (se mantiene igual) -->
+            <div class="cards d-flex flex-wrap justify-content-center gap-3 col-12 col-md-6 w-100">
+                <div *ngFor="let sensor of sensors" class="card" [ngClass]="{
+               'red': sensor.id === 1,
+               'blue': sensor.id === 2,
+               'green': sensor.id === 3,
+               'yellow': sensor.id === 4,
+               'orange': sensor.id === 5,
+               'purple': sensor.id === 6
+             }">
+                    <p class="tip">{{ sensor.name }}</p>
+                    <p class="second-text">{{ sensor.description }}: {{ sensor.value }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
+            <app-loading-skeleton></app-loading-skeleton>
+        </div>
+    </div>
+</main>
