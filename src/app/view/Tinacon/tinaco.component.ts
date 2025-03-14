@@ -34,20 +34,6 @@ export class TinacoComponent implements OnInit {
       error: (error) => console.error('Error al obtener tinacos:', error)
     });
   }
-
-  openModal(): void {
-    this.isModalOpen = true;
-  }
-
-  closeModal(): void {
-    this.isModalOpen = false;
-  }
-
-  saveModal(): void {
-    console.log('Guardado con éxito');
-    this.closeModal();
-  }
-
   toggleTinaco(t: Tinacos): void {
     t.nivel_del_agua = t.nivel_del_agua > 0 ? 0 : 100;
   }

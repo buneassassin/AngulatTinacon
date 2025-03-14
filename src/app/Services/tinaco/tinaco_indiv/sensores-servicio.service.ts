@@ -14,33 +14,33 @@ export class SensoresServicioService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.baseUrl}/tinaco/${id}`, { headers });
   }
-  getTemperatura(id: number): Observable<any> {
+  getTemperatura( tinaco_id: number): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/temperatura/${id}`, { headers });
+    return this.http.post(`${this.baseUrl}/temperatura`, tinaco_id ,{ headers });
   }
 
-  getPH(id: number): Observable<any> {
+  getPH( tinaco_id: number): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/ph/${id}`, { headers });
+    return this.http.post(`${this.baseUrl}/ph`,tinaco_id, { headers });
   }
 
-  getTurbidez(id: number): Observable<any> {
+  getTurbidez( tinaco_id: number): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/turbidez/${id}`, { headers });
+    return this.http.post(`${this.baseUrl}/turbidez`,tinaco_id , { headers });
   }
 
-  getTDS(id: number): Observable<any> {
+  getTDS( tinaco_id: number): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/tds/${id}`, { headers });
+    return this.http.post(`${this.baseUrl}/tds`,tinaco_id, { headers });
   }
 
-  getUltrasonico(id: number): Observable<any> {
+  getUltrasonico( tinaco_id: number): Observable<any> {
     const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/ultrasonico/${id}`, { headers });
+    return this.http.post(`${this.baseUrl}/ultrasonico`,tinaco_id, { headers });
   }
 }

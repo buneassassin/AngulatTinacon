@@ -8,7 +8,7 @@
         <li *ngFor="let noti of notifications" class="list-group-item noti-item position-relative">
           <!-- Enlace que abarca el contenido principal -->
           <a class="d-flex align-items-center text-decoration-none" routerLink="/notificaciones/{{ noti.id }}">
-            <!-- Icono según el tipo de notificación -->             
+            <!-- Icono según el tipo de notificación -->
             <div [ngSwitch]="noti.type">
               <i *ngSwitchCase="'alert'" class="fas fa-circle-exclamation text-danger me-3 fa-2x"></i>
               <i *ngSwitchCase="'info'" class="fas fa-info-circle text-info me-3 fa-2x"></i>
@@ -43,10 +43,7 @@
       <nav aria-label="Navegación de páginas" *ngIf="totalPages > 1">
         <ul class="pagination justify-content-center mb-0">
           <li class="page-item" [class.disabled]="currentPage === 1">
-            <a
-              class="page-link"
-              (click)="getNotificaciones(currentPage - 1)"
-              aria-label="Anterior"
+            <a class="page-link" (click)="getNotificaciones(currentPage - 1)" aria-label="Anterior"
               [attr.tabindex]="currentPage === 1 ? '-1' : '0'">
               <span aria-hidden="true">&laquo;</span>
             </a>
@@ -55,10 +52,7 @@
             <a class="page-link" (click)="getNotificaciones(page)">{{ page }}</a>
           </li>
           <li class="page-item" [class.disabled]="currentPage === totalPages">
-            <a
-              class="page-link"
-              (click)="getNotificaciones(currentPage + 1)"
-              aria-label="Siguiente"
+            <a class="page-link" (click)="getNotificaciones(currentPage + 1)" aria-label="Siguiente"
               [attr.tabindex]="currentPage === totalPages ? '-1' : '0'">
               <span aria-hidden="true">&raquo;</span>
             </a>
@@ -66,12 +60,19 @@
         </ul>
       </nav>
     </div>
+    <!-- alerta si no hay notificaciones -->
+    <div class="container py-5 my-5" *ngIf="!isLoading">
+      <div class="text-center text-muted fs-4">
+        <i class="fa-regular fa-bell fa-2x mb-3"></i>
+        <p>No se encontraron notificaciones</p>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- Loader: Se muestra mientras se cargan los datos -->
-<div class="container p-5" *ngIf="isLoading">
-  <div class="d-flex justify-content-center align-items-center my-5 py-5">
-    <app-loading-skeleton></app-loading-skeleton>
+
+  <!-- Loader: Se muestra mientras se cargan los datos -->
+  <div class="container p-5" *ngIf="isLoading">
+    <div class="d-flex justify-content-center align-items-center my-5 py-5">
+      <app-loading-skeleton></app-loading-skeleton>
+    </div>
   </div>
-</div>

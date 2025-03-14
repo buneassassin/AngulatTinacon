@@ -5,13 +5,14 @@ import { SensoresServicioService } from '../../../../Services/tinaco/tinaco_indi
 import { LoadingSkeletonComponent } from '../../../../Components/loading-skeleton/loading-skeleton.component';
 import { Tinacos } from '../../../../Interface/Tinacon/tinacos';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Sensor } from '../../../../Interface/sensor/sensor';
+import { SensorData } from '../../../../Interface/sensor/sensor';
+import { SensorResponsePH } from '../../../../Interface/sensor/sensor';
+import { SensorResponseTemperatura } from '../../../../Interface/sensor/sensor';
+import { SensorResponseTDS } from '../../../../Interface/sensor/sensor';
+import { SensorResponseTurbidez } from '../../../../Interface/sensor/sensor';
+import { SensorResponseUltrasonico } from '../../../../Interface/sensor/sensor';
 
-interface SensorData {
-  id: number;
-  name: string;
-  description: string;
-  value: string;
-}
 @Component({
   selector: 'app-tinaco-detalle',
   imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent],
@@ -20,14 +21,25 @@ interface SensorData {
 })
 export class TinacoDetalleComponent implements OnInit {
   sensors: SensorData[] = [];
+  sensor: Sensor | null = null;
   tinaco: Tinacos | null = null;
+  
+  ph: SensorResponsePH | null = null;
+  temperatura: SensorResponseTemperatura | null = null;
+  turbidez: SensorResponseTurbidez | null = null;
+  tds: SensorResponseTDS | null = null;
+  ultrasonico: SensorResponseUltrasonico | null = null;
+
   isLoading: boolean = true;
-  constructor(private sensoresService: SensoresServicioService, private route: ActivatedRoute) {}
+  constructor(
+    private sensoresService: SensoresServicioService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // Datos estáticos de ejemplo para sensores.
     // En el futuro se reemplazarán por llamados a la API.
-    this.sensors = [
+   /*this.sensors = [
       {
         id: 1,
         name: 'Sensor Tinaco',
@@ -59,8 +71,11 @@ export class TinacoDetalleComponent implements OnInit {
         description: 'Distancia al fondo',
         value: '12 cm',
       },
-    ];
+    ];*/
     this.getTinaco();
+    if (this.tinaco?.id !== undefined) {
+      this.getSensorValue(this.tinaco.id);
+    }
   }
   getTinaco() {
     //sacamos el id del tinaco de la url
@@ -72,7 +87,44 @@ export class TinacoDetalleComponent implements OnInit {
         this.isLoading = false;
         console.log('Tinacos:', response.sensores);
       },
-      error: (error) => console.error('Error al obtener tinacos:', error)
+      error: (error) => console.error('Error al obtener tinacos:', error),
+    });
+  }
+  getSensorValue(id: number): void {
+    this.sensoresService.getTemperatura(id).subscribe({
+      next: (response: any) => {
+        this.temperatura = response.value;
+      },
+      error: (error) =>
+        console.error('Error al obtener el valor del sensor', error),
+    });
+    this.sensoresService.getPH(id).subscribe({
+      next: (response: any) => {
+        this.ph = response.value;
+      },
+      error: (error) =>
+        console.error('Error al obtener el valor del sensor', error),
+    });
+    this.sensoresService.getTDS(id).subscribe({
+      next: (response: any) => {
+        this.tds = response.value;
+      },
+      error: (error) =>
+        console.error('Error al obtener el valor del sensor', error),
+    });
+    this.sensoresService.getTurbidez(id).subscribe({
+      next: (response: any) => {
+        this.turbidez = response.value;
+      },
+      error: (error) =>
+        console.error('Error al obtener el valor del sensor', error),
+    });
+    this.sensoresService.getUltrasonico(id).subscribe({
+      next: (response: any) => {
+        this.ultrasonico = response.value;
+      },
+      error: (error) =>
+        console.error('Error al obtener el valor del sensor', error),
     });
   }
 }
