@@ -3,11 +3,12 @@ import { NotificacionService } from '../../Services/notificacion/notificacion.se
 import { CommonModule } from '@angular/common';
 import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
 import { RouterLink } from '@angular/router';
+import { RectangleRowsComponent } from '../../Components/rectangle-rows/rectangle-rows.component';
 
 @Component({
   selector: 'app-notificacion',
   standalone: true,
-  imports: [CommonModule, LoadingSkeletonComponent, RouterLink],
+  imports: [CommonModule, LoadingSkeletonComponent, RouterLink,RectangleRowsComponent],
   templateUrl: './notificacion.component.html',
   styleUrls: ['./notificacion.component.css']
 })

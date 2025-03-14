@@ -61,12 +61,16 @@
       </nav>
     </div>
     <!-- alerta si no hay notificaciones -->
-    <div class="container py-5 my-5" *ngIf="!isLoading">
-      <div class="text-center text-muted fs-4">
-        <i class="fa-regular fa-bell fa-2x mb-3"></i>
-        <p>No se encontraron notificaciones</p>
+    <ng-container *ngIf="notifications.length > 0; else noNotifica">
+    </ng-container>
+    <ng-template #noNotifica>
+      <div class="container py-5 my-5" *ngIf="!isLoading">
+        <div class="text-center text-muted fs-4">
+          <i class="fa-regular fa-bell fa-2x mb-3"></i>
+          <p>No se encontraron notificaciones</p>
+        </div>
       </div>
-    </div>
+    </ng-template>
   </div>
 
 
