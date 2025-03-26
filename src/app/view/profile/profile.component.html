@@ -3,40 +3,41 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
 
-      <!-- Card de Encabezado de Perfil -->
-      <app-card-hover>
-        <div class="card benefits-section text-center">
-          <div class="card-header bg-gradient-primary py-4">
-            <h2 class="mb-1" style="font-size: 1.5rem;">
-              {{ user.persona?.nombres }} {{ user.persona?.a_p }} {{ user.persona?.a_m }}
-            </h2>
-            <small>{{ user.email }}</small>
-          </div>
-          <div class="card-body position-relative">
-            <button class="btn btn-link p-0 border-0 button-profile" (click)="openModalFoto()">
-              <img [src]="user.foto_perfil" alt="Foto de Perfil" class="rounded-circle mb-3 profile-img"
-                style="width: 120px; height: 120px; object-fit: cover;">
-              <!-- Botón superpuesto para cambiar foto -->
-              <label for="profilePicture" class="text-white">
-                <i class="fas fa-camera"></i>
-              </label>
-            </button>
-            <p class="mb-1">
-              <strong>Email:</strong> {{ user.email }}
-              <button class="btn btn-sm btn-outline-success ms-2" (click)="verifyEmail()" *ngIf="!user.is_active">
-                <i class="fas fa-check"></i> Verificar
+        <!-- Card de Encabezado de Perfil -->
+        <app-card-hover>
+          <div class="card benefits-section text-center">
+            <div class="card-header bg-gradient-primary py-4">
+              <h2 class="mb-1" style="font-size: 1.5rem;">
+                {{ user.persona?.nombres }} {{ user.persona?.a_p }} {{ user.persona?.a_m }}
+              </h2>
+              <small>{{ user.email }}</small>
+            </div>
+            <div class="card-body position-relative">
+              <button class="btn btn-link p-0 border-0 button-profile" (click)="openModalFoto()">
+                <img [src]="user.foto_perfil ? user.foto_perfil : '/assets/foto_default.png'" alt="Foto de Perfil"
+                  class="rounded-circle mb-3 profile-img" style="width: 120px; height: 120px; object-fit: cover;">
+
+                <!-- Botón superpuesto para cambiar foto -->
+                <label for="profilePicture" class="text-white">
+                  <i class="fas fa-camera"></i>
+                </label>
               </button>
-            </p>
-      
-            <!-- Mensaje de éxito -->
-            <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
-              {{ successMessage }}
+              <p class="mb-1">
+                <strong>Email:</strong> {{ user.email }}
+                <button class="btn btn-sm btn-outline-success ms-2" (click)="verifyEmail()" *ngIf="!user.is_active">
+                  <i class="fas fa-check"></i> Verificar
+                </button>
+              </p>
+
+              <!-- Mensaje de éxito -->
+              <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
+                {{ successMessage }}
+              </div>
             </div>
           </div>
-        </div>
-      </app-card-hover>
-      
-      
+        </app-card-hover>
+
+
 
         <!-- Card de Detalles del Perfil -->
         <app-card-hover>
@@ -68,7 +69,7 @@
 
     <app-modal *ngIf="isModalOpenPerfil" title="Editar Perfil" (close)="closeModal()" (save)="saveModal()">
       <form *ngIf="user" #profileForm="ngForm">
- 
+
         <!-- Nombre de Usuario -->
         <div class="mb-3">
           <label for="username" class="form-label">Nombre de Usuario</label>
@@ -80,12 +81,13 @@
           <div class="mb-3 col-md-12">
             <label for="firstName" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="firstName" placeholder="Ingrese su nombre"
-              (input)="onInputChange()" [(ngModel)]="user.persona.nombres" name="firstName" required *ngIf="user.persona" />
+              (input)="onInputChange()" [(ngModel)]="user.persona.nombres" name="firstName" required
+              *ngIf="user.persona" />
           </div>
           <div class="mb-3 col-md-6">
             <label for="lastNameP" class="form-label">Apellido Paterno</label>
             <input type="text" class="form-control" id="lastNameP" placeholder="Ingrese apellido paterno"
-              (input)="onInputChange()" [(ngModel)]="user.persona.a_p" name="lastNameP" required  *ngIf="user.persona"/>
+              (input)="onInputChange()" [(ngModel)]="user.persona.a_p" name="lastNameP" required *ngIf="user.persona" />
           </div>
           <div class="mb-3 col-md-6">
             <label for="lastNameM" class="form-label">Apellido Materno</label>
@@ -98,7 +100,7 @@
         <div class="mb-3">
           <label for="phone" class="form-label">Teléfono</label>
           <input type="text" class="form-control" id="phone" placeholder="Ingrese teléfono" (input)="onInputChange()"
-            [(ngModel)]="user.persona.telefono" name="phone" required  *ngIf="user.persona"/>
+            [(ngModel)]="user.persona.telefono" name="phone" required *ngIf="user.persona" />
         </div>
       </form>
     </app-modal>

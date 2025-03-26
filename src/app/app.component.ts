@@ -27,6 +27,7 @@ export class AppComponent {
     '/admin/graficas',
     '/admin/tinacos',
     '/admin/tinacos/:id',
+    '/admin/tinacos/:id/sensor/:id',
     '/admin/notificaciones'
   ];
 
@@ -36,6 +37,7 @@ export class AppComponent {
     '/admin/graficas',
     '/admin/tinacos',
     '/admin/tinacos/:id',
+    '/admin/tinacos/:id/sensor/:id',
     '/admin/notificaciones'
   ];
 

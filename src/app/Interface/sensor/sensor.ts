@@ -1,4 +1,21 @@
-export interface Sensor {}
+export interface Sensor {
+  id: number;
+  name: string;
+  description: string;
+  value: string;
+  tinaco_id: number;
+  sensor_id: number;
+  created_at: Date;
+  updated_at: Date;
+}
+export interface SensorHistorial {
+  _id: { $oid: string };
+  tinaco_id: string;
+  sensor_id: string;
+  valor: string;
+  created_at: string;
+}
+
 export interface SensorData {
   id: number;
   name: string;

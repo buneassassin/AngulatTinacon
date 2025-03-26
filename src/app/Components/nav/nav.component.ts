@@ -9,7 +9,12 @@ import { NotificacionService } from '../../Services/notificacion/notificacion.se
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule, LoadingSkeletonComponent],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    LoadingSkeletonComponent,
+  ],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
@@ -17,9 +22,13 @@ export class NavComponent implements OnInit {
   isLoggedIn: boolean = false;
   user: User | null = null; // Aquí se almacenará la información del usuario
   isLoadingUser: boolean = true;
-  countNoti:any={};
+  countNoti: any = {};
 
-  constructor(private authService: AuthService, private router: Router, private notificacionService: NotificacionService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notificacionService: NotificacionService
+  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn = !!localStorage.getItem('token');
@@ -28,14 +37,14 @@ export class NavComponent implements OnInit {
   }
   info(): void {
     this.authService.getUserData().subscribe({
-
       next: (response: any) => {
         if (response.success) {
           this.user = response.user;
           this.isLoadingUser = false;
-         }
+        }
       },
-      error: (error) => console.error('Error al obtener datos del usuario', error)
+      error: (error) =>
+        console.error('Error al obtener datos del usuario', error),
     });
   }
   logout(): void {
@@ -58,10 +67,10 @@ export class NavComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error al obtener el contador de notificaciones', error);
-      }
+      },
     });
   }
-  
+
   private clearSession(): void {
     localStorage.removeItem('token');
     this.isLoggedIn = false;

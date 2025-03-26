@@ -153,6 +153,7 @@ export class UserAdminComponent implements OnInit {
       this.adminService.desactivarUsuario(payload).subscribe({
         next: (response: any) => {
           console.log(response);
+          this.loadUsers(this.currentPage);
         },
         error: (error) => console.error('Error al editar el rol', error),
       });
@@ -168,6 +169,7 @@ export class UserAdminComponent implements OnInit {
       this.adminService.activarUsuario(payload).subscribe({
         next: (response: any) => {
           console.log(response);
+          this.loadUsers(this.currentPage);
         },
         error: (error) => console.error('Error al editar el rol', error),
       });

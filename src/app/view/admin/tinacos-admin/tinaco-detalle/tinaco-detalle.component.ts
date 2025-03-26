@@ -4,13 +4,13 @@ import { HeaderComponent } from '../../../../Components/header/header.component'
 import { SensoresServicioService } from '../../../../Services/tinaco/tinaco_indiv/sensores-servicio.service';
 import { LoadingSkeletonComponent } from '../../../../Components/loading-skeleton/loading-skeleton.component';
 import { Tinacos } from '../../../../Interface/Tinacon/tinacos';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SensorData } from '../../../../Interface/sensor/sensor';
 import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-tinaco-detalle',
-  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent],
+  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent,RouterLink],
   templateUrl: './tinaco-detalle.component.html',
   styleUrls: ['./tinaco-detalle.component.css']
 })
@@ -77,5 +77,8 @@ export class TinacoDetalleComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+  goBack(): void {
+    window.history.back();
   }
 }

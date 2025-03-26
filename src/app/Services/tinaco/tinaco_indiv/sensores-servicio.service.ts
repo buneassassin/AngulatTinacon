@@ -43,4 +43,10 @@ export class SensoresServicioService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.baseUrl}/ultrasonico`,data, { headers });
   }
+  //    Route::post('v1/reporte-datos-sensor-tinaco', [ReporteController::class, 'obtenerHistorialPorSensorPorTinaco']);
+  getReporte( data: {tinaco_id:number, sensor_id:number}): Observable<any> {
+    const token = localStorage.getItem('token'); // Asegúrate de haber guardado el token al iniciar sesión
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/reporte-datos-sensor`,data, { headers });
+  }
 }

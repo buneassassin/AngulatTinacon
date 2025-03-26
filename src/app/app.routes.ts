@@ -15,6 +15,7 @@ import { NotificacionAdminComponent } from './view/admin/notificacion-admin/noti
 import { GraficasAdminComponent } from './view/admin/graficas-admin/graficas-admin.component';
 import { TinacosAdminComponent } from './view/admin/tinacos-admin/tinacos-admin.component';
 import { TinacoDetalleComponent } from './view/admin/tinacos-admin/tinaco-detalle/tinaco-detalle.component';
+import { TinacoSensorComponent } from './view/admin/tinacos-admin/tinaco-detalle/tinaco-sensor/tinaco-sensor.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
 import { ExitGuard } from './Guards/exit.guard';
 import { authGuard } from './Guards/auth/auth/auth.guard';
@@ -104,6 +105,10 @@ export const routes: Routes = [
   {
     path: 'admin/tinacos/:id',
     component: TinacoDetalleComponent,
+    canActivate: [authGuard, adminAuthGuard],
+  },{
+    path: 'admin/tinacos/:id/sensor/:sensorId',
+    component: TinacoSensorComponent,
     canActivate: [authGuard, adminAuthGuard],
   },
   {
