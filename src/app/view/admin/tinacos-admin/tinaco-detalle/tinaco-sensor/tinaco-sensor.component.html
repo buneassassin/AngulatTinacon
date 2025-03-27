@@ -1,39 +1,37 @@
 <main style="margin-top: 58px;">
     <div class="container p-3">
-        <!-- Header -->
-        <app-header>
-            <div class="container d-flex align-items-center justify-content-between py-3">
-                <!-- Botón de regreso mejorado -->
-                <button class="btn btn-lg text-white d-flex align-items-center p-0 border-0" (click)="goBack()">
-                    <i class="fas fa-arrow-left fa-lg"></i>
-                </button>
-        
-                <div class="text-center flex-grow-1">
-                    <h1 class="mb-0">Historial de Sensores</h1>
-                    <p class="lead mt-2">
-                        Supervisa, gestiona y analiza la información de tus sensores en tiempo real.
-                    </p>
-                </div>
-           
-                
+      <!-- Header -->
+      <app-header>
+        <div class="container d-flex align-items-center justify-content-between py-3">
+          <button class="btn btn-lg text-white d-flex align-items-center p-0 border-0" (click)="goBack()">
+            <i class="fas fa-arrow-left fa-lg"></i>
+          </button>
+          <div class="text-center flex-grow-1">
+            <h1 class="mb-0">Historial de Sensores</h1>
+            <p class="lead mt-2">
+              Supervisa, gestiona y analiza la información de tus sensores en tiempo real.
+            </p>
+          </div>
+        </div>
+      </app-header>
+      
+      <div class="container py-4" *ngIf="!isLoading">
+        <h2 class="text-center mb-4">Historial de Sensores</h2>
+        <ul class="list-group">
+          <!-- Usamos el comparador orderByCreatedAt para ordenar -->
+          <li *ngFor="let item of info | keyvalue: orderByCreatedAt" class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>Valor:</strong> {{ item.value.valor }}<br>
+              <small class="text-muted">Fecha: {{ item.value.created_at }}</small>
             </div>
-        </app-header>
-        <div class="container py-4" *ngIf="!isLoading">
-            <h2 class="text-center mb-4">Historial de Sensores</h2>
-            <ul class="list-group">
-                <li *ngFor="let item of info | keyvalue" class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Valor:</strong> {{ item.value.valor }}<br>
-                        <small class="text-muted">Fecha: {{ item.value.created_at }}</small>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">ID: {{ item.value.sensor_id }}</span>
-                </li>
-            </ul>
-        </div>
-        
-        
-        <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
-            <app-loading-skeleton></app-loading-skeleton>
-        </div>
+            <span class="badge bg-primary rounded-pill">ID: {{ item.value.sensor_id }}</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
+        <app-loading-skeleton></app-loading-skeleton>
+      </div>
     </div>
-</main>
+  </main>
+  

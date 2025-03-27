@@ -28,7 +28,7 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
       this.idTinaco = params.get('id');
       console.log('ID del tinaco:', this.idTinaco);
     });
-    this.SensorUltrasonicoData = '.SensorUltrasonicoData' + this.idTinaco;
+    this.SensorUltrasonicoData = '.Sensor_1_Data_' + this.idTinaco;
 
     this.setupEchoConnection();
   }
@@ -43,6 +43,7 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
     if (this.idTinaco) {
       this.sensoresService.getTinaco(Number(this.idTinaco)).subscribe({
         next: (response: any) => {
+          console.log(response);
           this.tinaco = response.tinaco;
         },
         error: (error) => console.error('Error al obtener tinacos:', error),
@@ -61,7 +62,13 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
       console.log(this.SensorUltrasonicoData);
       mas.listen(this.SensorUltrasonicoData!, (data: any) => {
         console.log('Nueva reseña recibida en tiempo real:', data);
-        this.getTinaco();
+        this.sensoresService.getTinaco(Number(this.idTinaco)).subscribe({
+          next: (response: any) => {
+            this.tinaco = response.tinaco;
+            console.log('Mas:',response);
+          },
+          error: (error) => console.error('Error al obtener tinacos:', error),
+        });
       });
     };
 

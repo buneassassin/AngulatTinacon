@@ -4,7 +4,6 @@ import { HeaderComponent } from '../../../Components/header/header.component';
 import { AdminService } from '../../../Services/admin/admin.service';
 import { LoadingSkeletonComponent } from '../../../Components/loading-skeleton/loading-skeleton.component';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-tinacos-admin',
   standalone: true,
@@ -74,4 +73,5 @@ export class TinacosAdminComponent implements OnInit {
   goToTinaco(tinaco: any): void {
     this.router.navigate(['/admin/tinacos', tinaco.id]);
   }
+
 }

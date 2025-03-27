@@ -15,12 +15,12 @@ export interface SensorHistorial {
   valor: string;
   created_at: string;
 }
-
 export interface SensorData {
   id: number;
   name: string;
   description: string;
-  value: string;
+  value: string | null;
+  channelName: string;
 }
 export interface SensorResponseTemperatura {
   id: number;
