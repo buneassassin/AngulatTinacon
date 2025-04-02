@@ -2,7 +2,6 @@
   <div class="container my-5 py-5" *ngIf="user">
     <div class="row justify-content-center">
       <div class="col-md-8">
-
         <!-- Card de Encabezado de Perfil -->
         <app-card-hover>
           <div class="card benefits-section text-center">
@@ -15,9 +14,7 @@
             <div class="card-body position-relative">
               <button class="btn btn-link p-0 border-0 button-profile" (click)="openModalFoto()">
                 <img [src]="user.foto_perfil ? user.foto_perfil : '/assets/foto_default.png'" alt="Foto de Perfil"
-                  class="rounded-circle mb-3 profile-img" style="width: 120px; height: 120px; object-fit: cover;">
-
-                <!-- Botón superpuesto para cambiar foto -->
+                     class="rounded-circle mb-3 profile-img" style="width: 120px; height: 120px; object-fit: cover;">
                 <label for="profilePicture" class="text-white">
                   <i class="fas fa-camera"></i>
                 </label>
@@ -28,16 +25,10 @@
                   <i class="fas fa-check"></i> Verificar
                 </button>
               </p>
-
-              <!-- Mensaje de éxito -->
-              <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
-                {{ successMessage }}
-              </div>
+             
             </div>
           </div>
         </app-card-hover>
-
-
 
         <!-- Card de Detalles del Perfil -->
         <app-card-hover>
@@ -52,7 +43,6 @@
                 <i class="fas fa-phone me-2"></i>
                 <strong>Teléfono:</strong> {{ user.persona?.telefono }}
               </li>
-
             </ul>
           </div>
         </app-card-hover>
@@ -62,89 +52,131 @@
           <button class="btn btn-primary me-2" (click)="openModalPerfil()">Editar Perfil</button>
           <button class="btn btn-secondary" (click)="openModalContrasena()">Cambiar Contraseña</button>
         </div>
-
       </div>
     </div>
 
-
-    <app-modal *ngIf="isModalOpenPerfil" title="Editar Perfil" (close)="closeModal()" (save)="saveModal()">
-      <form *ngIf="user" #profileForm="ngForm">
-
+    <!-- Modal para Editar Perfil -->
+    <app-modal *ngIf="isModalOpenPerfil" title="Editar Perfil" (close)="closeModal()" (save)="saveModal()" [disableSave]="!profileForm.valid">
+      <form [formGroup]="profileForm">
         <!-- Nombre de Usuario -->
         <div class="mb-3">
           <label for="username" class="form-label">Nombre de Usuario</label>
           <input type="text" class="form-control" id="username" placeholder="Ingrese nombre de usuario"
-            (input)="onInputChange()" [(ngModel)]="user.usuario_nom" name="username" required />
+                 formControlName="usuario_nom" />
+          <div *ngIf="profileForm.get('usuario_nom')?.touched && profileForm.get('usuario_nom')?.invalid" class="text-danger">
+            El nombre de usuario es requerido.
+          </div>
         </div>
         <!-- Nombres y Apellidos -->
         <div class="row">
           <div class="mb-3 col-md-12">
             <label for="firstName" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="firstName" placeholder="Ingrese su nombre"
-              (input)="onInputChange()" [(ngModel)]="user.persona.nombres" name="firstName" required
-              *ngIf="user.persona" />
+                   formControlName="nombres" />
+            <div *ngIf="profileForm.get('nombres')?.touched && profileForm.get('nombres')?.invalid" class="text-danger">
+              El nombre es requerido.
+            </div>
           </div>
           <div class="mb-3 col-md-6">
             <label for="lastNameP" class="form-label">Apellido Paterno</label>
             <input type="text" class="form-control" id="lastNameP" placeholder="Ingrese apellido paterno"
-              (input)="onInputChange()" [(ngModel)]="user.persona.a_p" name="lastNameP" required *ngIf="user.persona" />
+                   formControlName="apellidoPaterno" />
+            <div *ngIf="profileForm.get('apellidoPaterno')?.touched && profileForm.get('apellidoPaterno')?.invalid" class="text-danger">
+              El apellido paterno es requerido.
+            </div>
           </div>
           <div class="mb-3 col-md-6">
             <label for="lastNameM" class="form-label">Apellido Materno</label>
             <input type="text" class="form-control" id="lastNameM" placeholder="Ingrese apellido materno"
-              (input)="onInputChange()" [(ngModel)]="user.persona.a_m" name="lastNameM" required *ngIf="user.persona" />
+                   formControlName="apellidoMaterno" />
+            <div *ngIf="profileForm.get('apellidoMaterno')?.touched && profileForm.get('apellidoMaterno')?.invalid" class="text-danger">
+              El apellido materno es requerido.
+            </div>
           </div>
         </div>
-
         <!-- Teléfono -->
         <div class="mb-3">
           <label for="phone" class="form-label">Teléfono</label>
-          <input type="text" class="form-control" id="phone" placeholder="Ingrese teléfono" (input)="onInputChange()"
-            [(ngModel)]="user.persona.telefono" name="phone" required *ngIf="user.persona" />
-        </div>
-      </form>
-    </app-modal>
-
-    <!-- Modal para Cambiar la foto de perfil -->
-    <app-modal *ngIf="isModalOpenModalFoto" title="Cambiar Foto de Perfil" (close)="closeModal()" (save)="saveModal()">
-      <form *ngIf="user" #profileForm="ngForm">
-        <!-- Sección de la foto de perfil -->
-        <div class="mb-3 text-center">
-          <div class="position-relative d-inline-block">
-            <img [src]="user.foto_perfil" alt="Foto de Perfil" class="rounded-circle profile-img"
-              style="width: 120px; height: 120px; object-fit: cover;">
-
+          <input type="text" class="form-control" id="phone" placeholder="Ingrese teléfono"
+                 formControlName="telefono" />
+          <div *ngIf="profileForm.get('telefono')?.touched && profileForm.get('telefono')?.invalid" class="text-danger">
+            El teléfono es requerido.
           </div>
         </div>
-
-        <div class="mb-3">
-          <label for="profilePicture" class="form-label">Seleccionar Foto de Perfil</label>
-          <input type="file" class="form-control" id="profilePicture" (input)="onInputChange()" />
+         <!-- Mensaje de éxito -->
+         <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
+          {{ successMessage }}
+        </div>
+        <!-- Mensaje de error proveniente de la API -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
         </div>
       </form>
     </app-modal>
+
     <!-- Modal para Cambiar Contraseña -->
-    <app-modal *ngIf="isModalOpenContrasena" title="Cambiar Contraseña" (close)="closeModal()" (save)="saveModal()">
-      <form>
+    <app-modal *ngIf="isModalOpenContrasena" title="Cambiar Contraseña" (close)="closeModal()" (save)="saveModal()"   [disableSave]="!passwordForm.valid">
+      <form [formGroup]="passwordForm">
         <div class="mb-3">
           <label for="currentPassword" class="form-label">Contraseña Actual</label>
           <input type="password" class="form-control" id="currentPassword" placeholder="Ingrese su contraseña actual"
-            (input)="onInputChange()" [(ngModel)]="currentPassword" name="currentPassword" />
+                 formControlName="currentPassword" />
+          <div *ngIf="passwordForm.get('currentPassword')?.touched && passwordForm.get('currentPassword')?.invalid" class="text-danger">
+            La contraseña actual es requerida.
+          </div>
         </div>
         <div class="mb-3">
           <label for="newPassword" class="form-label">Nueva Contraseña</label>
           <input type="password" class="form-control" id="newPassword" placeholder="Ingrese la nueva contraseña"
-            (input)="onInputChange()" [(ngModel)]="newPassword" name="newPassword" />
+                 formControlName="newPassword" />
+          <div *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.invalid" class="text-danger">
+            La nueva contraseña es requerida y debe tener al menos 6 caracteres.
+          </div>
         </div>
         <div class="mb-3">
           <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
           <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme la nueva contraseña"
-            (input)="onInputChange()" [(ngModel)]="confirmPassword" name="confirmPassword" />
+                 formControlName="confirmPassword" />
+          <div *ngIf="passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.hasError('mismatch')" class="text-danger">
+            Las contraseñas no coinciden.
+          </div>
+        </div>
+         <!-- Mensaje de éxito -->
+         <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
+          {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-2 fade show">
+          {{ errorMessage }}
+        </div>
+      </form>
+    </app-modal>
+
+    <!-- Modal para Cambiar Foto de Perfil -->
+    <app-modal *ngIf="isModalOpenModalFoto" title="Cambiar Foto de Perfil" (close)="closeModal()" (save)="saveModal()">
+      <form>
+        <div class="mb-3 text-center">
+          <div class="position-relative d-inline-block">
+            <img [src]="user.foto_perfil ? user.foto_perfil : '/assets/foto_default.png'" alt="Foto de Perfil"
+                 class="rounded-circle profile-img" style="width: 120px; height: 120px; object-fit: cover;">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="profilePicture" class="form-label">Seleccionar Foto de Perfil</label>
+          <input type="file" class="form-control" id="profilePicture" />
+        </div>
+         <!-- Mensaje de éxito -->
+         <div *ngIf="successMessage" class="alert alert-success mt-2 fade show">
+          {{ successMessage }}
+        </div>
+        <!-- Mensaje de error proveniente de la API -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
         </div>
       </form>
     </app-modal>
   </div>
 </div>
+
 <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
   <app-loading-skeleton></app-loading-skeleton>
 </div>

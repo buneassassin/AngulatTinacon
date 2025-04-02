@@ -9,7 +9,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="close.emit()">Cancelar</button>
-      <button type="button" class="btn btn-primary" (click)="save.emit()">Guardar</button>
+      <button type="button" class="btn btn-primary" [disabled]="disableSave" (click)="save.emit()">Guardar</button>
     </div>
   </div>
   <div class="modal-backdrop"></div>
