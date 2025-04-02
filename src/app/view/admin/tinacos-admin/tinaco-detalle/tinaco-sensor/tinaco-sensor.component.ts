@@ -41,8 +41,8 @@ export class TinacoSensorComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.tinacoId = params['id'];
       this.sensorId = Number(params['sensorId']); // Convertir a número
-      console.log(`ID del tinaco: ${this.tinacoId}`);
-      console.log(`ID del sensor: ${this.sensorId}`);
+      //console.log(`ID del tinaco: ${this.tinacoId}`);
+      //console.log(`ID del sensor: ${this.sensorId}`);
       if (this.sensorId === 1) {
         this.nombreSensor = 'Ultrasonico';
       } else if (this.sensorId === 2) {
@@ -81,20 +81,20 @@ export class TinacoSensorComponent implements OnInit {
         },
 
         error: (error) => {
-          console.error('Error al obtener historial:', error);
+          //console.error('Error al obtener historial:', error);
           this.isLoading = false;
         },
       });
   }
 
   private setupEchoConnection(tinacoId: number, sensorId: number) {
-    console.log('Conectando a Pusher...');
+    //console.log('Conectando a Pusher...');
     const channelName = `.Sensor_${sensorId}_Data_${tinacoId}`;
 
     const subscribeToChannel = () => {
       const channel = echo.channel('reviews');
-      console.log('Canal reviews suscrito');
-      console.log('Escuchando en el canal:', channelName);
+      //console.log('Canal reviews suscrito');
+      //console.log('Escuchando en el canal:', channelName);
       channel.listen(channelName, (data: any) => {
         console.log(`Nueva data para sensor ${sensorId}:`, data);
         this.ngZone.run(() => {
@@ -111,11 +111,11 @@ export class TinacoSensorComponent implements OnInit {
     };
 
     if (echo.connector.pusher.connection.state === 'connected') {
-      console.log('Conectado a Pusher');
+      //console.log('Conectado a Pusher');
       subscribeToChannel();
     } else {
       echo.connector.pusher.connection.bind('connected', () => {
-        console.log('Conectado a Pusher (después de bind)');
+        //console.log('Conectado a Pusher (después de bind)');
         subscribeToChannel();
       });
     }

@@ -40,7 +40,7 @@ export class NotificacionComponent implements OnInit {
         this.isLoading = false;
       },
       error: (error) => {
-        console.error('Error al obtener notificaciones:', error);
+        //console.error('Error al obtener notificaciones:', error);
         this.isLoading = false;
       }
     });
@@ -63,7 +63,7 @@ export class NotificacionComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error al eliminar notificación:', error);
+        //console.error('Error al eliminar notificación:', error);
       }
     });
   }

@@ -29,9 +29,11 @@ export class TinacoComponent implements OnInit {
         // Se espera que la API devuelva un arreglo de tinacos
         this.tinacos = response;
         this.isLoading = false;
-        console.log('Tinacos:', response);
+        //console.log('Tinacos:', response);
       },
-      error: (error) => console.error('Error al obtener tinacos:', error)
+      error: (error) =>{
+        //console.error('Error al obtener datos del usuario', error),
+      }
     });
   }
   toggleTinaco(t: Tinacos): void {

@@ -36,10 +36,11 @@ export class TinacosAdminComponent implements OnInit {
         this.currentPage = response.current_page;
         this.totalPages = response.last_page;
         this.isLoading = false;
-        console.log(response);
+        //console.log(response);
       },
-      error: (error) =>
-        console.error('Error al obtener datos de usuarios con tinacos', error)
+      error: (error) =>{
+        //console.error('Error al obtener datos de usuarios con tinacos', error)
+      }
     });
   }
 

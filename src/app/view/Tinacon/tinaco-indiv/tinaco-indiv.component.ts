@@ -26,14 +26,14 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((params) => {
       //obtiene el valor dinamico de la url
       this.idTinaco = params.get('id');
-      console.log('ID del tinaco:', this.idTinaco);
+      //console.log('ID del tinaco:', this.idTinaco);
     });
     this.SensorUltrasonicoData = '.Sensor_1_Data_' + this.idTinaco;
 
     this.setupEchoConnection();
   }
   ngOnDestroy(): void {
-    console.log('Desuscribiendo el canal reviews...');
+    //console.log('Desuscribiendo el canal reviews...');
     echo.leaveChannel('reviews');
   }
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
     if (this.idTinaco) {
       this.sensoresService.getTinaco(Number(this.idTinaco)).subscribe({
         next: (response: any) => {
-          console.log(response);
+          //console.log(response);
           this.tinaco = response.tinaco;
         },
         error: (error) => console.error('Error al obtener tinacos:', error),
@@ -52,20 +52,20 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
   }
 
   private setupEchoConnection() {
-    console.log('Conectando a Pusher...');
+    //console.log('Conectando a Pusher...');
 
     // Función que suscribe al canal y al evento
     const subscribeToChannel = () => {
-      console.log('Suscribiéndome al canal reviews...');
+      //console.log('Suscribiéndome al canal reviews...');
       const mas = echo.channel('reviews');
-      console.log('Canal reviews suscrito');
-      console.log(this.SensorUltrasonicoData);
+      //console.log('Canal reviews suscrito');
+      //console.log(this.SensorUltrasonicoData);
       mas.listen(this.SensorUltrasonicoData!, (data: any) => {
         console.log('Nueva reseña recibida en tiempo real:', data);
         this.sensoresService.getTinaco(Number(this.idTinaco)).subscribe({
           next: (response: any) => {
             this.tinaco = response.tinaco;
-            console.log('Mas:',response);
+            //console.log('Mas:',response);
           },
           error: (error) => console.error('Error al obtener tinacos:', error),
         });
@@ -73,11 +73,11 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
     };
 
     if (echo.connector.pusher.connection.state === 'connected') {
-      console.log('Conectado a Pusher1');
+      //console.log('Conectado a Pusher1');
       subscribeToChannel();
     } else {
       echo.connector.pusher.connection.bind('connected', () => {
-        console.log('Conectado a Pusher2');
+        //console.log('Conectado a Pusher2');
         subscribeToChannel();
       });
     }

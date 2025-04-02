@@ -20,7 +20,7 @@ export class SidebarComponent {
       next: (response: any) => {
         this.informacionesAdmin = response; // Asigna directamente el objeto
         this.isLoadingAdmin = false;
-        console.log(response);
+        //console.log(response);
       },
       error: (error) => console.error('Error al obtener datos del usuario', error)
     })

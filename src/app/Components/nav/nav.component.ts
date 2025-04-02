@@ -43,18 +43,19 @@ export class NavComponent implements OnInit {
           this.isLoadingUser = false;
         }
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
   }
   logout(): void {
     this.authService.logoutUser().subscribe({
       next: (response) => {
-        console.log('Logout exitoso:', response);
+        //console.log('Logout exitoso:', response);
         this.clearSession();
       },
       error: (error) => {
-        console.error('Error al cerrar sesión', error);
+        //console.error('Error al cerrar sesión', error);
         this.clearSession();
       },
     });
@@ -66,7 +67,7 @@ export class NavComponent implements OnInit {
         this.countNoti = response.unread_count;
       },
       error: (error) => {
-        console.error('Error al obtener el contador de notificaciones', error);
+        //console.error('Error al obtener el contador de notificaciones', error);
       },
     });
   }

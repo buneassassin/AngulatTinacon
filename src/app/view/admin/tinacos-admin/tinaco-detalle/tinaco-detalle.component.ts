@@ -40,7 +40,7 @@ export class TinacoDetalleComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       // Obtiene el valor dinámico de la URL
       this.idTinaco = params.get('id');
-      console.log('ID del tinaco:', this.idTinaco);
+      //console.log('ID del tinaco:', this.idTinaco);
       // Una vez obtenido el id, asignamos dinámicamente los nombres de canal para cada sensor.
       if (this.idTinaco) {
         this.sensors = this.sensors.map(sensor => ({
@@ -72,7 +72,7 @@ export class TinacoDetalleComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error al obtener tinaco:', error);
+        //console.error('Error al obtener tinaco:', error);
         this.isLoading = false;
       },
     });
@@ -115,20 +115,20 @@ export class TinacoDetalleComponent implements OnInit {
         this.isLoading = false;
       },
       error: (error) => {
-        console.error('Error al obtener los valores de los sensores:', error);
+        //console.error('Error al obtener los valores de los sensores:', error);
         this.isLoading = false;
       },
     });
   }
 
   private setupEchoConnection() {
-    console.log('Conectando a Pusher...');
+   //console.log('Conectando a Pusher...');
 
     const subscribeToChannel = () => {
       const channel = echo.channel('reviews');
-      console.log('Canal reviews suscrito');
+      //console.log('Canal reviews suscrito');
       this.sensors.forEach(sensor => {
-        console.log('Escuchando en el canal:', sensor.channelName);
+        //console.log('Escuchando en el canal:', sensor.channelName);
         channel.listen(sensor.channelName, (data: any) => {
           console.log(`Nueva data para sensor ${sensor.name}:`, data);
           this.ngZone.run(() => {
@@ -139,11 +139,11 @@ export class TinacoDetalleComponent implements OnInit {
     };
 
     if (echo.connector.pusher.connection.state === 'connected') {
-      console.log('Conectado a Pusher');
+      //console.log('Conectado a Pusher');
       subscribeToChannel();
     } else {
       echo.connector.pusher.connection.bind('connected', () => {
-        console.log('Conectado a Pusher (después de bind)');
+        //console.log('Conectado a Pusher (después de bind)');
         subscribeToChannel();
       });
     }

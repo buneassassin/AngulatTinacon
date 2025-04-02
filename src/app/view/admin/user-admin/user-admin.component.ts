@@ -43,10 +43,11 @@ export class UserAdminComponent implements OnInit {
       next: (response: any) => {
         this.informacionesUser = response;
         this.isLoading = false;
-        console.log(response);
+        //console.log(response);
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
 
     // Cargar la primera página de usuarios
@@ -57,8 +58,9 @@ export class UserAdminComponent implements OnInit {
         console.log(response);
         this.roles = response.roles;
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
   }
 
@@ -69,10 +71,11 @@ export class UserAdminComponent implements OnInit {
         this.users = response.data; // Asumimos que los usuarios están en "data"
         this.currentPage = response.current_page;
         this.totalPages = response.last_page;
-        console.log(response);
+        //console.log(response);
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
   }
 
@@ -123,7 +126,7 @@ export class UserAdminComponent implements OnInit {
 
       this.adminService.cambiarRol(payload).subscribe({
         next: (response: any) => {
-          console.log(response);
+          //console.log(response);
           this.closeModal();
         },
         error: (error) => console.error('Error al editar el rol', error),
@@ -132,7 +135,7 @@ export class UserAdminComponent implements OnInit {
   }
 
   validarCambioRol() {
-    console.log('Rol seleccionado:', this.rolesSelected);
+    //console.log('Rol seleccionado:', this.rolesSelected);
 
     if (this.rolesSelected === 'Admin') {
       const confirmacion = confirm(
@@ -152,10 +155,12 @@ export class UserAdminComponent implements OnInit {
       };
       this.adminService.desactivarUsuario(payload).subscribe({
         next: (response: any) => {
-          console.log(response);
+          //console.log(response);
           this.loadUsers(this.currentPage);
         },
-        error: (error) => console.error('Error al editar el rol', error),
+        error: (error) => {
+          //console.error('Error al editar el rol', error),
+        },
       });
     }
   }
@@ -168,7 +173,7 @@ export class UserAdminComponent implements OnInit {
       };
       this.adminService.activarUsuario(payload).subscribe({
         next: (response: any) => {
-          console.log(response);
+          //console.log(response);
           this.loadUsers(this.currentPage);
         },
         error: (error) => console.error('Error al editar el rol', error),

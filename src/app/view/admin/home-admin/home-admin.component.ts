@@ -31,26 +31,29 @@ export class HomeAdminComponent implements OnInit {
     this.adminService.getUserStatistics().subscribe({
       next: (response: any) => {
         this.informacionesUser = response; // Asigna directamente el objeto
-        console.log(response);
+        //console.log(response);
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
     this.adminService.getTinacoStatistics().subscribe({
       next: (response: any) => {
         this.informacionesTinaco = response; // Asigna directamente el objeto
-        console.log(response);
+        //console.log(response);
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
     this.adminService.getinfoAdmin().subscribe({
       next: (response: any) => {
         this.informacionesAdmin = response; // Asigna directamente el objeto
-        console.log(response);
+        //console.log(response);
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
 
     setTimeout(() => {

@@ -69,8 +69,9 @@ export class ProfileComponent implements OnInit {
           this.isLoading = false;
         }
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) =>{
+        //console.error('Error al obtener datos del usuario', error),
+      }
     });
   }
   
@@ -150,7 +151,7 @@ export class ProfileComponent implements OnInit {
     };
     this.perfilService.updateUser(payload).subscribe({
       next: (response: any) => {
-        console.log('Perfil actualizado con éxito:', response);
+        //console.log('Perfil actualizado con éxito:', response);
         this.successMessage = 'Perfil actualizado con éxito';
         setTimeout(() => {
           this.successMessage = null;
@@ -158,7 +159,7 @@ export class ProfileComponent implements OnInit {
         }, 3000);
       },
       error: (error: any) => {
-        console.error('Error al actualizar el perfil:', error);
+        //console.error('Error al actualizar el perfil:', error);
         this.errorMessage = 'Error al actualizar el perfil';
         setTimeout(() => this.errorMessage = null, 3000);
       },
@@ -179,7 +180,7 @@ export class ProfileComponent implements OnInit {
     };
     this.perfilService.updatePassword(payload).subscribe({
       next: (response: any) => {
-        console.log('Contraseña actualizada con éxito:', response);
+        //console.log('Contraseña actualizada con éxito:', response);
         this.successMessage = 'Contraseña actualizada con éxito';
         setTimeout(() => {
           this.successMessage = null;
@@ -187,7 +188,7 @@ export class ProfileComponent implements OnInit {
         }, 3000);
       },
       error: (error: any) => {
-        console.error('Error al actualizar la contraseña:', error);
+        //console.error('Error al actualizar la contraseña:', error);
         this.errorMessage = error.error.message || 'Error al actualizar la contraseña';
         setTimeout(() => this.errorMessage = null, 3000);
       },
@@ -202,7 +203,7 @@ export class ProfileComponent implements OnInit {
       const file = files[0];
       this.perfilService.uploadImage(file).subscribe({
         next: (response: any) => {
-          console.log('Foto de perfil actualizada con éxito:', response);
+          //console.log('Foto de perfil actualizada con éxito:', response);
           this.successMessage = 'Foto de perfil actualizada con éxito';
           setTimeout(() => {
             this.successMessage = null;
@@ -210,7 +211,7 @@ export class ProfileComponent implements OnInit {
           }, 3000);
         },
         error: (error: any) => {
-          console.error('Error al actualizar la foto de perfil:', error);
+          //console.error('Error al actualizar la foto de perfil:', error);
           this.errorMessage = 'Error al actualizar la foto de perfil';
           setTimeout(() => this.errorMessage = null, 3000);
         },
@@ -236,18 +237,18 @@ export class ProfileComponent implements OnInit {
     if (this.user && this.user.email) {
       this.perfilService.sendEmail(this.user.email).subscribe({
         next: (response: any) => {
-          console.log('Correo enviado con éxito:', response);
+          //console.log('Correo enviado con éxito:', response);
           this.successMessage = 'Correo enviado con éxito';
           setTimeout(() => this.successMessage = null, 3000);
         },
         error: (error: any) => {
-          console.error('Error al verificar el email:', error);
+          //console.error('Error al verificar el email:', error);
           this.errorMessage = 'Error al enviar el correo';
           setTimeout(() => this.errorMessage = null, 3000);
         },
       });
     } else {
-      console.error('User o email no definidos');
+      //console.error('User o email no definidos');
     }
   }
 }

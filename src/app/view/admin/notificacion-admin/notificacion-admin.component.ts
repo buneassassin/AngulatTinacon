@@ -47,7 +47,7 @@ export class NotificacionAdminComponent
 
     this.adminService.enviarNotificacion(payload).subscribe({
       next: (response: any) => {
-        console.log(response);
+        //console.log(response);
         this.errorMessage = '';
         this.successMessage = 'Notificación enviada exitosamente';
         this.notificacionForm.reset();

@@ -46,7 +46,7 @@ export class LoginComponent implements CanComponentDeactivate {
 
     this.authService.loginUser(userCredentials as User).subscribe({
       next: (response) => {
-        console.log('Respuesta del servidor recibida:', response);
+        //console.log('Respuesta del servidor recibida:', response);
         localStorage.setItem('token', response.token);
         this.apiErrorMessage = '';
         this.successMessage = 'Inicio de sesión exitoso';
@@ -56,7 +56,7 @@ export class LoginComponent implements CanComponentDeactivate {
         }, 2000);
       },
       error: (error) => {
-        console.error('Error en el login:', error);
+        //console.error('Error en el login:', error);
         // Si la API devuelve un mensaje de error, lo mostramos; de lo contrario, mensaje genérico
         this.apiErrorMessage =
           error.error?.message ||

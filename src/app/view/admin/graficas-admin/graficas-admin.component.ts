@@ -22,8 +22,9 @@ export class GraficasAdminComponent implements AfterViewInit {
         this.estadisticaUseres = response;
         this.renderChart();
       },
-      error: (error) =>
-        console.error('Error al obtener datos del usuario', error),
+      error: (error) => {
+        //console.error('Error al obtener datos del usuario', error),
+      },
     });
   }
 
@@ -31,12 +32,12 @@ export class GraficasAdminComponent implements AfterViewInit {
     // Extraemos los datos de usuarios activos e inactivos
     const data = [
       this.estadisticaUseres.activeUsers,
-      this.estadisticaUseres.inactiveUsers
+      this.estadisticaUseres.inactiveUsers,
     ];
     const labels = ['Usuarios Activos', 'Usuarios Inactivos'];
 
     this.usuariosChartInstance = new Chart(this.usuariosChart.nativeElement, {
-      type: 'pie', 
+      type: 'pie',
       data: {
         labels: labels,
         datasets: [
@@ -56,7 +57,6 @@ export class GraficasAdminComponent implements AfterViewInit {
     });
   }
 }
-
 
 // Gráfico para Tinacos: muestra el nivel de agua a lo largo de los meses.
 /*this.tinacosChartInstance = new Chart(this.tinacosChart.nativeElement, {

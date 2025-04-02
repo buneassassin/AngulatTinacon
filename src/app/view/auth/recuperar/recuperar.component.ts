@@ -37,7 +37,7 @@ export class RecuperarComponent implements CanComponentDeactivate {
 
     this.authService.resetPassword(email).subscribe({
       next: (response) => {
-        console.log('Registro exitoso:', response);
+        ////console.log('Registro exitoso:', response);
         this.errorMessage = '';
         this.successMessage = 'Registro exitoso, redirigiendo a login...';
         this.recuperarForm.reset();
@@ -47,7 +47,7 @@ export class RecuperarComponent implements CanComponentDeactivate {
         }, 2000);
       },
       error: (error) => {
-        console.error('Error en el registro:', error);
+        //console.error('Error en el registro:', error);
         if (error.status === 400) {
           this.errorMessage =
             error.error.message || 'Datos inválidos. Verifica tu información.';

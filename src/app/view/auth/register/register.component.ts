@@ -59,7 +59,7 @@ export class RegisterComponent implements CanComponentDeactivate {
 
     this.authService.registerUser(newUser).subscribe({
       next: (response) => {
-        console.log('Registro exitoso:', response);
+        //console.log('Registro exitoso:', response);
         this.errorMessage = '';
         this.successMessage = 'Registro exitoso, redirigiendo a login...';
         this.registerForm.reset();
@@ -68,7 +68,7 @@ export class RegisterComponent implements CanComponentDeactivate {
         }, 2000);
       },
       error: (error) => {
-        console.error('Error en el registro:', error);
+        //console.error('Error en el registro:', error);
         if (error.status === 400) {
           this.errorMessage = error.error.message || 'Datos inválidos. Verifica tu información.';
         } else if (error.status === 500) {
