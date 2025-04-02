@@ -60,8 +60,8 @@
       <form [formGroup]="profileForm">
         <!-- Nombre de Usuario -->
         <div class="mb-3">
-          <label for="username" class="form-label">Nombre de Usuario</label>
-          <input type="text" class="form-control" id="username" placeholder="Ingrese nombre de usuario"
+          <label for="usuario_nom" class="form-label">Nombre de Usuario</label>
+          <input type="text" class="form-control" id="usuario_nom" placeholder="Ingrese nombre de usuario"
                  formControlName="usuario_nom" />
           <div *ngIf="profileForm.get('usuario_nom')?.touched && profileForm.get('usuario_nom')?.invalid" class="text-danger">
             El nombre de usuario es requerido.
@@ -70,24 +70,24 @@
         <!-- Nombres y Apellidos -->
         <div class="row">
           <div class="mb-3 col-md-12">
-            <label for="firstName" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Ingrese su nombre"
+            <label for="nombres" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombres" placeholder="Ingrese su nombre"
                    formControlName="nombres" />
             <div *ngIf="profileForm.get('nombres')?.touched && profileForm.get('nombres')?.invalid" class="text-danger">
               El nombre es requerido.
             </div>
           </div>
           <div class="mb-3 col-md-6">
-            <label for="lastNameP" class="form-label">Apellido Paterno</label>
-            <input type="text" class="form-control" id="lastNameP" placeholder="Ingrese apellido paterno"
+            <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellidoPaterno" placeholder="Ingrese apellido paterno"
                    formControlName="apellidoPaterno" />
             <div *ngIf="profileForm.get('apellidoPaterno')?.touched && profileForm.get('apellidoPaterno')?.invalid" class="text-danger">
               El apellido paterno es requerido.
             </div>
           </div>
           <div class="mb-3 col-md-6">
-            <label for="lastNameM" class="form-label">Apellido Materno</label>
-            <input type="text" class="form-control" id="lastNameM" placeholder="Ingrese apellido materno"
+            <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="apellidoMaterno" placeholder="Ingrese apellido materno"
                    formControlName="apellidoMaterno" />
             <div *ngIf="profileForm.get('apellidoMaterno')?.touched && profileForm.get('apellidoMaterno')?.invalid" class="text-danger">
               El apellido materno es requerido.
@@ -96,8 +96,8 @@
         </div>
         <!-- Teléfono -->
         <div class="mb-3">
-          <label for="phone" class="form-label">Teléfono</label>
-          <input type="text" class="form-control" id="phone" placeholder="Ingrese teléfono"
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input type="text" class="form-control" id="telefono" placeholder="Ingrese teléfono"
                  formControlName="telefono" />
           <div *ngIf="profileForm.get('telefono')?.touched && profileForm.get('telefono')?.invalid" class="text-danger">
             El teléfono es requerido.

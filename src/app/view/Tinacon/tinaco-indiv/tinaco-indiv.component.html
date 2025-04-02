@@ -1,15 +1,16 @@
-<div class="container mt-5 pt-5 p-5 justify-content-center d-flex">
-    <div class="card w-100">
+<div class="container mt-5 pt-5" *ngIf="!isLoading">
+    <!-- Card principal: Detalles del Tinaco -->
+    <div class="card mb-2">
         <div class="card-header bg-info text-white">
             <h3 class="mb-0">Detalles del Tinaco</h3>
         </div>
         <div class="card-body">
-            <div class="row">
-                <!-- Columna de ícono representativo -->
-                <div class="col-md-4 text-center mb-3 mb-md-0 justify-content-center align-items-center d-flex">
+            <div class="row align-items-center">
+                <!-- Ícono representativo -->
+                <div class="col-md-4 text-center mb-3 mb-md-0">
                     <i class="fas fa-tint fa-5x text-info"></i>
                 </div>
-                <!-- Columna de información general -->
+                <!-- Información general -->
                 <div class="col-md-8">
                     <h4 class="fw-bold">{{ tinaco?.name }}</h4>
                     <p><strong>ID:</strong> {{ tinaco?.id }}</p>
@@ -33,11 +34,8 @@
                         [attr.aria-valuenow]="tinaco?.nivel_del_agua" aria-valuemin="0" aria-valuemax="100">
                         {{ tinaco?.nivel_del_agua }}%
                     </div>
-
-
                 </div>
             </div>
-
         </div>
         <div class="card-footer text-end">
             <a routerLink="/tinaco" class="btn btn-outline-secondary">
@@ -45,4 +43,55 @@
             </a>
         </div>
     </div>
+
+    <!-- Row de cards para sensores u otra información -->
+    <div class="row g-3 justify-content-center cards p-2 d-flex">
+        <div *ngFor="let sensor of sensors" class="card" [ngClass]="{
+                'red': sensor.id === 1,
+                'blue': sensor.id === 2,
+                'green': sensor.id === 3,
+                'yellow': sensor.id === 4,
+                'orange': sensor.id === 5,
+                'purple': sensor.id === 6
+                }">
+            <p class="tip">{{ sensor.name }}</p>
+            <p class="second-text">{{ sensor.description }}: {{ sensor.value }}</p>
+        </div>
+        <!--
+        <div class="col-6 col-md-3 card red">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <p class="tip mb-1">Utrasonico</p>
+                <p class="second-text">Valor: 23</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 card blue">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <p class="tip mb-1">Temperatura</p>
+                <p class="second-text">Valor: 75</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 card green">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <p class="tip mb-1">PH</p>
+                <p class="second-text">Valor: 50</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 card yellow">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <p class="tip mb-1">Turbidez</p>
+                <p class="second-text">Valor: 80</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 card orange">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                <p class="tip mb-1">TDS</p>
+                <p class="second-text">Valor: 60</p>
+            </div>
+        </div>
+    -->
+    </div>
+
+</div>
+<div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
+    <app-loading-skeleton></app-loading-skeleton>
 </div>

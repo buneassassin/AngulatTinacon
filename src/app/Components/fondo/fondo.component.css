@@ -2,8 +2,6 @@
     z-index: 1;
 }
 
-
-
 .area {
     position: fixed; 
     top: 0;
@@ -15,8 +13,6 @@
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
     background-size: cover;
 }
-
-
 
 .circles {
     position: absolute;

@@ -46,11 +46,11 @@ export class ProfileComponent implements OnInit {
   ) {
     // Formulario para editar perfil
     this.profileForm = this.fb.group({
-      username: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastNameP: ['', Validators.required],
-      lastNameM: ['', Validators.required],
-      phone: ['', Validators.required],
+      usuario_nom: ['', Validators.required],
+      nombres: ['', Validators.required],
+      apellidoPaterno: ['', Validators.required],
+      apellidoMaterno: ['', Validators.required],
+      telefono: ['', Validators.required],
     });
     
     this.passwordForm = this.fb.group({
@@ -132,6 +132,8 @@ export class ProfileComponent implements OnInit {
     // Limpia formularios
     this.profileForm.reset();
     this.passwordForm.reset();
+    //obtenemos los datos actuales
+    this.ngOnInit();
 
   }
 
@@ -143,15 +145,15 @@ export class ProfileComponent implements OnInit {
       return;
     }
     const payload = {
-      nombres: this.profileForm.value.firstName,
-      usuario_nom: this.profileForm.value.username,
-      apellidoPaterno: this.profileForm.value.lastNameP,
-      apellidoMaterno: this.profileForm.value.lastNameM,
-      telefono: this.profileForm.value.phone,
+      usuario_nom: this.profileForm.value.usuario_nom,
+      nombres: this.profileForm.value.nombres,
+      apellidoPaterno: this.profileForm.value.apellidoPaterno,
+      apellidoMaterno: this.profileForm.value.apellidoMaterno,
+      telefono: this.profileForm.value.telefono,
     };
     this.perfilService.updateUser(payload).subscribe({
       next: (response: any) => {
-        //console.log('Perfil actualizado con éxito:', response);
+        console.log('Perfil actualizado con éxito:', response);
         this.successMessage = 'Perfil actualizado con éxito';
         setTimeout(() => {
           this.successMessage = null;
@@ -159,9 +161,9 @@ export class ProfileComponent implements OnInit {
         }, 3000);
       },
       error: (error: any) => {
-        //console.error('Error al actualizar el perfil:', error);
+        console.error('Error al actualizar el perfil:', error);
         this.errorMessage = 'Error al actualizar el perfil';
-        setTimeout(() => this.errorMessage = null, 3000);
+        //setTimeout(() => this.errorMessage = null, 3000);
       },
     });
   }
