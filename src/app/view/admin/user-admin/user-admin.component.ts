@@ -36,6 +36,12 @@ export class UserAdminComponent implements OnInit {
   perPage: number = 15;
   totalPages: number = 0;
 
+   // Mensajes de feedback
+   successMessage: string | null = null;
+   errorMessage: string | null = null;
+
+   successMessage2: string | null = null;
+   errorMessage2: string | null = null;
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
@@ -55,7 +61,7 @@ export class UserAdminComponent implements OnInit {
 
     this.adminService.obtenerRol().subscribe({
       next: (response: any) => {
-        console.log(response);
+        //console.log(response);
         this.roles = response.roles;
       },
       error: (error) => {
@@ -108,6 +114,9 @@ export class UserAdminComponent implements OnInit {
       this.isModalOpenEditRol = false;
       this.usuariEditar = null;
       this.rolesSelected = null;
+      this.errorMessage = null;
+      this.successMessage = null;
+      this.ngOnInit();
     }
   }
 
@@ -127,9 +136,17 @@ export class UserAdminComponent implements OnInit {
       this.adminService.cambiarRol(payload).subscribe({
         next: (response: any) => {
           //console.log(response);
-          this.closeModal();
+          this.successMessage = response.message || 'Rol cambiado correctamente';
+          setTimeout(() => {
+            this.successMessage = null;
+            this.closeModal();
+          }, 3000);
         },
-        error: (error) => console.error('Error al editar el rol', error),
+        error: (error) => {
+          //console.error('Error al editar el rol', error),
+          this.errorMessage = error.error.message || 'Error al cambiar el rol';
+          setTimeout(() => this.errorMessage = null, 3000);
+        },
       });
     }
   }

@@ -14,24 +14,31 @@
         </div>
       </div>
     </app-header>
-
     <div class="container py-4" *ngIf="!isLoading">
-      <h2 class="text-center mb-4">Historial de Sensores</h2>
-      <ul class="list-group">
-        <!-- Usamos el comparador orderByCreatedAt para ordenar -->
-        <li *ngFor="let item of data" class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            <strong>Valor:</strong> {{ item.valor }}<br>
-            <small class="text-muted">Fecha: {{ item.created_at }}</small>
-          </div>
-          <span class="badge bg-primary rounded-pill">{{ nombreSensor }}</span>
-        </li>
-      </ul>
-     <!-- Componente de Paginación -->
-     <app-pagination [pagination]="pagination" (pageChange)="goToPage($event)">
-    </app-pagination>
-    </div>
+      <ng-container *ngIf="data.length > 0; else noData">
+        <h2 class="text-center mb-4">Historial de Sensores</h2>
+        <ul class="list-group">
+          <!-- Usamos el comparador orderByCreatedAt para ordenar -->
+          <li *ngFor="let item of data" class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>Valor:</strong> {{ item.valor }}<br>
+              <small class="text-muted">Fecha: {{ item.created_at }}</small>
+            </div>
+            <span class="badge bg-primary rounded-pill">{{ nombreSensor }}</span>
+          </li>
+        </ul>
+        <!-- Componente de Paginación -->
+        <app-pagination [pagination]="pagination" (pageChange)="goToPage($event)">
+        </app-pagination>
+      </ng-container>
+      <ng-template #noData>
+        <div class="text-center text-muted fs-4">
+          <i class="fa-regular fa-face-meh-blank fa-2x mb-3"></i>
+          <p>No se encontraron datos del {{ nombreSensor }}</p>
 
+        </div>
+      </ng-template>
+    </div>
     <div class="container justify-content-center d-flex py-5 my-5 p-5" *ngIf="isLoading">
       <app-loading-skeleton></app-loading-skeleton>
     </div>

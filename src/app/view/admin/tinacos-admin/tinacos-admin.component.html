@@ -33,15 +33,13 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead class="table-light">
                 <tr>
                   <th>ID Tinaco</th>
                   <th>Nombre</th>
                   <th>Propietario</th>
-                  <th>Estado</th>
                   <th>Nivel de Agua</th>
-                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,21 +50,20 @@
                     <td>{{ tinaco.id }}</td>
                     <td>{{ tinaco.name }}</td>
                     <td>{{ user.usuario_nom }}</td>
-                    <td>
+                   <!-- <td>
                       <span class="badge"
                             [ngClass]="{'bg-success': tinaco.nivel_del_agua > 0, 'bg-danger': tinaco.nivel_del_agua === 0}">
                         {{ tinaco.nivel_del_agua > 0 ? 'Encendido' : 'Apagado' }}
                       </span>
-                    </td>
+                    </td>-->
                     <td>{{ tinaco.nivel_del_agua }}%</td>
-                    <td>
-                      <!-- El botón de toggle tiene un click y se detiene la propagación para que no active el click del tr -->
+                    <!--<td>
                       <button class="btn btn-sm"
                               [ngClass]="{'btn-warning': tinaco.nivel_del_agua > 0, 'btn-info': tinaco.nivel_del_agua === 0}"
                               (click)="toggleTinaco(tinaco); $event.stopPropagation()">
                         {{ tinaco.nivel_del_agua > 0 ? 'Apagar' : 'Encender' }}
                       </button>
-                    </td>
+                    </td>-->
                   </tr>
                 </ng-container>
                 

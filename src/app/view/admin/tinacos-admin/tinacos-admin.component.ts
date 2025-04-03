@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-tinacos-admin',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent,],
+  imports: [CommonModule, HeaderComponent, LoadingSkeletonComponent],
   templateUrl: './tinacos-admin.component.html',
   styleUrls: ['./tinacos-admin.component.css']
 })

@@ -5,11 +5,12 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { NavComponent } from './Components/nav/nav.component';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { FondoComponent } from './Components/fondo/fondo.component';
+import { LoadingSkeletonComponent } from './Components/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, FooterComponent, NavComponent, CommonModule, SidebarComponent, FondoComponent],
+  imports: [RouterModule, FooterComponent, NavComponent, CommonModule, SidebarComponent, FondoComponent,LoadingSkeletonComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -17,6 +18,7 @@ export class AppComponent {
   title = 'IntegradoraAngularTinacon';
   isAuthPage = false; 
   isAdminPage = false;
+  isLoading = true;
 
   private authRoutes: string[] = [
     '/login', 
@@ -48,6 +50,7 @@ export class AppComponent {
         const url = event.urlAfterRedirects;
         this.isAuthPage = this.authRoutes.some(route => this.matchRoute(route, url));
         this.isAdminPage = this.adminRoutes.some(route => this.matchRoute(route, url));
+        this.isLoading = false;
       }
     });
   }

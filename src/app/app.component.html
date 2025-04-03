@@ -1,14 +1,19 @@
-<ng-container *ngIf="!isAuthPage">
-  <app-nav></app-nav>
+<ng-container *ngIf="!isLoading">
+  <ng-container *ngIf="!isAuthPage">
+    <app-nav></app-nav>
+  </ng-container>
+
+  <ng-container *ngIf="isAdminPage">
+    <app-sidebar></app-sidebar>
+  </ng-container>
+
+
+  <app-fondo><router-outlet></router-outlet></app-fondo>
+
+  <ng-container *ngIf="!isAuthPage">
+    <app-footer></app-footer>
+  </ng-container>
 </ng-container>
-
-<ng-container *ngIf="isAdminPage">
-  <app-sidebar></app-sidebar>
-</ng-container>
-
-
-<app-fondo><router-outlet></router-outlet></app-fondo>
-
-<ng-container *ngIf="!isAuthPage">
-  <app-footer></app-footer>
-</ng-container>
+<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;" *ngIf="isLoading">
+  <app-loading-skeleton></app-loading-skeleton>
+</div>

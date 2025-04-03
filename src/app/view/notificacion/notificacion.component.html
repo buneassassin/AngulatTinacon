@@ -72,11 +72,7 @@
       </div>
     </ng-template>
   </div>
-
-
-  <!-- Loader: Se muestra mientras se cargan los datos -->
-  <div class="container p-5" *ngIf="isLoading">
-    <div class="d-flex justify-content-center align-items-center my-5 py-5">
-      <app-loading-skeleton></app-loading-skeleton>
-    </div>
+</div>
+<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;" *ngIf="isLoading">
+  <app-loading-skeleton></app-loading-skeleton>
   </div>

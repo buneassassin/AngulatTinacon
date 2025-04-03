@@ -27,7 +27,6 @@ export class NotificacionComponent implements OnInit {
   }
 
   getNotificaciones(page: number = 1): void {
-    this.isLoading = true;
     this.notificacionService.getNotificaciones(page, this.perPage).subscribe({
       next: (response) => {
         if (response.success) {
@@ -36,8 +35,8 @@ export class NotificacionComponent implements OnInit {
           this.notifications = paginationData.data; // Los ítems de la página
           this.currentPage = paginationData.current_page;
           this.totalPages = paginationData.last_page;
+          this.isLoading = false;
         }
-        this.isLoading = false;
       },
       error: (error) => {
         //console.error('Error al obtener notificaciones:', error);

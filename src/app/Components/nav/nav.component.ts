@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/auth/auth.service';
 import { User } from '../../Interface/user';
 import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
-import { NotificacionService } from '../../Services/notificacion/notificacion.service'; // Ajusta la ruta según tu proyecto
+import { NotificacionService } from '../../Services/notificacion/notificacion.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -18,11 +19,13 @@ import { NotificacionService } from '../../Services/notificacion/notificacion.se
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
-  user: User | null = null; // Aquí se almacenará la información del usuario
+  user: User | null = null;
   isLoadingUser: boolean = true;
   countNoti: any = {};
+
+  private notiPollingSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -34,7 +37,13 @@ export class NavComponent implements OnInit {
     this.isLoggedIn = !!localStorage.getItem('token');
     this.info();
     this.getNotiCount();
+
+    this.notiPollingSubscription = interval(20000).subscribe(() => {
+      //console.log('Actualizando notificaciones...');
+      this.getNotiCount();
+    });
   }
+
   info(): void {
     this.authService.getUserData().subscribe({
       next: (response: any) => {
@@ -44,30 +53,30 @@ export class NavComponent implements OnInit {
         }
       },
       error: (error) => {
-        //console.error('Error al obtener datos del usuario', error),
+        // Maneja el error según lo necesites
       },
     });
   }
+
   logout(): void {
     this.authService.logoutUser().subscribe({
       next: (response) => {
-        //console.log('Logout exitoso:', response);
         this.clearSession();
       },
       error: (error) => {
-        //console.error('Error al cerrar sesión', error);
         this.clearSession();
       },
     });
   }
+
   getNotiCount(): void {
     this.notificacionService.getNotificationsCount().subscribe({
       next: (response: any) => {
-        // Asumiendo que la respuesta es un objeto { success: true, unread_count: 85 }
+        // Asumiendo que la respuesta es { success: true, unread_count: 85 }
         this.countNoti = response.unread_count;
       },
       error: (error) => {
-        //console.error('Error al obtener el contador de notificaciones', error);
+        // Maneja el error según lo necesites
       },
     });
   }
@@ -76,5 +85,12 @@ export class NavComponent implements OnInit {
     localStorage.removeItem('token');
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(): void {
+    // Cancela la suscripción del polling para evitar fugas de memoria
+    if (this.notiPollingSubscription) {
+      this.notiPollingSubscription.unsubscribe();
+    }
   }
 }

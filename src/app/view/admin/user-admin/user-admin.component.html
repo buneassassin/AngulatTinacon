@@ -80,6 +80,7 @@
                                             class="btn btn-sm btn-outline-success w-50" *ngIf="!user.is_Inactive">
                                             Habilitar
                                         </button>
+                                       
                                     </td>
                                 </tr>
                             </tbody>
@@ -126,6 +127,14 @@
                     {{ role }}
                 </option>
             </select>
+            <!-- Mensaje de la api-->
+            <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+                {{ errorMessage }}
+            </div>
+            <!-- Mensaje de успexo-->
+            <div *ngIf="successMessage" class="alert alert-success mt-2">
+                {{ successMessage }}
+            </div>
         </div>
 
         <!-- Mensaje de advertencia si el usuario ya es admin -->

@@ -34,6 +34,9 @@ export class ProfileComponent implements OnInit {
   // Mensajes de feedback
   successMessage: string | null = null;
   errorMessage: string | null = null;
+ // Mensajes de feedback
+ successMessage2: string | null = null;
+ errorMessage2: string | null = null;
 
   // Formularios reactivos
   profileForm: FormGroup;
@@ -240,13 +243,13 @@ export class ProfileComponent implements OnInit {
       this.perfilService.sendEmail(this.user.email).subscribe({
         next: (response: any) => {
           //console.log('Correo enviado con éxito:', response);
-          this.successMessage = 'Correo enviado con éxito';
-          setTimeout(() => this.successMessage = null, 3000);
+          this.successMessage2 = 'Correo enviado con éxito';
+          setTimeout(() => this.successMessage2 = null, 3000);
         },
         error: (error: any) => {
           //console.error('Error al verificar el email:', error);
-          this.errorMessage = 'Error al enviar el correo';
-          setTimeout(() => this.errorMessage = null, 3000);
+          this.errorMessage2 = 'Error al enviar el correo';
+          setTimeout(() => this.errorMessage2 = null, 3000);
         },
       });
     } else {
