@@ -57,7 +57,33 @@ export class TinacoSensorComponent implements OnInit {
       this.getHistory(Number(this.tinacoId), this.sensorId, this.currentPage);
       this.setupEchoConnection(Number(this.tinacoId), this.sensorId);
     });
-    
+  }
+  getBorderColor(item: SensorHistorial): string {
+    const value = parseFloat(item.valor);
+    switch (this.sensorId) {
+      case 1: // Ultrasonico: mayor valor indica menor nivel de agua.
+        if (value > 15) return '#dc3545'; // Malo (rojo)
+        if (value > 10) return '#ffc107'; // Medio (amarillo)
+        return '#28a745'; // Bueno (verde)
+      case 2: // Temperatura: valores muy altos o muy bajos son críticos.
+        if (value > 35 || value < 15) return '#dc3545';
+        if (value >= 15 && value <= 25) return '#28a745';
+        return '#ffc107';
+      case 3: // pH: lo ideal es 7, con tolerancia de ±1 para bueno.
+        if (Math.abs(value - 7) > 2) return '#dc3545';
+        if (Math.abs(value - 7) > 1) return '#ffc107';
+        return '#28a745';
+      case 4: // Turbidez: mientras menor, mejor.
+        if (value > 100) return '#dc3545';
+        if (value > 50) return '#ffc107';
+        return '#28a745';
+      case 5: // TDS: niveles altos pueden indicar problemas.
+        if (value > 500) return '#dc3545';
+        if (value > 300) return '#ffc107';
+        return '#28a745';
+      default:
+        return '#007bff';
+    }
   }
 
   getHistory(id_tinaco: number, id_sensor: number, page: number): void {
@@ -97,6 +123,7 @@ export class TinacoSensorComponent implements OnInit {
       //console.log('Escuchando en el canal:', channelName);
       channel.listen(channelName, (data: any) => {
         console.log(`Nueva data para sensor ${sensorId}:`, data);
+
         this.ngZone.run(() => {
           // Inserta el nuevo registro al principio del arreglo
           this.data.unshift(data.sensor);

@@ -19,13 +19,15 @@
         <h2 class="text-center mb-4">Historial de Sensores</h2>
         <ul class="list-group">
           <!-- Usamos el comparador orderByCreatedAt para ordenar -->
-          <li *ngFor="let item of data" class="list-group-item d-flex justify-content-between align-items-center">
+          <li *ngFor="let item of data" class="list-group-item d-flex justify-content-between align-items-center"
+            [ngStyle]="{'border-left-color': getBorderColor(item)}">
             <div>
               <strong>Valor:</strong> {{ item.valor }}<br>
               <small class="text-muted">Fecha: {{ item.created_at }}</small>
             </div>
             <span class="badge bg-primary rounded-pill">{{ nombreSensor }}</span>
           </li>
+
         </ul>
         <!-- Componente de Paginación -->
         <app-pagination [pagination]="pagination" (pageChange)="goToPage($event)">

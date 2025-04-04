@@ -4,12 +4,12 @@
     }
 }
 .list-group-item {
-    background-color: #f8f9fa; /* Fondo suave */
-    border-left: 5px solid #007bff; /* Borde destacado */
+    background-color: #f8f9fa;
+    border-left: 5px solid; /* El color se actualizará dinámicamente */
     transition: transform 0.2s ease-in-out;
 }
 
 .list-group-item:hover {
-    transform: scale(1.03); /* Efecto de elevación al pasar el mouse */
+    transform: scale(1.03);
     background-color: #e9ecef;
 }

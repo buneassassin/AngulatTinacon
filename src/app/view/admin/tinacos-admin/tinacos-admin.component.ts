@@ -21,6 +21,8 @@ export class TinacosAdminComponent implements OnInit {
   perPage: number = 30;
   totalPages: number = 0;
 
+  totalTinacos: number = 0;
+
   constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class TinacosAdminComponent implements OnInit {
       next: (response: any) => {
         // Se asume que la respuesta paginada tiene una estructura con "data", "current_page" y "last_page"
         this.usersWithTinacos = response.data;
+        this.totalTinacos = response.total_tinacos;
         this.currentPage = response.current_page;
         this.totalPages = response.last_page;
         this.isLoading = false;
@@ -56,13 +59,6 @@ export class TinacosAdminComponent implements OnInit {
   // Ejemplo de toggle para un tinaco (puedes adaptar la lógica)
   toggleTinaco(tinaco: any): void {
     tinaco.nivel_del_agua = tinaco.nivel_del_agua > 0 ? 0 : 100;
-  }
-
-  // Getter para total de tinacos
-  get totalTinacos(): number {
-    return this.usersWithTinacos.reduce((total, user) => {
-      return total + (user.tinacos ? user.tinacos.length : 0);
-    }, 0);
   }
 
   // Getter para tinacos activos (consideramos activos aquellos con nivel_del_agua > 0)

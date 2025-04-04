@@ -47,17 +47,19 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
   idTinaco: string | null = null;
   isLoading: boolean = true;
 
-
-  constructor(private sensoresService: SensoresServicioService,private ngZone: NgZone) {
+  constructor(
+    private sensoresService: SensoresServicioService,
+    private ngZone: NgZone
+  ) {
     //se escuchan los cambios y se extra el parámetro
     this.route.paramMap.subscribe((params) => {
       //obtiene el valor dinamico de la url
       this.idTinaco = params.get('id');
       //console.log('ID del tinaco:', this.idTinaco);
       if (this.idTinaco) {
-        this.sensors = this.sensors.map(sensor => ({
+        this.sensors = this.sensors.map((sensor) => ({
           ...sensor,
-          channelName: `.Sensor_${sensor.id}_Data_${this.idTinaco}`
+          channelName: `.Sensor_${sensor.id}_Data_${this.idTinaco}`,
         }));
       }
     });
@@ -70,95 +72,97 @@ export class TinacoIndivComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.getTinaco();
-  }
+  } 
   getTinaco(): void {
     if (this.idTinaco) {
       this.sensoresService.getTinaco(Number(this.idTinaco)).subscribe({
         next: (response: any) => {
           //console.log(response);
           this.tinaco = response.tinaco;
-
-          if (this.tinaco && this.tinaco.id !== undefined) {
-            this.getSensorValue(this.tinaco.id);
-            this.setupEchoConnection();
-          }
-          
+          setTimeout(() => {
+            if (this.tinaco && this.tinaco.id !== undefined) {
+              this.getSensorValue(this.tinaco.id);
+              this.setupEchoConnection();
+            }
+          }, 2000);
         },
         error: (error) => {
           //console.error('Error al obtener tinaco:', error);
           this.isLoading = false;
-        }
+        },
       });
     }
   }
   getSensorValue(tinaco_id: number): void {
-      const data = { tinaco_id };
-      forkJoin({
-        temperatura: this.sensoresService.getTemperatura(data),
-        ph: this.sensoresService.getPH(data),
-        tds: this.sensoresService.getTDS(data),
-        turbidez: this.sensoresService.getTurbidez(data),
-        ultrasonico: this.sensoresService.getUltrasonico(data),
-      }).subscribe({
-        next: (responses: any) => {
-          // Actualizamos el valor de cada sensor según la respuesta de la API
-          this.sensors = this.sensors.map(sensor => {
-            let newValue;
-            switch (sensor.id) {
-              case 1:
-                newValue = responses.ultrasonico.valor ?? 'Sin datos';
-                break;
-              case 2:
-                newValue = responses.temperatura.valor ?? 'Sin datos';
-                break;
-              case 3:
-                newValue = responses.ph.valor ?? 'Sin datos';
-                break;
-              case 4:
-                newValue = responses.turbidez.valor ?? 'Sin datos';
-                break;
-              case 5:
-                newValue = responses.tds.valor ?? 'Sin datos';
-                break;
-              default:
-                newValue = 'Sin datos';
-            }
-            this.isLoading = false;
-            return { ...sensor, value: newValue };
-          });
-        },
-        error: (error) => {
-          //console.error('Error al obtener los valores de los sensores:', error);
+    const data = { tinaco_id };
+    forkJoin({
+      temperatura: this.sensoresService.getTemperatura(data),
+      ph: this.sensoresService.getPH(data),
+      tds: this.sensoresService.getTDS(data),
+      turbidez: this.sensoresService.getTurbidez(data),
+      ultrasonico: this.sensoresService.getUltrasonico(data),
+    }).subscribe({
+      next: (responses: any) => {
+        // Actualizamos el valor de cada sensor según la respuesta de la API
+        this.sensors = this.sensors.map((sensor) => {
+          let newValue;
+          switch (sensor.id) {
+            case 1:
+              newValue = responses.ultrasonico.valor ?? 'Sin datos';
+              break;
+            case 2:
+              newValue = responses.temperatura.valor ?? 'Sin datos';
+              break;
+            case 3:
+              newValue = responses.ph.valor ?? 'Sin datos';
+              break;
+            case 4:
+              newValue = responses.turbidez.valor ?? 'Sin datos';
+              break;
+            case 5:
+              newValue = responses.tds.valor ?? 'Sin datos';
+              break;
+            default:
+              newValue = 'Sin datos';
+          }
           this.isLoading = false;
-        },
+          return { ...sensor, value: newValue };
+        });
+      },
+      error: (error) => {
+        //console.error('Error al obtener los valores de los sensores:', error);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  private setupEchoConnection() {
+    //console.log('Conectando a Pusher...');
+
+    const subscribeToChannel = () => {
+      const channel = echo.channel('reviews');
+      //console.log('Canal reviews suscrito');
+      this.sensors.forEach((sensor) => {
+        //console.log('Escuchando en el canal:', sensor.channelName);
+        channel.listen(sensor.channelName, (data: any) => {
+          console.log(`Nueva data para sensor ${sensor.name}:`, data);
+          this.ngZone.run(() => {
+            this.getSensorValue(this.tinaco!.id);
+            this.getTinaco();
+
+          });
+        });
+      });
+    };
+
+    if (echo.connector.pusher.connection.state === 'connected') {
+      //console.log('Conectado a Pusher');
+      subscribeToChannel();
+    } else {
+      echo.connector.pusher.connection.bind('connected', () => {
+        //console.log('Conectado a Pusher (después de bind)');
+        subscribeToChannel();
       });
     }
-  
-    private setupEchoConnection() {
-     //console.log('Conectando a Pusher...');
-  
-      const subscribeToChannel = () => {
-        const channel = echo.channel('reviews');
-        //console.log('Canal reviews suscrito');
-        this.sensors.forEach(sensor => {
-          //console.log('Escuchando en el canal:', sensor.channelName);
-          channel.listen(sensor.channelName, (data: any) => {
-            console.log(`Nueva data para sensor ${sensor.name}:`, data);
-            this.ngZone.run(() => {
-              this.getSensorValue(this.tinaco!.id);
-            })
-          });
-        });
-      };
-  
-      if (echo.connector.pusher.connection.state === 'connected') {
-        //console.log('Conectado a Pusher');
-        subscribeToChannel();
-      } else {
-        echo.connector.pusher.connection.bind('connected', () => {
-          //console.log('Conectado a Pusher (después de bind)');
-          subscribeToChannel();
-        });
-      }
-    }
+  }
 }

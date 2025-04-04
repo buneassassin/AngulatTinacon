@@ -22,10 +22,28 @@ import { echo } from '../../../../echo-config';
 })
 export class TinacoDetalleComponent implements OnInit {
   sensors: SensorData[] = [
-    { id: 1, name: 'Ultrasonico', description: 'Ultrasonico', value: null, channelName: '' },
-    { id: 2, name: 'Temperatura', description: 'Temperatura', value: null, channelName: '' },
+    {
+      id: 1,
+      name: 'Ultrasonico',
+      description: 'Ultrasonico',
+      value: null,
+      channelName: '',
+    },
+    {
+      id: 2,
+      name: 'Temperatura',
+      description: 'Temperatura',
+      value: null,
+      channelName: '',
+    },
     { id: 3, name: 'PH', description: 'PH', value: null, channelName: '' },
-    { id: 4, name: 'Turbidez', description: 'Turbidez', value: null, channelName: '' },
+    {
+      id: 4,
+      name: 'Turbidez',
+      description: 'Turbidez',
+      value: null,
+      channelName: '',
+    },
     { id: 5, name: 'TDS', description: 'TDS', value: null, channelName: '' },
   ];
   tinaco: Tinacos | null = null;
@@ -43,9 +61,9 @@ export class TinacoDetalleComponent implements OnInit {
       //console.log('ID del tinaco:', this.idTinaco);
       // Una vez obtenido el id, asignamos dinámicamente los nombres de canal para cada sensor.
       if (this.idTinaco) {
-        this.sensors = this.sensors.map(sensor => ({
+        this.sensors = this.sensors.map((sensor) => ({
           ...sensor,
-          channelName: `.Sensor_${sensor.id}_Data_${this.idTinaco}`
+          channelName: `.Sensor_${sensor.id}_Data_${this.idTinaco}`,
         }));
       }
     });
@@ -62,14 +80,15 @@ export class TinacoDetalleComponent implements OnInit {
       next: (response: any) => {
         // Se asume que la API devuelve el tinaco en response.tinaco
         this.tinaco = response.tinaco;
-
-        // Una vez obtenido el tinaco, se solicita el valor de cada sensor
-        if (this.tinaco && this.tinaco.id !== undefined) {
-          this.getSensorValue(this.tinaco.id);
-          this.setupEchoConnection();
-        } else {
-          this.isLoading = false;
-        }
+        setTimeout(() => {
+          // Una vez obtenido el tinaco, se solicita el valor de cada sensor
+          if (this.tinaco && this.tinaco.id !== undefined) {
+            this.getSensorValue(this.tinaco.id);
+            this.setupEchoConnection();
+          } else {
+            this.isLoading = false;
+          }
+        }, 2000);
       },
       error: (error) => {
         //console.error('Error al obtener tinaco:', error);
@@ -89,7 +108,8 @@ export class TinacoDetalleComponent implements OnInit {
     }).subscribe({
       next: (responses: any) => {
         // Actualizamos el valor de cada sensor según la respuesta de la API
-        this.sensors = this.sensors.map(sensor => {
+        this.sensors = this.sensors.map((sensor) => {
+          //console.log(responses);
           let newValue;
           switch (sensor.id) {
             case 1:
@@ -110,7 +130,9 @@ export class TinacoDetalleComponent implements OnInit {
             default:
               newValue = 'Sin datos';
           }
+          //console.log(newValue);
           return { ...sensor, value: newValue };
+        
         });
         this.isLoading = false;
       },
@@ -122,18 +144,19 @@ export class TinacoDetalleComponent implements OnInit {
   }
 
   private setupEchoConnection() {
-   //console.log('Conectando a Pusher...');
+    //console.log('Conectando a Pusher...');
 
     const subscribeToChannel = () => {
       const channel = echo.channel('reviews');
       //console.log('Canal reviews suscrito');
-      this.sensors.forEach(sensor => {
+      this.sensors.forEach((sensor) => {
         //console.log('Escuchando en el canal:', sensor.channelName);
         channel.listen(sensor.channelName, (data: any) => {
-          console.log(`Nueva data para sensor ${sensor.name}:`, data);
+         // console.log(`Nueva data para sensor ${sensor.name}:`, data);
           this.ngZone.run(() => {
             this.getSensorValue(this.tinaco!.id);
-          })
+            this.getTinaco();
+          });
         });
       });
     };

@@ -5,7 +5,6 @@ import { AuthService } from '../../Services/auth/auth.service';
 import { User } from '../../Interface/user';
 import { LoadingSkeletonComponent } from '../../Components/loading-skeleton/loading-skeleton.component';
 import { NotificacionService } from '../../Services/notificacion/notificacion.service';
-import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -19,13 +18,12 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
-export class NavComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit {
   isLoggedIn: boolean = false;
   user: User | null = null;
   isLoadingUser: boolean = true;
   countNoti: any = {};
 
-  private notiPollingSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -38,10 +36,8 @@ export class NavComponent implements OnInit, OnDestroy {
     this.info();
     this.getNotiCount();
 
-    this.notiPollingSubscription = interval(20000).subscribe(() => {
-      //console.log('Actualizando notificaciones...');
-      this.getNotiCount();
-    });
+    //console.log('Actualizando notificaciones...');
+    this.getNotiCount();
   }
 
   info(): void {
@@ -85,12 +81,5 @@ export class NavComponent implements OnInit, OnDestroy {
     localStorage.removeItem('token');
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
-  }
-
-  ngOnDestroy(): void {
-    // Cancela la suscripción del polling para evitar fugas de memoria
-    if (this.notiPollingSubscription) {
-      this.notiPollingSubscription.unsubscribe();
-    }
   }
 }
