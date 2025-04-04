@@ -6,13 +6,23 @@ import { NavComponent } from './Components/nav/nav.component';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { FondoComponent } from './Components/fondo/fondo.component';
 import { LoadingSkeletonComponent } from './Components/loading-skeleton/loading-skeleton.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { LoadingOverlayComponent } from "./Components/loading-overlay/loading-overlay.component"; // Servicio que crearemos
+import { LoadingService } from './Components/loading-overlay/loading.service';
+import { NavigationStart,NavigationCancel ,NavigationError } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, FooterComponent, NavComponent, CommonModule, SidebarComponent, FondoComponent,LoadingSkeletonComponent],
+  imports: [RouterModule, FooterComponent, NavComponent, CommonModule, SidebarComponent, FondoComponent, LoadingSkeletonComponent, LoadingOverlayComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptor,
+    multi: true
+  }]
 })
 export class AppComponent {
   title = 'IntegradoraAngularTinacon';
@@ -43,7 +53,7 @@ export class AppComponent {
     '/admin/notificaciones'
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private loadingService: LoadingService) {
     // Suscribirse a eventos del router (filtrando solo NavigationEnd)
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -62,5 +72,17 @@ export class AppComponent {
       return url.startsWith(baseRoute);
     }
     return url === route;
+  }
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.loadingService.show();
+      }
+      if (event instanceof NavigationEnd ||
+          event instanceof NavigationCancel ||
+          event instanceof NavigationError) {
+        this.loadingService.hide();
+      }
+    });
   }
 }
